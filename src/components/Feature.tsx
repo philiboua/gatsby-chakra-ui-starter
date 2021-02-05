@@ -26,10 +26,10 @@ const Feature: React.FC<IFeature> = ({
         pl={reverseGridItemsOrder ? { md: 16 } : ""}
       >
         {caption && <Text type="caption">{caption}</Text>}
-        <Text type="heading.third" mt={3}>
+        <Text type="headline.small" mt={3}>
           {headline}
         </Text>
-        <Text mt={3} type="body.first">
+        <Text mt={3} type="body.medium">
           {content}
         </Text>
         {link && <Link href={link.href} />}

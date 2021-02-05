@@ -7,58 +7,61 @@ const ChakraTextWithMotion = motion.custom(ChakraText)
 
 const Text: React.FC<IText> = ({ children, type, ...props }) => {
   switch (type) {
-    case "heading.first":
+    case "headline.large":
       return (
         <ChakraTextWithMotion
           lineHeight="small"
           mt={0}
           as="h1"
-          fontSize={{ sm: "heading.first.mobile", xl: "heading.first.desktop" }}
+          fontSize={{
+            sm: "headline.large.mobile",
+            xl: "headline.large.desktop",
+          }}
           fontWeight="700"
           {...props}
         >
           {children}
         </ChakraTextWithMotion>
       )
-    case "heading.second":
+    case "headline.medium":
       return (
         <ChakraTextWithMotion
           lineHeight="heading"
           as="h2"
-          fontSize="heading.second"
+          fontSize="headline.medium"
           fontWeight="700"
           {...props}
         >
           {children}
         </ChakraTextWithMotion>
       )
-    case "heading.third":
+    case "headline.small":
       return (
         <ChakraTextWithMotion
           lineHeight="heading"
           as="h3"
-          fontSize="heading.third"
+          fontSize="headline.small"
           fontWeight="700"
           {...props}
         >
           {children}
         </ChakraTextWithMotion>
       )
-    case "subtitle.first":
+    case "subtitle.medium":
       return (
         <ChakraTextWithMotion
           lineHeight="subtitle"
-          fontSize="subtitle.first"
+          fontSize="subtitle.medium"
           {...props}
         >
           {children}
         </ChakraTextWithMotion>
       )
-    case "subtitle.second":
+    case "subtitle.small":
       return (
         <ChakraTextWithMotion
           lineHeight="subtitle"
-          fontSize="subtitle.second"
+          fontSize="subtitle.small"
           {...props}
         >
           {children}
@@ -75,21 +78,21 @@ const Text: React.FC<IText> = ({ children, type, ...props }) => {
           {children}
         </ChakraTextWithMotion>
       )
-    case "body.first":
+    case "body.medium":
       return (
         <ChakraTextWithMotion
           lineHeight="body"
-          fontSize="body.first"
+          fontSize="body.medium"
           {...props}
         >
           {children}
         </ChakraTextWithMotion>
       )
-    case "body.second":
+    case "body.small":
       return (
         <ChakraTextWithMotion
           lineHeight="body"
-          fontSize="body.second"
+          fontSize="body.small"
           {...props}
         >
           {children}

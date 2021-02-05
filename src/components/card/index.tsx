@@ -75,13 +75,13 @@ const Card: React.FC<ICard> = ({ image, icon, data, link, type }) => {
         flex="1 1 auto"
       >
         <Text
-          type="subtitle.first"
+          type="subtitle.medium"
           marginBottom={type === "witImage" ? 3 : 2}
           fontWeight="bold"
         >
           {data.headline}
         </Text>
-        <Text type="body.second" marginBottom={3}>
+        <Text type="body.small" marginBottom={3}>
           {data.content}
         </Text>
         <Box style={handleSizeCard()}>

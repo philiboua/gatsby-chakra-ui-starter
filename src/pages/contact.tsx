@@ -7,7 +7,7 @@ const Contact = (): React.ReactElement => {
     <Container>
       <Row>
         <Column col={["sm4"]}>
-          <Text type="heading.first">Contact</Text>
+          <Text type="headline.large">Contact</Text>
         </Column>
       </Row>
     </Container>

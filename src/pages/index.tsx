@@ -74,10 +74,10 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
           <Row>
             <Column>
               <Article centerContent py={28}>
-                <Text type="heading.second" textAlign="center">
+                <Text type="headline.medium" textAlign="center">
                   A better way to send money
                 </Text>
-                <Text type="body.first">
+                <Text type="body.medium">
                   This is to display a card container{" "}
                 </Text>
               </Article>

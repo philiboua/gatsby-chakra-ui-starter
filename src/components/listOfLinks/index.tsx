@@ -11,7 +11,7 @@ const ListOfLinks: React.FC<IListOfLinks> = ({ content, ...props }) => {
         return (
           <ListItem key={link.href}>
             <Link
-              fontSize="body.first"
+              fontSize="body.medium"
               isExternal={link.isExternal}
               asButton={link.asButton}
               href={link.href}
