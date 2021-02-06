@@ -1,0 +1,101 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  ArgsTable,
+  Preview,
+} from "@storybook/addon-docs/blocks"
+import { Text } from "@src/components"
+
+<Meta title="Components/Text" component={Text} />
+
+# Text
+
+Text component is the used to render text and paragraphs within an interface. It renders a `<p>` tag by default.
+It wraps the `Text` component from Chakra UI. The prop `type` added to the initial component, defines the size and style of the text.
+[Chakra UI Text Component](https://chakra-ui.com/docs/typography/text).
+
+## ** Overview **
+
+| Element         | prop `type`     |                            usage                            | HTML Tag |
+| :-------------- | --------------- | :---------------------------------------------------------: | -------: |
+| Headline Large  | headline.large  |  Page headline, describes the main information of the page  |       h1 |
+| Headline Medium | headline.medium |                      Section headline                       |       h2 |
+| Headline Small  | headline.small  | Headline inside a section, card headline product hightlight |       h3 |
+| Subtitle Medium | subtitle.medium |                  Title for small body text                  |       h3 |
+| Subtitle Small  | subtitle.small  |                     Title for captions                      |       h4 |
+| Introduction    | introduction    |      Paragraph that supports headline large or medium       |        p |
+| Body medium     | body.medium     |                      Long format text                       |        p |
+| Body small      | body.small      |     Font size we can use inside UI patterns like cards      |        p |
+| Caption         | caption         |      Small text copy we can use for badges or tooltips      |        p |
+| Legal           | legal           |    Used at the bottom of the page as for legal purposes     |        p |
+
+## ** Preview **
+
+### Headline large
+
+<Preview>
+  <Story name="Headline large">
+    <Text type="headline.large">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+### Headline medium
+
+<Preview>
+  <Story name="Headline medium">
+    <Text type="headline.medium">Gatsby is great</Text>
+  </Story>
+</Preview>
+
+### Headline small
+
+<Preview>
+  <Story name="Headline small">
+    <Text type="headline.small">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+### Subtitle medium
+
+<Preview>
+  <Story name="Subtitle medium">
+    <Text type="subtitle.medium">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+### Subtitle small
+
+<Preview>
+  <Story name="Subtitle small">
+    <Text type="subtitle.small">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+### Introduction
+
+<Preview>
+  <Story name="Introduction">
+    <Text type="introduction">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+### Body medium
+
+<Preview>
+  <Story name="Body medium">
+    <Text type="body.medium">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+### Body small
+
+<Preview>
+  <Story name="Body small">
+    <Text type="body.small">Chakra UI is great</Text>
+  </Story>
+</Preview>
+
+## ** Props **
+
+<ArgsTable of={Text} />

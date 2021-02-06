@@ -5,22 +5,22 @@ export const fonts = {
 }
 
 export const fontSizes = {
-  heading: {
-    first: {
+  headline: {
+    large: {
       desktop: "3rem",
       mobile: "2.25rem",
     },
-    second: "1.875rem",
-    third: "1.5rem",
+    medium: "1.875rem",
+    small: "1.5rem",
   },
   introduction: "1.25rem",
   subtitle: {
-    first: "1.125rem",
-    second: "1rem",
+    medium: "1.125rem",
+    small: "1rem",
   },
   body: {
-    first: "1.125rem",
-    second: "1rem",
+    medium: "1.125rem",
+    small: "1rem",
   },
   caption: "0.875rem",
   legal: "0.75rem",

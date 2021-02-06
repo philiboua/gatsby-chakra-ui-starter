@@ -6,11 +6,12 @@ import { Text } from "@src/components"
 import { css, jsx } from "@emotion/react"
 import { motion } from "framer-motion"
 
-const HamburgerButton: React.FC<IHamburgerButton> = ({ data }) => {
+const HamburgerButton: React.FC<IHamburgerButton> = ({
+  ariaLabel,
+  menuLabel,
+}) => {
   const [toggle, setToggle] = useState(false)
   const [isTablet] = useMediaQuery("(min-width: 768px)")
-
-  const { ariaLabel, menuLabel } = data
 
   // We use variants in order to animate the component,
   // based on the state of the hamburger button

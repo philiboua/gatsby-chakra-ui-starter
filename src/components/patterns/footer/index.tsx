@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 )}
               </Box>
               <Box>
-                <Text type="subtitle.first">
+                <Text type="subtitle.medium">
                   {intl.formatMessage({
                     id: `${data.footerJson.companyMission}`,
                   })}

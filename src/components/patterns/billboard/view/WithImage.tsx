@@ -23,7 +23,7 @@ export const BillboardWithImage: React.FC<IBillboard> = ({
           maxWidth="30rem"
         >
           {caption && <Text type="caption">{caption}</Text>}
-          <Text type="heading.first" mt={0}>
+          <Text type="headline.large" mt={0}>
             {headline}
           </Text>
           <Text type="introduction">{content}</Text>

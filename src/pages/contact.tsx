@@ -1,13 +1,13 @@
 import React from "react"
-import Text from "@components/Text"
-import { Container, Row, Column } from "@src/components"
+
+import { Container, Row, Column, Text } from "@src/components"
 
 const Contact = (): React.ReactElement => {
   return (
     <Container>
       <Row>
         <Column col={["sm4"]}>
-          <Text type="heading.first">Contact</Text>
+          <Text type="headline.large">Contact</Text>
         </Column>
       </Row>
     </Container>

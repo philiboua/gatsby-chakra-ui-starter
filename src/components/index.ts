@@ -1,6 +1,6 @@
 export * from "@components/layout"
 export { default as SEO } from "@components/seo"
-export { default as Text } from "@components/Text"
+export { default as Text } from "@src/components/text"
 export { default as Article } from "@components/Article"
 export { default as Feature } from "@components/Feature"
 export { default as Link } from "@components/link"
