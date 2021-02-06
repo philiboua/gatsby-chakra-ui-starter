@@ -1,0 +1,66 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  ArgsTable,
+  Preview,
+  Props,
+} from "@storybook/addon-docs/blocks"
+import { Link } from "@src/components"
+
+import { Link as Hello, Button } from "@chakra-ui/react"
+import { Link as GatsbyLink } from "gatsby-plugin-intl"
+
+<Meta title="Components/Link" component={Link} />
+
+# Link
+
+Links are primarily used for navigation. They can be displayed as button based on the use case.
+
+## ** Preview **
+
+### Default link
+
+<Canvas>
+  <Story name="Default Link">
+    <Link href="/page-2">Click me!</Link>
+  </Story>
+</Canvas>
+
+### External Link
+
+<Canvas>
+  <Story name="External link">
+    <Link isExternal href="/page-2">
+      Click me
+    </Link>
+  </Story>
+</Canvas>
+
+### Link with right arrow
+
+<Canvas>
+  <Story name="Link with right arrow">
+    <Link displayRightArrow href="/page-2">
+      Click me
+    </Link>
+  </Story>
+</Canvas>
+
+### Link as button
+
+<Canvas>
+  <Story name="Link as button">
+    <Link asButton href="/page-2">
+      Click me!
+    </Link>
+  </Story>
+</Canvas>
+
+## ** Props **
+
+|     |
+| :-: |
+
+
+<ArgsTable of={Link} />
