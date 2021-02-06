@@ -1,0 +1,48 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Button } from "@chakra-ui/react"
+
+<Meta title="Components/Button/Buttons" component={Button} />
+
+# Buttons
+
+Buttons are primarily used to trigger actions by the user.
+
+## ** Preview **
+
+### Buttons
+
+<Canvas>
+  <Story name="Extra small button">
+    <Button size="xs">Extra small button</Button>
+  </Story>
+  <Story name="Small button">
+    <Button size="sm">Small button</Button>
+  </Story>
+  <Story name="Medium button">
+    <Button size="md">Medium button</Button>
+  </Story>
+  <Story name="Large button">
+    <Button size="lg">Large button</Button>
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Solid button">
+    <Button variant="solid">solid button</Button>
+  </Story>
+  <Story name="Outline button">
+    <Button variant="outline">outline button</Button>
+  </Story>
+  <Story name="Ghost button">
+    <Button variant="ghost">ghost button</Button>
+  </Story>
+  <Story name="Link button">
+    <Button variant="link">link button</Button>
+  </Story>
+</Canvas>
+
+## ** Props **
+
+Props for this component can be retrieve here [Button props](https://chakra-ui.com/docs/form/button#button-props)
+
+<ArgsTable of={Button} />
