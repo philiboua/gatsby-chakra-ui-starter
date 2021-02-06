@@ -5,7 +5,7 @@ import { IText } from "@src/@interfaces"
 
 const ChakraTextWithMotion = motion.custom(ChakraText)
 
-const Text: React.FC<IText> = ({ children, type, ...props }) => {
+export const Text: React.FC<IText> = ({ children, type, ...props }) => {
   switch (type) {
     case "headline.large":
       return (
