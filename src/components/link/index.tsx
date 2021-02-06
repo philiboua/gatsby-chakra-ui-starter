@@ -10,12 +10,12 @@
 */
 import React from "react"
 import { Link as GatsbyLink } from "gatsby-plugin-intl"
-import { Link as ChakraLink, Flex, useTheme } from "@chakra-ui/react"
+import { Link as ChakraLink, useTheme } from "@chakra-ui/react"
 import { ExternalLinkIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import { ILink } from "@src/@interfaces"
 import GatsbyLinkAsButton from "./GatsbyLinkAsButton"
 
-const Link: React.FC<ILink> = ({
+export const Link: React.FC<ILink> = ({
   text,
   displayRightArrow,
   href,
