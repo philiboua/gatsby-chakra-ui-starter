@@ -1,8 +1,11 @@
-export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-}
-
+import React from "react"
 import { action } from "@storybook/addon-actions"
+import { ChakraProvider } from "@chakra-ui/react"
+import GlobalCSS from "../src/components/GlobalCSS"
+import theme from "../src/chakra-ui/theme"
+import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport"
+import { setIntlConfig, withIntl } from "storybook-addon-intl"
+import { IntlContextProvider } from "gatsby-plugin-intl/intl-context"
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
@@ -21,3 +24,52 @@ global.__BASE_PATH__ = "/"
 window.___navigate = pathname => {
   action("NavigateTo:")(pathname)
 }
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  viewport: {
+    viewports: MINIMAL_VIEWPORTS,
+  },
+}
+
+// Decorator for Gatsby intl
+const locales = [`en`, `fr`]
+
+export const messages = locales.reduce((acc, locale) => {
+  return {
+    ...acc,
+    [locale]: require(`../locales/${locale}.json`),
+  }
+}, {})
+
+const getMessages = locale => messages[locale]
+
+setIntlConfig({
+  locales,
+  defaultLocale: "en",
+  getMessages,
+})
+
+const intlConfig = {
+  language: "en",
+  languages: locales,
+  messages: "",
+  originalPath: "/",
+  redirect: true,
+  routed: true,
+}
+
+export const decorators = [
+  Story => (
+    <ChakraProvider theme={theme}>
+      <GlobalCSS />
+      <Story />
+    </ChakraProvider>
+  ),
+  Story => (
+    <IntlContextProvider value={intlConfig}>
+      <Story />
+    </IntlContextProvider>
+  ),
+  withIntl,
+]

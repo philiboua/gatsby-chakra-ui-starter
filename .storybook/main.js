@@ -1,9 +1,16 @@
+const path = require("path")
+
 module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  // You will want to change this to wherever your Stories will live.
+  stories: ["../src/**/*.stories.@(tsx|mdx)"],
   addons: [
+    "@storybook/addon-essentials",
     "@storybook/addon-actions",
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
+    "@storybook/addon-docs",
+    "@storybook/addon-a11y",
+    "@storybook/addon-viewport",
+    "@storybook/addon-controls",
   ],
   webpackFinal: async config => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
@@ -14,13 +21,23 @@ module.exports = {
     config.module.rules[0].use[0].options.presets = [
       require.resolve("@babel/preset-react"),
       require.resolve("@babel/preset-env"),
+      require.resolve("@emotion/babel-preset-css-prop"),
     ]
+
     config.module.rules[0].use[0].options.plugins = [
       // use @babel/plugin-proposal-class-properties for class arrow functions
       require.resolve("@babel/plugin-proposal-class-properties"),
       // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
       require.resolve("babel-plugin-remove-graphql-queries"),
     ]
+
+    // import components using absolute path
+    config.resolve.alias = {
+      "@components": path.resolve(__dirname, "../src/components"),
+      "@src": path.resolve(__dirname, "../src"),
+      "@images": path.resolve(__dirname, "../src/assets/images"),
+      "@assets": path.resolve(__dirname, "../src/assets"),
+    }
     // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
     config.resolve.mainFields = ["browser", "module", "main"]
 
@@ -28,13 +45,21 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       loader: require.resolve("babel-loader"),
       options: {
-        presets: [["react-app", { flow: false, typescript: true }]],
+        presets: [
+          ["react-app", { flow: false, typescript: true }],
+          require.resolve("@emotion/babel-preset-css-prop"),
+        ],
         plugins: [
           require.resolve("@babel/plugin-proposal-class-properties"),
           // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
           require.resolve("babel-plugin-remove-graphql-queries"),
         ],
       },
+    })
+
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      loader: require.resolve("react-docgen-typescript-loader"),
     })
 
     config.resolve.extensions.push(".ts", ".tsx")
