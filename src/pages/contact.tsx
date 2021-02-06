@@ -1,6 +1,6 @@
 import React from "react"
-import Text from "@components/Text"
-import { Container, Row, Column } from "@src/components"
+
+import { Container, Row, Column, Text } from "@src/components"
 
 const Contact = (): React.ReactElement => {
   return (
