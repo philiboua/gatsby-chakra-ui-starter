@@ -48,12 +48,7 @@ const Header: React.FC<IListOfLinks> = ({ content }) => {
               {isDesktop ? (
                 <Navigation content={data.allNavigationJson.nodes} />
               ) : (
-                <HamburgerButton
-                  data={{
-                    ariaLabel: "Navigation menu",
-                    menuLabel: "MENU",
-                  }}
-                />
+                <HamburgerButton ariaLabel="Navigation menu" menuLabel="Menu" />
               )}
             </Flex>
           </Column>

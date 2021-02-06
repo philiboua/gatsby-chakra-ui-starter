@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { HamburgerButton } from "@src/components"
+
+<Meta title="Components/Buttons/HamburgerButton" component={HamburgerButton} />
+
+# Buttons
+
+Buttons are primarily used to trigger actions by the user.
+
+## ** Preview **
+
+### Buttons
+
+<Canvas>
+  <Story name="Hamburger button">
+    <HamburgerButton ariaLabel="menu" menuLabel="Navigation" />
+  </Story>
+</Canvas>
+
+## ** Props **
+
+<ArgsTable of={HamburgerButton} />
