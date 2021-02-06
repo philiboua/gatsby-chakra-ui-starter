@@ -4,7 +4,7 @@ import { List, ListItem } from "@chakra-ui/react"
 import { ILink, IListOfLinks } from "@src/@interfaces"
 import { Link } from "@src/components"
 
-const ListOfLinks: React.FC<IListOfLinks> = ({ content, ...props }) => {
+export const ListOfLinks: React.FC<IListOfLinks> = ({ content, ...props }) => {
   const intl = useIntl()
   const displayList = content
     ? content.map((link: ILink) => {
