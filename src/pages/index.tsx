@@ -124,31 +124,22 @@ export const query = graphql`
       }
       cards {
         id
-        type
+        mediaType
         link {
           text
           asButton
           href
           isExternal
         }
-        image {
-          childImageSharp {
-            fluid(maxHeight: 200) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        icon {
+        media {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        data {
-          content
-          headline
-        }
+        body
+        headline
       }
       features {
         id

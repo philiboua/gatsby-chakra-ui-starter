@@ -54,50 +54,41 @@
     "cards": [
       {
         "id": "card1",
-        "image": "../../src/assets/images/computer.jpg",
-        "icon": "../../src/assets/images/disable.png",
-        "type": "withIcon",
+        "media": "../../src/assets/images/computer.jpg",
+        "mediaType": "image",
+        "headline": "Get started",
+        "body": "Follow along with everything related to individual topics, projects or teams in their dedicated channels.",
         "link": {
           "text": "Get started",
           "asButton": false,
           "href": "/about",
           "isExternal": true
-        },
-        "data": {
-          "headline": "Get started",
-          "content": "Follow along with everything related to individual topics, projects or teams in their dedicated channels."
         }
       },
       {
         "id": "card2",
-        "image": "../../src/assets/images/mouse.jpg",
-        "icon": "../../src/assets/images/calendar.png",
-        "type": "withIcon",
+        "media": "../../src/assets/images/mouse.jpg",
+        "mediaType": "image",
+        "headline": "Get started",
+        "body": "Follow along with everything related to individual topics, projects or teams in their dedicated channels.",
         "link": {
           "text": "Get started",
           "asButton": false,
           "href": "/about",
           "isExternal": false
-        },
-        "data": {
-          "headline": "Get started",
-          "content": "Follow along with everything related to individual topics, projects or teams in their dedicated channels."
         }
       },
       {
         "id": "card3",
-        "image": "../../src/assets/images/processor.jpg",
-        "icon": "../../src/assets/images/sleep.png",
-        "type": "withIcon",
+        "media": "../../src/assets/images/processor.jpg",
+        "mediaType": "image",
+        "headline": "Get started",
+        "body": "You should know better my man",
         "link": {
           "text": "Get started",
           "asButton": false,
           "href": "/about",
           "isExternal": true
-        },
-        "data": {
-          "headline": "Get started",
-          "content": "You should know better my man"
         }
       }
     ]
