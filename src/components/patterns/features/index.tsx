@@ -7,18 +7,19 @@ interface IProps {
   data: IFeature[]
 }
 
-const Features: React.FC<IProps> = ({ data }) => {
+export const Features: React.FC<IProps> = ({ data }) => {
   const displayFeatures =
     data !== undefined
       ? data.map((feature: IFeature, index: number) => {
           return (
             <Feature
-              key={feature.id}
+              key={feature?.id}
               caption={feature.caption}
               featureImage={feature.featureImage}
               headline={feature.headline}
               content={feature.content}
               reverseGridItemsOrder={!isEven(index)}
+              link={feature?.link}
             />
           )
         })
