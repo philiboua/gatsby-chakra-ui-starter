@@ -11,7 +11,7 @@ import { Box, useTheme } from "@chakra-ui/react"
 import { Container, Row } from "@src/components"
 import { BillboardWithCopy, BillboardWithImage } from "./view"
 
-const Billboard: React.FC<IBillboard> = ({
+export const Billboard: React.FC<IBillboard> = ({
   caption,
   headline,
   content,

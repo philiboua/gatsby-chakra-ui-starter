@@ -96,7 +96,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
 }
 
 export const query = graphql`
-  query Navigation {
+  query Homepage {
     homepageJson(billboard: {}) {
       billboard {
         caption
