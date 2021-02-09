@@ -3,7 +3,7 @@ import { ICardsContainer } from "@src/@interfaces"
 import { Card, Container, Column, Row } from "@src/components"
 import { isEven } from "@src/utils"
 
-const CardsContainer: React.FC<ICardsContainer> = ({ content }) => {
+export const CardContainer: React.FC<ICardsContainer> = ({ content }) => {
   function getColumnStyles(): string[] {
     const numberOfCards: number = content.length
     if (isEven(numberOfCards)) {
@@ -19,11 +19,11 @@ const CardsContainer: React.FC<ICardsContainer> = ({ content }) => {
           return (
             <Column col={getColumnStyles()} key={card.id}>
               <Card
-                image={card.image}
-                data={card.data}
+                headline={card.headline}
+                body={card.body}
                 link={card.link}
-                type={card.type}
-                icon={card.icon}
+                mediaType={card.mediaType}
+                media={card.media}
               />
             </Column>
           )
@@ -33,4 +33,4 @@ const CardsContainer: React.FC<ICardsContainer> = ({ content }) => {
   )
 }
 
-export default CardsContainer
+export default CardContainer
