@@ -1,10 +1,10 @@
 import React from "react"
 import { Text, Link } from "@components/index"
-import { Grid, GridItem, Flex } from "@chakra-ui/react"
+import { Grid, GridItem } from "@chakra-ui/react"
 import { IFeature } from "@src/@interfaces"
 import Img from "gatsby-image"
 
-const Feature: React.FC<IFeature> = ({
+export const Feature: React.FC<IFeature> = ({
   featureImage,
   headline,
   content,
@@ -32,7 +32,16 @@ const Feature: React.FC<IFeature> = ({
         <Text mt={3} type="body.medium">
           {content}
         </Text>
-        {link && <Link href={link.href} />}
+        {link && (
+          <Link
+            mt={3}
+            asButton={link.asButton}
+            isExternal={link.isExternal}
+            href={link.href}
+          >
+            {link.text}
+          </Link>
+        )}
       </GridItem>
       <GridItem
         pl={reverseGridItemsOrder ? "" : { md: 16 }}
