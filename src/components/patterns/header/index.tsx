@@ -14,9 +14,14 @@ import {
 export interface HeaderProps {
   logo: string
   content?: ILink[]
+  bgColorType: string
 }
 
-export const Header: React.FC<HeaderProps> = ({ content, logo }) => {
+export const Header: React.FC<HeaderProps> = ({
+  content,
+  logo,
+  bgColorType,
+}) => {
   const [isDesktop] = useMediaQuery("(min-width: 992px")
   if (content === undefined) {
     return (
