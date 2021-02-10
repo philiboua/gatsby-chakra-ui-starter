@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
     }
   }
   return (
-    <Box bgColor={`${colors.neutral[100]}`} py={9}>
+    <Box bgColor={`${colors.gamma.neutralLight}`} py={9}>
       <Container>
         <Row>
           <Column>
@@ -77,7 +77,11 @@ export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
         </Row>
         <Row>
           <Column>
-            <Box mt={9} borderTop={`1px solid ${colors.neutral[300]}`}>
+            <Box
+              mt={9}
+              pt={9}
+              borderTop={`1px solid ${colors.gamma.passiveLight}`}
+            >
               <Flex justify="space-between">
                 <HStack>
                   <Navigation

@@ -12,38 +12,38 @@ export const Button = {
   },
   variants: {
     solid: () => ({
-      bg: "brand.400",
+      bg: "alpha.alertLight",
       color: "white",
       _hover: {
-        bg: "brand.500",
+        bg: "alpha.activeLight",
         color: "white",
       },
     }),
     outline: () => ({
       bg: "white",
-      color: "brand.500",
-      borderColor: "brand.500",
+      color: "alpha.alertLight",
+      borderColor: "alpha.alertLight",
       _hover: {
-        bg: "brand.50",
-        color: "brand.500",
+        bg: "alert.neutralLight",
+        color: "alpha.alertLight",
       },
     }),
     ghost: () => ({
       bg: "white",
-      color: "brand.500",
+      color: "alpha.alertLight",
       borderColor: "none",
       _hover: {
-        bg: "brand.50",
-        color: "brand.500",
+        bg: "alert.neutralLight",
+        color: "alpha.alertLight",
       },
     }),
     link: () => ({
       bg: "white",
-      color: "brand.500",
+      color: "alpha.alertLight",
       borderColor: "none",
       _hover: {
         bg: "white",
-        color: "brand.500",
+        color: "alpha.alertLight",
       },
     }),
   },

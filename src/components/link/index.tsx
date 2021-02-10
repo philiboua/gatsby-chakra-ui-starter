@@ -41,7 +41,7 @@ export const Link: React.FC<ILink> = ({
     <ChakraLink
       display={isExternal || displayRightArrow ? "flex" : "block"}
       alignItems={isExternal || displayRightArrow ? "center" : ""}
-      activeStyle={{ color: colors.neutral[800], fontWeight: "bold" }}
+      activeStyle={{ color: colors.gamma.neutralDark, fontWeight: "bold" }}
       {...(isExternal ? { href } : { as: GatsbyLink, to: href })}
       {...restProps}
     >

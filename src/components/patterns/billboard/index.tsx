@@ -20,7 +20,7 @@ export const Billboard: React.FC<IBillboard> = ({
 }) => {
   const { colors } = useTheme()
   return (
-    <Box py={image === undefined ? 40 : 20} bg={colors.neutral[100]}>
+    <Box py={image === undefined ? 40 : 20} bg={colors.gamma.neutralLight}>
       <Container>
         <Row wrap={{ sm: "wrap", md: "nowrap" }}>
           {image === undefined ? (

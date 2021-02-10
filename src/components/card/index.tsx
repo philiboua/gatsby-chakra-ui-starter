@@ -61,7 +61,9 @@ export const Card: React.FC<ICard> = ({
   return (
     <Flex
       mt={{ sm: 9, md: 3, lg: 0 }}
-      border={mediaType === "image" ? `1px solid ${colors.neutral[100]}` : ""}
+      border={
+        mediaType === "image" ? `1px solid ${colors.gamma.soothingLight}` : ""
+      }
       borderRadius="4px"
       maxWidth={{ sm: "100%", md: "100%", lg: "330px" }}
       direction="column"
