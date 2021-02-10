@@ -14,7 +14,7 @@ import {
 export interface HeaderProps {
   logo: string
   content?: ILink[]
-  bgColorType: string
+  bgColorType?: string
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -63,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
               </Link>
 
               {isDesktop ? (
-                <Navigation content={content} />
+                <Navigation alignNavigation="right" content={content} />
               ) : (
                 <HamburgerButton ariaLabel="Navigation menu" menuLabel="Menu" />
               )}
