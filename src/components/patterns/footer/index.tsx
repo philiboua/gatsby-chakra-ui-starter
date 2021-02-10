@@ -1,49 +1,44 @@
 import React from "react"
 import { useIntl } from "gatsby-plugin-intl"
-import { Box, Flex, VStack, HStack, Link, useTheme } from "@chakra-ui/react"
+import {
+  Box,
+  Flex,
+  HStack,
+  Link as ChakraLink,
+  useTheme,
+} from "@chakra-ui/react"
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
-import { ISocialMediaLinks } from "@src/@interfaces"
-import { useStaticQuery, graphql } from "gatsby"
+import { ISocialMediaLinks, ILink } from "@src/@interfaces"
 import {
   Container,
   Column,
   Row,
+  Link,
   ListOfLinks as Navigation,
   Text,
 } from "@src/components"
-import Img from "gatsby-image"
 
 type IconLinkType = React.ReactElement | string
 
-const Footer: React.FC = () => {
+export interface FooterProps {
+  /**
+   * Logo of of the project or company, preferable an svg file
+   */
+  logo: string
+  /**
+   * content of the footer
+   */
+  content?: {
+    copyright: string
+    footerLinks: ILink[]
+    companyMission: string
+    socialMedia: ISocialMediaLinks[]
+  }
+}
+
+export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
   const { colors } = useTheme()
   const intl = useIntl()
-
-  const data = useStaticQuery(graphql`
-    query Footer {
-      footerJson {
-        copyright
-        footerLinks {
-          asButton
-          href
-          isExternal
-          text
-        }
-        companyMission
-        companyLogo {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        socialMedia {
-          id
-          socialMediaUrl
-        }
-      }
-    }
-  `)
 
   const displaySocialIcon = (name: string): IconLinkType => {
     switch (name) {
@@ -63,17 +58,17 @@ const Footer: React.FC = () => {
         <Row>
           <Column>
             <Flex justify="space-between">
-              <Box>
-                {data.companyLogo && (
-                  <Img
-                    fluid={data.footerJson.companyLogo.childImageSharp.fluid}
-                  />
-                )}
-              </Box>
+              {logo && (
+                <Box>
+                  <Link href="/">
+                    <img src={logo} alt="logo" />
+                  </Link>
+                </Box>
+              )}
               <Box>
                 <Text type="subtitle.medium">
                   {intl.formatMessage({
-                    id: `${data.footerJson.companyMission}`,
+                    id: `${content?.companyMission}`,
                   })}
                 </Text>
               </Box>
@@ -85,18 +80,19 @@ const Footer: React.FC = () => {
             <Box mt={9} borderTop={`1px solid ${colors.neutral[300]}`}>
               <Flex justify="space-between">
                 <HStack>
-                  <Navigation content={data.footerJson.footerLinks} />
+                  <Navigation
+                    alignNavigation="left"
+                    content={content?.footerLinks}
+                  />
                 </HStack>
                 <HStack>
-                  {data.footerJson.socialMedia.map(
-                    (link: ISocialMediaLinks) => {
-                      return (
-                        <Link key={link.id} pr={4} href={link.href}>
-                          {displaySocialIcon(link.id)}
-                        </Link>
-                      )
-                    }
-                  )}
+                  {content?.socialMedia.map((link: ISocialMediaLinks) => {
+                    return (
+                      <ChakraLink key={link.id} pr={4} href={link.href}>
+                        {displaySocialIcon(link.id)}
+                      </ChakraLink>
+                    )
+                  })}
                 </HStack>
               </Flex>
             </Box>
