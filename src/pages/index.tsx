@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import { useIntl } from "gatsby-plugin-intl"
 import { Box } from "@chakra-ui/react"
 import { ILink, IFeature, IBillboard, ICard } from "@src/@interfaces"
+import logoCompany from "@images/logo-1.svg"
 
 import {
   Container,
@@ -47,7 +48,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
   return (
     <>
       <SEO />
-      <Header />
+      <Header logo={logoCompany} content={data.allNavigationJson.nodes} />
       <Box as="main" role="main">
         <Billboard
           caption={intl.formatMessage({ id: `${caption}` })}
@@ -97,6 +98,14 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
 
 export const query = graphql`
   query Homepage {
+    allNavigationJson {
+      nodes {
+        href
+        isExternal
+        text
+        asButton
+      }
+    }
     homepageJson(billboard: {}) {
       billboard {
         caption

@@ -9,7 +9,7 @@ export { default as ListOfLinks } from "@components/listOfLinks"
 export { default as Card } from "@components/card"
 
 // Patterns
-export { default as Header } from "@components/patterns/header"
+export * from "@components/patterns/header"
 export { default as Billboard } from "@components/patterns/billboard"
 export { default as Features } from "@components/patterns/features"
 export { default as CardsContainer } from "@components/patterns/cards"
