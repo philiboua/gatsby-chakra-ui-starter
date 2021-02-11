@@ -1,6 +1,6 @@
 import React from "react"
-import { IListOfLinks, ILink } from "@src/@interfaces"
-import { Flex, Box, useMediaQuery } from "@chakra-ui/react"
+import { ILink } from "@src/@interfaces"
+import { Flex, Box, BoxProps, useMediaQuery } from "@chakra-ui/react"
 
 import {
   Container,
@@ -11,21 +11,29 @@ import {
   ListOfLinks as Navigation,
 } from "@src/components"
 
-export interface HeaderProps {
+export interface HeaderProps extends BoxProps {
   logo: string
   content?: ILink[]
   bgColorType?: string
+  bgColorWithHighSaturation?: boolean
 }
 
 export const Header: React.FC<HeaderProps> = ({
   content,
   logo,
-  bgColorType,
+  bgColor,
+  bgColorWithHighSaturation,
 }) => {
   const [isDesktop] = useMediaQuery("(min-width: 992px")
+
   if (content === undefined) {
     return (
-      <Box as="header" role="banner" py={2}>
+      <Box
+        as="header"
+        bgColor={bgColor !== undefined ? bgColor : "#fff"}
+        role="banner"
+        py={2}
+      >
         <Container>
           <Row>
             <Column col={["sm4", "md6", "lg12"]}>
@@ -47,7 +55,12 @@ export const Header: React.FC<HeaderProps> = ({
     )
   }
   return (
-    <Box as="header" role="banner" py={2}>
+    <Box
+      as="header"
+      role="banner"
+      bgColor={bgColor !== undefined ? bgColor : "#fff"}
+      py={2}
+    >
       <Container>
         <Row>
           <Column col={["sm4", "md6", "lg12"]}>
@@ -63,7 +76,11 @@ export const Header: React.FC<HeaderProps> = ({
               </Link>
 
               {isDesktop ? (
-                <Navigation alignNavigation="right" content={content} />
+                <Navigation
+                  bgColorWithHighSaturation={bgColorWithHighSaturation}
+                  alignNavigation="right"
+                  content={content}
+                />
               ) : (
                 <HamburgerButton ariaLabel="Navigation menu" menuLabel="Menu" />
               )}
