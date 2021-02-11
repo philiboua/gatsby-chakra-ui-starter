@@ -1,9 +1,15 @@
 import React from "react"
-import { ISection } from "@src/@interfaces"
 import { Box } from "@chakra-ui/react"
 import { Container } from "@src/components"
 
-export const Section: React.FC<ISection> = ({ withContainer, children }) => {
+export interface SectionProps {
+  withContainer?: boolean
+}
+
+export const Section: React.FC<SectionProps> = ({
+  withContainer,
+  children,
+}) => {
   if (withContainer) {
     return (
       <Box as="section">
