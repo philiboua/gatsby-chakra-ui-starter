@@ -16,4 +16,5 @@ export interface IFeature {
   caption?: IText
   link?: ILink
   reverseGridItemsOrder?: boolean
+  bgColorWithHighSaturation?: boolean
 }

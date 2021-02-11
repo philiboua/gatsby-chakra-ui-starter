@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
 import { Feature } from "@src/components"
+import { Box } from "@chakra-ui/react"
 import * as feature from "./content/data.js"
 
 <Meta title="Components/Feature" component={Feature} />
@@ -31,6 +32,16 @@ We can reverse the item order of the feature component by adding the prop `rever
 <Canvas>
   <Story name="Feature with items reversed">
     <Feature reverseGridItemsOrder {...feature.withLink} />
+  </Story>
+</Canvas>
+
+### Feature with a high saturated background color
+
+<Canvas>
+  <Story name="Feature with a high saturated background color">
+    <Box as="section" bgColor="#000" py={{ md: 16 }} px={{ md: 8 }}>
+      <Feature bgColorWithHighSaturation {...feature.withLink} />
+    </Box>
   </Story>
 </Canvas>
 
