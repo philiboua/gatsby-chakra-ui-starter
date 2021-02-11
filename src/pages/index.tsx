@@ -60,9 +60,18 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
   return (
     <>
       <SEO />
-      <Header logo={logoCompany} content={data.allNavigationJson.nodes} />
+
+      <Header
+        bgColor="#000"
+        bgColorWithHighSaturation
+        logo={logoCompany}
+        content={data.allNavigationJson.nodes}
+      />
+
       <Box as="main" role="main">
         <Billboard
+          bgColor="#000"
+          bgColorWithHighSaturation
           caption={intl.formatMessage({ id: `${caption}` })}
           headline={intl.formatMessage({ id: `${headline}` })}
           content={intl.formatMessage({ id: `${content}` })}
@@ -70,11 +79,15 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
           image={image}
         />
       </Box>
-      <Box as="section" py={{ md: 16 }} px={{ md: 8 }}>
+      <Box as="section" bgColor="#000" py={{ md: 16 }} px={{ md: 8 }}>
         <Container>
-          <Features data={data.homepageJson.features} />
+          <Features
+            bgColorWithHighSaturation
+            data={data.homepageJson.features}
+          />
           <Feature
             reverseGridItemsOrder
+            bgColorWithHighSaturation
             featureImage={data.homepageJson.features[0].featureImage}
             headline={data.homepageJson.features[0].headline}
             content={data.homepageJson.features[0].content}
@@ -82,15 +95,15 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
           />
         </Container>
       </Box>
-      <Box as="section" id="specifications" py={40}>
+      <Box as="section" bgColor="#000" id="specifications" py={40}>
         <Container>
           <Row>
             <Column>
               <Article centerContent py={28}>
-                <Text type="headline.medium" textAlign="center">
+                <Text color="white" type="headline.medium" textAlign="center">
                   A better way to send money
                 </Text>
-                <Text type="body.medium">
+                <Text color="white" type="body.medium">
                   This is to display a card container{" "}
                 </Text>
               </Article>
@@ -102,7 +115,12 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
         </Container>
       </Box>
       <Box as="footer" role="contentinfo">
-        <Footer logo={logoCompany} content={data.footerJson} />
+        <Footer
+          bgColor="#000"
+          bgColorWithHighSaturation
+          logo={logoCompany}
+          content={data.footerJson}
+        />
       </Box>
     </>
   )
