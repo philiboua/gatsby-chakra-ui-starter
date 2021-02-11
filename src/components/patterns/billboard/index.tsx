@@ -6,12 +6,37 @@
 
 import React from "react"
 
-import { IBillboard } from "@src/@interfaces"
-import { Box, useTheme } from "@chakra-ui/react"
-import { Container, Row } from "@src/components"
+import { Box, BoxProps, useTheme } from "@chakra-ui/react"
+import { Container, Row, LinkProps } from "@src/components"
 import { BillboardWithCopy, BillboardWithImage } from "./view"
 
-export const Billboard: React.FC<IBillboard> = ({
+export interface ChildImageSharpProps {
+  childImageSharp: {
+    fluid: {
+      aspectRatio: number
+      base64: string
+      src: string
+      srcSet: string
+      sizes: string
+    }
+  }
+}
+
+export interface BillBoardProps extends BoxProps {
+  caption?: string
+  headline: string
+  content: string
+  callToAction: LinkProps[]
+  image?: ChildImageSharpProps
+  /**
+   * impact the text color inside the pattern
+   * if set to true, text color will be white
+   * otherwise the color will the one define in the text component
+   */
+  bgColorWithHighSaturation?: boolean
+}
+
+export const Billboard: React.FC<BillBoardProps> = ({
   caption,
   headline,
   content,

@@ -10,12 +10,43 @@
 */
 import React from "react"
 import { Link as GatsbyLink } from "gatsby-plugin-intl"
-import { Link as ChakraLink, useTheme } from "@chakra-ui/react"
+import {
+  Link as ChakraLink,
+  LinkProps as ChakraLinkProps,
+  useTheme,
+} from "@chakra-ui/react"
 import { ExternalLinkIcon, ChevronRightIcon } from "@chakra-ui/icons"
-import { ILink } from "@src/@interfaces"
-import GatsbyLinkAsButton from "./GatsbyLinkAsButton"
 
-export const Link: React.FC<ILink> = ({
+import GatsbyLinkAsButton, {
+  GatsbyLinkAsButtonProps,
+} from "./GatsbyLinkAsButton"
+
+export interface LinkProps extends GatsbyLinkAsButtonProps, ChakraLinkProps {
+  /**
+   * displays the link as button
+   */
+  asButton?: boolean
+  /**
+   * When true an icon will be added on the right of the link and the page will be open in a separate tab
+   */
+  isExternal?: boolean
+  /**
+   * content the link will display
+   */
+  text?: string
+  /**
+   * link can be relative ex: "/contact" or external ex: "https://www.gatsbyjs.com/".
+   * In case we display an external link, do not forget to set the prop isExternal to true
+   */
+  href: string
+  /**
+   * an arrow icon will be display if true. Mostly used in card and feature patterns
+   */
+  displayRightArrow?: boolean
+  bgColorWithHighSaturation?: boolean
+}
+
+export const Link: React.FC<LinkProps> = ({
   text,
   displayRightArrow,
   href,

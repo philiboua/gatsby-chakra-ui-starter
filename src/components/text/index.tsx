@@ -1,11 +1,46 @@
 import React from "react"
-import { Text as ChakraText, useTheme } from "@chakra-ui/react"
-import { motion } from "framer-motion"
-import { IText } from "@src/@interfaces"
+import {
+  Text as ChakraText,
+  TextProps as ChakraTextProps,
+  useTheme,
+} from "@chakra-ui/react"
+import { motion, HTMLMotionProps } from "framer-motion"
+
+type TextTypeOptions =
+  | "headline.large"
+  | "headline.medium"
+  | "headline.small"
+  | "introduction"
+  | "body.medium"
+  | "body.small"
+  | "subtitle.medium"
+  | "subtitle.small"
+  | "caption"
+  | "legal"
+
+type FramerMotionProps =
+  | HTMLMotionProps<"h1">
+  | HTMLMotionProps<"h2">
+  | HTMLMotionProps<"h3">
+  | HTMLMotionProps<"p">
+
+type CustomTextProps = {
+  /**
+   * defines the styles to be displayed
+   */
+  type: TextTypeOptions
+}
+
+export type TextProps = CustomTextProps & ChakraTextProps & FramerMotionProps
 
 const ChakraTextWithMotion = motion.custom(ChakraText)
 
-export const Text: React.FC<IText> = ({ children, type, color, ...props }) => {
+export const Text: React.FC<TextProps> = ({
+  children,
+  type,
+  color,
+  ...props
+}) => {
   const { colors } = useTheme()
   const getTextColor = color === undefined ? colors.gamma.neutralDark : color
 

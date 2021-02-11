@@ -1,5 +1,5 @@
 import React from "react"
-import { ILink } from "@src/@interfaces"
+
 import { Flex, Box, BoxProps, useMediaQuery } from "@chakra-ui/react"
 
 import {
@@ -7,13 +7,14 @@ import {
   Column,
   Row,
   Link,
+  LinkProps,
   HamburgerButton,
   ListOfLinks as Navigation,
 } from "@src/components"
 
 export interface HeaderProps extends BoxProps {
   logo: string
-  content?: ILink[]
+  content?: LinkProps[]
   bgColorType?: string
   bgColorWithHighSaturation?: boolean
 }

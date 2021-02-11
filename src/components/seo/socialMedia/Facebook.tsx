@@ -1,8 +1,17 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { IFacebook } from "@src/@interfaces"
 
-const Facebook: React.FC<IFacebook> = ({
+export interface FacebookSeoProps {
+  url: string
+  title: string
+  desc: string
+  image: string
+  locale: string
+  name?: string
+  type?: string
+}
+
+export const Facebook: React.FC<FacebookSeoProps> = ({
   url,
   name,
   type,

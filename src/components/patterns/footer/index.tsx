@@ -9,15 +9,20 @@ import {
   useTheme,
 } from "@chakra-ui/react"
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
-import { ISocialMediaLinks, ILink } from "@src/@interfaces"
 import {
   Container,
   Column,
   Row,
   Link,
+  LinkProps,
   ListOfLinks as Navigation,
   Text,
 } from "@src/components"
+
+export interface SocialMediaLinksProps extends LinkProps {
+  id: "string"
+  href: "string"
+}
 
 type IconLinkType = React.ReactElement | string
 
@@ -32,9 +37,9 @@ export interface FooterProps extends BoxProps {
   bgColorWithHighSaturation?: boolean
   content?: {
     copyright: string
-    footerLinks: ILink[]
+    footerLinks: LinkProps[]
     companyMission: string
-    socialMedia: ISocialMediaLinks[]
+    socialMedia: SocialMediaLinksProps[]
   }
 }
 
@@ -104,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({
                   />
                 </HStack>
                 <HStack>
-                  {content?.socialMedia.map((link: ISocialMediaLinks) => {
+                  {content?.socialMedia.map((link: SocialMediaLinksProps) => {
                     return (
                       <ChakraLink
                         color={contentColor}

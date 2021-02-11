@@ -1,10 +1,33 @@
 import React from "react"
-import { Text, Link } from "@components/index"
+import {
+  Text,
+  TextProps,
+  Link,
+  LinkProps,
+  ChildImageSharpProps,
+} from "@components/index"
 import { Grid, GridItem } from "@chakra-ui/react"
-import { IFeature } from "@src/@interfaces"
+
 import Img from "gatsby-image"
 
-export const Feature: React.FC<IFeature> = ({
+export interface FeatureProps {
+  /**
+   * Used in the Features Component when we iterate through an array of features
+   */
+  id?: string
+  /**
+   * Image or illustration
+   */
+  featureImage: ChildImageSharpProps
+  headline: TextProps
+  content: TextProps
+  caption?: TextProps
+  link?: LinkProps
+  reverseGridItemsOrder?: boolean
+  bgColorWithHighSaturation?: boolean
+}
+
+export const Feature: React.FC<FeatureProps> = ({
   featureImage,
   headline,
   content,

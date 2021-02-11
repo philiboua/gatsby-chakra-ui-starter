@@ -1,12 +1,12 @@
 import { Meda, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
-import { CardsContainer } from "@src/components"
+import { CardContainer } from "@src/components"
 import * as cards from "./content/data.js"
 
-<Meta title="Components/patterns/Cards" component={CardsContainer} />
+<Meta title="Components/patterns/Cards" component={CardContainer} />
 
-# Cards container
+# Card container
 
-`CardsContainer` component is used to display multiple cards on the interface.
+`CardContainer` component is used to display multiple cards on the interface.
 
 ## ** Preview **
 
@@ -14,7 +14,7 @@ import * as cards from "./content/data.js"
 
 <Canvas>
   <Story name="Cards with Icon">
-    <CardsContainer content={cards.withIcons} />
+    <CardContainer content={cards.withIcons} />
   </Story>
 </Canvas>
 
@@ -22,8 +22,8 @@ import * as cards from "./content/data.js"
 
 <Canvas>
   <Story name="Cards with Images">
-    <CardsContainer content={cards.withImages} />
+    <CardContainer content={cards.withImages} />
   </Story>
 </Canvas>
 
-<ArgsTable of={CardsContainer} />
+<ArgsTable of={CardContainer} />

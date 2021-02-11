@@ -1,23 +1,38 @@
 import React from "react"
-import { ICardsContainer } from "@src/@interfaces"
-import { Card, Container, Column, Row } from "@src/components"
+
+import { Card, CardProps, Container, Column, Row } from "@src/components"
 import { isEven } from "@src/utils"
 
-export const CardContainer: React.FC<ICardsContainer> = ({ content }) => {
-  function getColumnStyles(): string[] {
-    const numberOfCards: number = content.length
-    if (isEven(numberOfCards)) {
-      return ["sm4", "md3", "lg6"]
-    }
-    return ["sm4", "md3", "lg4"]
-  }
+interface CardsArray extends CardProps {
+  /**
+   * Identifies the card when we loop through the array
+   */
+  id?: string
+}
+
+export interface CardContainerProps {
+  /**
+   * Array of Card props
+   */
+  content: CardsArray[]
+}
+
+export const CardContainer: React.FC<CardContainerProps> = ({ content }) => {
+  const numberOfCards: number = content.length
 
   return (
     <Container>
       <Row wrap="wrap">
         {content.map(card => {
           return (
-            <Column col={getColumnStyles()} key={card.id}>
+            <Column
+              col={
+                isEven(numberOfCards)
+                  ? ["sm4", "md3", "lg6"]
+                  : ["sm4", "md3", "lg4"]
+              }
+              key={card.id}
+            >
               <Card
                 headline={card.headline}
                 body={card.body}

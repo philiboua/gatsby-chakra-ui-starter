@@ -1,8 +1,16 @@
 import React from "react"
-import { Header } from "@src/components"
+import { Container, Row, Column, Text } from "@src/components"
 
 const About = (): React.ReactElement => {
-  return <Header />
+  return (
+    <Container>
+      <Row>
+        <Column col={["sm4"]}>
+          <Text type="headline.large">About us</Text>
+        </Column>
+      </Row>
+    </Container>
+  )
 }
 
 export default About

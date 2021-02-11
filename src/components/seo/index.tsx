@@ -1,8 +1,17 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
-import { ISEO } from "@src/@interfaces"
+
 import { Facebook, Twitter } from "./socialMedia"
+
+export interface SeoProps {
+  title?: string
+  banner?: string
+  description?: string
+  pathName?: string
+  type?: string
+  keywords?: string
+}
 
 const query = graphql`
   query SEO {
@@ -23,7 +32,7 @@ const query = graphql`
     }
   }
 `
-const SEO: React.FC<ISEO> = ({
+export const SEO: React.FC<SeoProps> = ({
   title,
   description,
   banner,

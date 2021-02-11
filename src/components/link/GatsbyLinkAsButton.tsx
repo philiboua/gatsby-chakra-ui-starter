@@ -3,11 +3,19 @@ import React from "react"
 
 import { Link as GatsbyLink } from "gatsby-plugin-intl"
 import { useTheme } from "@chakra-ui/react"
-import { IGatsbyLinkAsButton } from "@src/@interfaces"
 
 import { css, jsx } from "@emotion/react"
 
-const GatsbyLinkAsButton: React.FC<IGatsbyLinkAsButton> = ({
+export interface GatsbyLinkAsButtonProps {
+  /**
+   * resize the button based on value provided.
+   */
+  sizeButton?: string
+  href: string
+  bgColorWithHighSaturation?: boolean
+}
+
+const GatsbyLinkAsButton: React.FC<GatsbyLinkAsButtonProps> = ({
   sizeButton,
   href,
   children,

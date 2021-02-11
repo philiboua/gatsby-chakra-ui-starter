@@ -1,14 +1,18 @@
 import React from "react"
 import { useIntl } from "gatsby-plugin-intl"
 import { List, ListItem } from "@chakra-ui/react"
-import { ILink, IListOfLinks } from "@src/@interfaces"
-import { Link } from "@src/components"
+import { Link, LinkProps } from "@src/components"
 
-interface NavigationProps extends IListOfLinks {
+export interface ListOfLinksProps {
   alignNavigation?: string
+  /**
+   * Array of Link components
+   */
+  content?: LinkProps[]
+  bgColorWithHighSaturation?: boolean
 }
 
-export const ListOfLinks: React.FC<NavigationProps> = ({
+export const ListOfLinks: React.FC<ListOfLinksProps> = ({
   content,
   alignNavigation,
   bgColorWithHighSaturation,
@@ -17,7 +21,7 @@ export const ListOfLinks: React.FC<NavigationProps> = ({
   const intl = useIntl()
 
   const displayList = content
-    ? content.map((link: ILink) => {
+    ? content.map((link: LinkProps) => {
         return (
           <ListItem key={link.href}>
             <Link

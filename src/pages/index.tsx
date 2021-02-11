@@ -3,13 +3,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { useIntl } from "gatsby-plugin-intl"
 import { Box } from "@chakra-ui/react"
-import {
-  ILink,
-  IFeature,
-  IBillboard,
-  ICard,
-  ISocialMediaLinks,
-} from "@src/@interfaces"
+
 import logoCompany from "@images/logo-1.svg"
 
 import {
@@ -19,29 +13,34 @@ import {
   Billboard,
   Features,
   Feature,
-  CardsContainer,
+  CardContainer,
   Row,
   Column,
   Article,
   Text,
   Footer,
+  LinkProps,
+  FeatureProps,
+  BillBoardProps,
+  CardProps,
+  SocialMediaLinksProps,
 } from "@src/components"
 
 interface IPageQuery {
   data: {
     homepageJson: {
-      billboard: IBillboard
-      features: IFeature[]
-      cards: ICard[]
+      billboard: BillBoardProps
+      features: FeatureProps[]
+      cards: CardProps[]
     }
     allNavigationJson: {
-      nodes: ILink[]
+      nodes: LinkProps[]
     }
     footerJson: {
       companyMission: string
       copyright: string
-      footerLinks: ILink[]
-      socialMedia: ISocialMediaLinks[]
+      footerLinks: LinkProps[]
+      socialMedia: SocialMediaLinksProps[]
     }
   }
 }
@@ -110,7 +109,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
             </Column>
           </Row>
           <Row wrap="wrap">
-            <CardsContainer content={data.homepageJson.cards} />
+            <CardContainer content={data.homepageJson.cards} />
           </Row>
         </Container>
       </Box>

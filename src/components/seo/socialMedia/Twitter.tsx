@@ -1,8 +1,15 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { ITwitter } from "@src/@interfaces"
 
-const Twitter: React.FC<ITwitter> = ({
+export interface TwitterSeoProps {
+  title: string
+  desc: string
+  image: string
+  username?: string
+  type?: string
+}
+
+export const Twitter: React.FC<TwitterSeoProps> = ({
   type,
   username,
   title,
