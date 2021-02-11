@@ -11,16 +11,21 @@ import { Box, useTheme } from "@chakra-ui/react"
 import { Container, Row } from "@src/components"
 import { BillboardWithCopy, BillboardWithImage } from "./view"
 
-const Billboard: React.FC<IBillboard> = ({
+export const Billboard: React.FC<IBillboard> = ({
   caption,
   headline,
   content,
   callToAction,
   image,
+  bgColor,
+  bgColorWithHighSaturation,
 }) => {
   const { colors } = useTheme()
   return (
-    <Box py={image === undefined ? 40 : 20} bg={colors.neutral[100]}>
+    <Box
+      py={image === undefined ? 40 : 20}
+      bg={bgColor === undefined ? colors.gamma.neutralLight : bgColor}
+    >
       <Container>
         <Row wrap={{ sm: "wrap", md: "nowrap" }}>
           {image === undefined ? (
@@ -28,6 +33,7 @@ const Billboard: React.FC<IBillboard> = ({
               caption={caption}
               headline={headline}
               content={content}
+              bgColorWithHighSaturation={bgColorWithHighSaturation}
               callToAction={callToAction}
             />
           ) : (
@@ -36,6 +42,7 @@ const Billboard: React.FC<IBillboard> = ({
               headline={headline}
               content={content}
               image={image}
+              bgColorWithHighSaturation={bgColorWithHighSaturation}
               callToAction={callToAction}
             />
           )}

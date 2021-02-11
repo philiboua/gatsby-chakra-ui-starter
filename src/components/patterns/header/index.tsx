@@ -1,6 +1,6 @@
 import React from "react"
-import { IListOfLinks } from "@src/@interfaces"
-import { Flex, Box, useMediaQuery } from "@chakra-ui/react"
+import { ILink } from "@src/@interfaces"
+import { Flex, Box, BoxProps, useMediaQuery } from "@chakra-ui/react"
 
 import {
   Container,
@@ -11,26 +11,56 @@ import {
   ListOfLinks as Navigation,
 } from "@src/components"
 
-import logo from "@images/logo-1.svg"
+export interface HeaderProps extends BoxProps {
+  logo: string
+  content?: ILink[]
+  bgColorType?: string
+  bgColorWithHighSaturation?: boolean
+}
 
-import { useStaticQuery, graphql } from "gatsby"
-
-const Header: React.FC<IListOfLinks> = ({ content }) => {
+export const Header: React.FC<HeaderProps> = ({
+  content,
+  logo,
+  bgColor,
+  bgColorWithHighSaturation,
+}) => {
   const [isDesktop] = useMediaQuery("(min-width: 992px")
-  const data = useStaticQuery(graphql`
-    query HeaderQuery {
-      allNavigationJson {
-        nodes {
-          href
-          isExternal
-          text
-          asButton
-        }
-      }
-    }
-  `)
+
+  if (content === undefined) {
+    return (
+      <Box
+        as="header"
+        bgColor={bgColor !== undefined ? bgColor : "#fff"}
+        role="banner"
+        py={2}
+      >
+        <Container>
+          <Row>
+            <Column col={["sm4", "md6", "lg12"]}>
+              <Flex
+                justify="center"
+                as="nav"
+                role="navigation"
+                alignItems="center"
+                my={2}
+              >
+                <Link href="/">
+                  <img src={logo} alt="logo" />
+                </Link>
+              </Flex>
+            </Column>
+          </Row>
+        </Container>
+      </Box>
+    )
+  }
   return (
-    <Box as="header" role="banner" py={2}>
+    <Box
+      as="header"
+      role="banner"
+      bgColor={bgColor !== undefined ? bgColor : "#fff"}
+      py={2}
+    >
       <Container>
         <Row>
           <Column col={["sm4", "md6", "lg12"]}>
@@ -46,7 +76,11 @@ const Header: React.FC<IListOfLinks> = ({ content }) => {
               </Link>
 
               {isDesktop ? (
-                <Navigation content={data.allNavigationJson.nodes} />
+                <Navigation
+                  bgColorWithHighSaturation={bgColorWithHighSaturation}
+                  alignNavigation="right"
+                  content={content}
+                />
               ) : (
                 <HamburgerButton ariaLabel="Navigation menu" menuLabel="Menu" />
               )}

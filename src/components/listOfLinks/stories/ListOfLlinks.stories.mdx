@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { ListOfLinks } from "../../"
+import { data } from "./content/data.js"
+
+<Meta title="Components/List of Links" component={ListOfLinks} />
+
+# List of Links
+
+List of links are primarily used for navigation within UI patterns like header or footer.
+
+## ** Preview **
+
+### List of Links
+
+<Canvas>
+  <Story name="List of links">
+    <ListOfLinks content={data} />
+  </Story>
+</Canvas>
+
+## ** Props **
+
+<ArgsTable of={ListOfLinks} />

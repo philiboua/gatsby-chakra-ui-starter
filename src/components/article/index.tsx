@@ -1,9 +1,9 @@
 import React from "react"
-import { IArticle, IText } from "@src/@interfaces"
+import { IArticle, CardData } from "@src/@interfaces"
 import { Text } from "@src/components"
 import { VStack, Box } from "@chakra-ui/react"
 
-const Article: React.FC<IArticle> = ({
+export const Article: React.FC<IArticle> = ({
   data,
   centerContent,
   spacing,
@@ -18,8 +18,8 @@ const Article: React.FC<IArticle> = ({
         alignItems={centerContent ? "center" : "flex-start"}
       >
         {data
-          ? data.map((item: IText) => {
-              return <Text type={item.type} />
+          ? data.map((text: CardData) => {
+              return <Text type={text.type}>{text.content}</Text>
             })
           : children}
       </VStack>

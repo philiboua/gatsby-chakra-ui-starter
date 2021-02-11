@@ -1,0 +1,59 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Card } from "../../"
+import { Container, Column, Row } from "@src/components"
+import { CardContainer } from "@src/components/patterns/cards"
+import * as card from "./content/data.js"
+
+<Meta title="Components/Card" component={Card} />
+
+# Card
+
+Card is a UI component that contains content and actions about a single subject.
+
+## ** Preview **
+
+### Card with an Icon
+
+<Canvas>
+  <Story name="Card with an Icon">
+    <Container>
+      <Row>
+        <Column col={["sm4", "md3", "lg4"]}>
+          <Card
+            key={card.withIcon.id}
+            headline={card.withIcon.headline}
+            body={card.withIcon.body}
+            media={card.withIcon.media}
+            link={card.withIcon.link}
+            mediaType={card.withIcon.mediaType}
+          />
+        </Column>
+      </Row>
+    </Container>
+  </Story>
+</Canvas>
+
+### Card with an Image
+
+<Canvas>
+  <Story name="Card with Image">
+    <Container>
+      <Row>
+        <Column col={["sm4", "md3", "lg4"]}>
+          <Card
+            key={card.withImage.id}
+            headline={card.withImage.headline}
+            body={card.withImage.body}
+            media={card.withImage.media}
+            link={card.withImage.link}
+            mediaType={card.withImage.mediaType}
+          />
+        </Column>
+      </Row>
+    </Container>
+  </Story>
+</Canvas>
+
+## ** Props **
+
+<ArgsTable of={Card} />

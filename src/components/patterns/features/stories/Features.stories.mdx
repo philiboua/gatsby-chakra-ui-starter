@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Features, Container } from "@src/components"
+import { Box } from "@chakra-ui/react"
+import { data } from "./content/data.js"
+
+<Meta title="Components/patterns/Features" component={Features} />
+
+# Features Container
+
+`Features` component is used to display multiple features on the interface.
+
+### Features
+
+<Canvas>
+  <Story name="Features">
+    <Features data={data} />
+  </Story>
+</Canvas>
+
+### Features with a high saturated background color
+
+<Canvas>
+  <Story name="Features with a high saturated background color">
+    <Box bgColor="#000">
+      <Container>
+        <Features bgColorWithHighSaturation data={data} />
+      </Container>
+    </Box>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Features} />

@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Footer } from "@src/components"
+import logoCompany from "@images/logo-1.svg"
+import { data } from "./content/data.js"
+
+<Meta title="Components/patterns/Footer" component={Footer} />
+
+# Footer
+
+`Footer` component is used to display legal information about the company, social media accounts and/or site map.
+
+## ** Preview **
+
+### Footer
+
+<Canvas>
+  <Story name="Footer">
+    <Footer logo={logoCompany} content={data} />
+  </Story>
+</Canvas>
+
+### Footer with a high saturated background color
+
+<Canvas>
+  <Story name="Footer with a high saturated background color">
+    <Footer
+      bgColor="#000"
+      bgColorWithHighSaturation
+      logo={logoCompany}
+      content={data}
+    />
+  </Story>
+</Canvas>
+
+<ArgsTable of={Footer} />

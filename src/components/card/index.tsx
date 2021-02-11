@@ -12,7 +12,13 @@ import { ICard } from "@src/@interfaces"
 import { Box, useTheme, Flex, useMediaQuery } from "@chakra-ui/react"
 import { Article, Link, Text } from "@src/components"
 
-const Card: React.FC<ICard> = ({ image, icon, data, link, type }) => {
+export const Card: React.FC<ICard> = ({
+  media,
+  headline,
+  body,
+  link,
+  mediaType,
+}) => {
   const { colors } = useTheme()
   const [isSmallThanTablet] = useMediaQuery("(max-width: 767px)")
 
@@ -20,35 +26,31 @@ const Card: React.FC<ICard> = ({ image, icon, data, link, type }) => {
     return isSmallThanTablet ? { marginTop: "0px" } : { marginTop: "auto" }
   }
   const displayImageOrIcon = () => {
-    if (type === "withImage") {
+    if (mediaType === "image") {
       return (
-        image && (
+        media && (
           <Box
             className="img-wp"
-            maxHeight="200px"
+            height="200px"
+            width="100%"
             alignSelf="stretch"
             flex={1}
           >
             <Img
-              style={{ maxHeight: "200px" }}
-              fluid={image.childImageSharp.fluid}
+              style={{ maxHeight: "200px", maxWidth: "100%" }}
+              fluid={media.childImageSharp.fluid}
             />
           </Box>
         )
       )
     }
     return (
-      icon && (
-        <Box
-          className="img-wp"
-          maxHeight="40px"
-          alignSelf="stretch"
-          flex={1}
-          mb={4}
-        >
+      media && (
+        <Box className="img-wp" alignSelf="stretch" flex={1} mb={4}>
           <Img
-            style={{ maxHeight: "40px", maxWidth: "40px" }}
-            fluid={icon.childImageSharp.fluid}
+            style={{ width: "40px", height: "40px" }}
+            imgStyle={{ objectFit: "contain" }}
+            fluid={media.childImageSharp.fluid}
             alt="icon"
           />
         </Box>
@@ -59,16 +61,20 @@ const Card: React.FC<ICard> = ({ image, icon, data, link, type }) => {
   return (
     <Flex
       mt={{ sm: 9, md: 3, lg: 0 }}
-      border={type === "withImage" ? `1px solid ${colors.neutral[100]}` : ""}
+      bgColor={mediaType === "image" ? "#fff" : ""}
+      border={
+        mediaType === "image" ? `1px solid ${colors.gamma.soothingLight}` : ""
+      }
       borderRadius="4px"
+      maxWidth={{ sm: "100%", md: "100%", lg: "330px" }}
       direction="column"
       height="100%"
     >
       {displayImageOrIcon()}
 
       <Article
-        p={type === "withImage" ? 9 : 0}
-        pr={type !== "withImage" ? 12 : 0}
+        p={mediaType === "image" ? 9 : 0}
+        pr={mediaType !== "image" ? 12 : 0}
         display="flex"
         flexDirection="column"
         alignItems="flex-start"
@@ -76,13 +82,13 @@ const Card: React.FC<ICard> = ({ image, icon, data, link, type }) => {
       >
         <Text
           type="subtitle.medium"
-          marginBottom={type === "witImage" ? 3 : 2}
+          marginBottom={mediaType === "image" ? 3 : 2}
           fontWeight="bold"
         >
-          {data.headline}
+          {headline}
         </Text>
         <Text type="body.small" marginBottom={3}>
-          {data.content}
+          {body}
         </Text>
         <Box style={handleSizeCard()}>
           <Link

@@ -1,49 +1,51 @@
 import React from "react"
 import { useIntl } from "gatsby-plugin-intl"
-import { Box, Flex, VStack, HStack, Link, useTheme } from "@chakra-ui/react"
+import {
+  Box,
+  BoxProps,
+  Flex,
+  HStack,
+  Link as ChakraLink,
+  useTheme,
+} from "@chakra-ui/react"
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
-import { ISocialMediaLinks } from "@src/@interfaces"
-import { useStaticQuery, graphql } from "gatsby"
+import { ISocialMediaLinks, ILink } from "@src/@interfaces"
 import {
   Container,
   Column,
   Row,
+  Link,
   ListOfLinks as Navigation,
   Text,
 } from "@src/components"
-import Img from "gatsby-image"
 
 type IconLinkType = React.ReactElement | string
 
-const Footer: React.FC = () => {
+export interface FooterProps extends BoxProps {
+  /**
+   * Logo of of the project or company, preferable an svg file
+   */
+  logo: string
+  /**
+   * content of the footer
+   */
+  bgColorWithHighSaturation?: boolean
+  content?: {
+    copyright: string
+    footerLinks: ILink[]
+    companyMission: string
+    socialMedia: ISocialMediaLinks[]
+  }
+}
+
+export const Footer: React.FC<FooterProps> = ({
+  logo,
+  bgColor,
+  content,
+  bgColorWithHighSaturation,
+}) => {
   const { colors } = useTheme()
   const intl = useIntl()
-
-  const data = useStaticQuery(graphql`
-    query Footer {
-      footerJson {
-        copyright
-        footerLinks {
-          asButton
-          href
-          isExternal
-          text
-        }
-        companyMission
-        companyLogo {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        socialMedia {
-          id
-          socialMediaUrl
-        }
-      }
-    }
-  `)
 
   const displaySocialIcon = (name: string): IconLinkType => {
     switch (name) {
@@ -57,23 +59,29 @@ const Footer: React.FC = () => {
         return ""
     }
   }
+
+  const contentColor = bgColorWithHighSaturation ? "#fff" : undefined
+
   return (
-    <Box bgColor={`${colors.neutral[100]}`} py={9}>
+    <Box
+      bgColor={bgColor === undefined ? `${colors.gamma.neutralLight}` : bgColor}
+      py={9}
+    >
       <Container>
         <Row>
           <Column>
             <Flex justify="space-between">
+              {logo && (
+                <Box>
+                  <Link href="/">
+                    <img src={logo} alt="logo" />
+                  </Link>
+                </Box>
+              )}
               <Box>
-                {data.companyLogo && (
-                  <Img
-                    fluid={data.footerJson.companyLogo.childImageSharp.fluid}
-                  />
-                )}
-              </Box>
-              <Box>
-                <Text type="subtitle.medium">
+                <Text color={contentColor} type="subtitle.medium">
                   {intl.formatMessage({
-                    id: `${data.footerJson.companyMission}`,
+                    id: `${content?.companyMission}`,
                   })}
                 </Text>
               </Box>
@@ -82,21 +90,32 @@ const Footer: React.FC = () => {
         </Row>
         <Row>
           <Column>
-            <Box mt={9} borderTop={`1px solid ${colors.neutral[300]}`}>
+            <Box
+              mt={9}
+              pt={9}
+              borderTop={`1px solid ${colors.gamma.passiveLight}`}
+            >
               <Flex justify="space-between">
                 <HStack>
-                  <Navigation content={data.footerJson.footerLinks} />
+                  <Navigation
+                    bgColorWithHighSaturation={bgColorWithHighSaturation}
+                    alignNavigation="left"
+                    content={content?.footerLinks}
+                  />
                 </HStack>
                 <HStack>
-                  {data.footerJson.socialMedia.map(
-                    (link: ISocialMediaLinks) => {
-                      return (
-                        <Link key={link.id} pr={4} href={link.href}>
-                          {displaySocialIcon(link.id)}
-                        </Link>
-                      )
-                    }
-                  )}
+                  {content?.socialMedia.map((link: ISocialMediaLinks) => {
+                    return (
+                      <ChakraLink
+                        color={contentColor}
+                        key={link.id}
+                        pr={4}
+                        href={link.href}
+                      >
+                        {displaySocialIcon(link.id)}
+                      </ChakraLink>
+                    )
+                  })}
                 </HStack>
               </Flex>
             </Box>

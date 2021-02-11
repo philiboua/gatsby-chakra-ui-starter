@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Article, Text } from "@src/components"
+import { articleContent } from "./content/data.js"
+
+<Meta title="Components/Article" component={Article} />
+
+# Article
+
+The `Article` component specifies independent, self-contained content
+
+We can display an Article content through the `data` prop. In this case we need to provide an array of objects. Each object need to have two keys, `type` and `content` An example below :
+
+```javascript
+export const articleContent = [
+  {
+    type: "headline.medium",
+    content: "Get started now",
+  },
+  {
+    type: "body.medium",
+    content: "You will build website faster with Chakra UI",
+  },
+]
+```
+
+<Canvas>
+  <Story name="Article, content defined by data prop">
+    <Article data={articleContent} />
+  </Story>
+</Canvas>
+
+An alternative is also available to display the content of the Article component. We can utilize the `children` prop to display the content. It gives more flexibility as we can provide more component or content to display.
+
+<Canvas>
+  <Story name="Article, content defined by children prop">
+    <Article>
+      <Text type="headline.medium">Get started now</Text>
+      <Text type="body.medium">
+        You will build website faster with Chakra UI
+      </Text>
+    </Article>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Article} />

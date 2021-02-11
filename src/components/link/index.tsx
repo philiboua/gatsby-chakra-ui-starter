@@ -10,12 +10,12 @@
 */
 import React from "react"
 import { Link as GatsbyLink } from "gatsby-plugin-intl"
-import { Link as ChakraLink, Flex, useTheme } from "@chakra-ui/react"
+import { Link as ChakraLink, useTheme } from "@chakra-ui/react"
 import { ExternalLinkIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import { ILink } from "@src/@interfaces"
 import GatsbyLinkAsButton from "./GatsbyLinkAsButton"
 
-const Link: React.FC<ILink> = ({
+export const Link: React.FC<ILink> = ({
   text,
   displayRightArrow,
   href,
@@ -23,6 +23,7 @@ const Link: React.FC<ILink> = ({
   asButton,
   sizeButton,
   children,
+  bgColorWithHighSaturation,
   ...restProps
 }) => {
   // Get chakra ui theme object
@@ -31,7 +32,11 @@ const Link: React.FC<ILink> = ({
   // displays link as button
   if (asButton) {
     return (
-      <GatsbyLinkAsButton href={href} sizeButton={sizeButton}>
+      <GatsbyLinkAsButton
+        bgColorWithHighSaturation={bgColorWithHighSaturation}
+        href={href}
+        sizeButton={sizeButton}
+      >
         {children}
       </GatsbyLinkAsButton>
     )
@@ -39,9 +44,13 @@ const Link: React.FC<ILink> = ({
   // displays as link
   return (
     <ChakraLink
+      color={bgColorWithHighSaturation ? "#fff" : `${colors.gamma.neutralDark}`}
       display={isExternal || displayRightArrow ? "flex" : "block"}
       alignItems={isExternal || displayRightArrow ? "center" : ""}
-      activeStyle={{ color: colors.neutral[800], fontWeight: "bold" }}
+      activeStyle={{
+        color: bgColorWithHighSaturation ? "#fff" : colors.gamma.neutralDark,
+        fontWeight: "bold",
+      }}
       {...(isExternal ? { href } : { as: GatsbyLink, to: href })}
       {...restProps}
     >
