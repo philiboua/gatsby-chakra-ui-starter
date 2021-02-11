@@ -1,3 +1,4 @@
+import { extendTheme } from "@chakra-ui/react"
 import {
   breakpoints,
   fonts,
@@ -6,7 +7,6 @@ import {
   colors,
 } from "./foundations"
 import { Button } from "./components/button"
-import { extendTheme } from "@chakra-ui/react"
 
 const siteTheme = extendTheme({
   breakpoints,
