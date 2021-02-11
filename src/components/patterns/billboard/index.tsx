@@ -17,10 +17,15 @@ export const Billboard: React.FC<IBillboard> = ({
   content,
   callToAction,
   image,
+  bgColor,
+  bgColorWithHighSaturation,
 }) => {
   const { colors } = useTheme()
   return (
-    <Box py={image === undefined ? 40 : 20} bg={colors.gamma.neutralLight}>
+    <Box
+      py={image === undefined ? 40 : 20}
+      bg={bgColor === undefined ? colors.gamma.neutralLight : bgColor}
+    >
       <Container>
         <Row wrap={{ sm: "wrap", md: "nowrap" }}>
           {image === undefined ? (
@@ -28,6 +33,7 @@ export const Billboard: React.FC<IBillboard> = ({
               caption={caption}
               headline={headline}
               content={content}
+              bgColorWithHighSaturation={bgColorWithHighSaturation}
               callToAction={callToAction}
             />
           ) : (
@@ -36,6 +42,7 @@ export const Billboard: React.FC<IBillboard> = ({
               headline={headline}
               content={content}
               image={image}
+              bgColorWithHighSaturation={bgColorWithHighSaturation}
               callToAction={callToAction}
             />
           )}
