@@ -11,9 +11,24 @@ import { data } from "./content/data.js"
 
 ## ** Preview **
 
+### Footer
+
 <Canvas>
   <Story name="Footer">
     <Footer logo={logoCompany} content={data} />
+  </Story>
+</Canvas>
+
+### Footer with a high saturated background color
+
+<Canvas>
+  <Story name="Footer with a high saturated background color">
+    <Footer
+      bgColor="#000"
+      bgColorWithHighSaturation
+      logo={logoCompany}
+      content={data}
+    />
   </Story>
 </Canvas>
 

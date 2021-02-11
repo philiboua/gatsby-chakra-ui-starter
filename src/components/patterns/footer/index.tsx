@@ -2,6 +2,7 @@ import React from "react"
 import { useIntl } from "gatsby-plugin-intl"
 import {
   Box,
+  BoxProps,
   Flex,
   HStack,
   Link as ChakraLink,
@@ -20,7 +21,7 @@ import {
 
 type IconLinkType = React.ReactElement | string
 
-export interface FooterProps {
+export interface FooterProps extends BoxProps {
   /**
    * Logo of of the project or company, preferable an svg file
    */
@@ -28,6 +29,7 @@ export interface FooterProps {
   /**
    * content of the footer
    */
+  bgColorWithHighSaturation?: boolean
   content?: {
     copyright: string
     footerLinks: ILink[]
@@ -36,7 +38,12 @@ export interface FooterProps {
   }
 }
 
-export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
+export const Footer: React.FC<FooterProps> = ({
+  logo,
+  bgColor,
+  content,
+  bgColorWithHighSaturation,
+}) => {
   const { colors } = useTheme()
   const intl = useIntl()
 
@@ -52,8 +59,14 @@ export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
         return ""
     }
   }
+
+  const contentColor = bgColorWithHighSaturation ? "#fff" : undefined
+
   return (
-    <Box bgColor={`${colors.gamma.neutralLight}`} py={9}>
+    <Box
+      bgColor={bgColor === undefined ? `${colors.gamma.neutralLight}` : bgColor}
+      py={9}
+    >
       <Container>
         <Row>
           <Column>
@@ -66,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
                 </Box>
               )}
               <Box>
-                <Text type="subtitle.medium">
+                <Text color={contentColor} type="subtitle.medium">
                   {intl.formatMessage({
                     id: `${content?.companyMission}`,
                   })}
@@ -85,6 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
               <Flex justify="space-between">
                 <HStack>
                   <Navigation
+                    bgColorWithHighSaturation={bgColorWithHighSaturation}
                     alignNavigation="left"
                     content={content?.footerLinks}
                   />
@@ -92,7 +106,12 @@ export const Footer: React.FC<FooterProps> = ({ logo, content }) => {
                 <HStack>
                   {content?.socialMedia.map((link: ISocialMediaLinks) => {
                     return (
-                      <ChakraLink key={link.id} pr={4} href={link.href}>
+                      <ChakraLink
+                        color={contentColor}
+                        key={link.id}
+                        pr={4}
+                        href={link.href}
+                      >
                         {displaySocialIcon(link.id)}
                       </ChakraLink>
                     )
