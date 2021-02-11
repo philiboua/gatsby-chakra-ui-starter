@@ -1,12 +1,22 @@
 /** @jsx jsx */
 import React, { useState } from "react"
-import { Box, useMediaQuery } from "@chakra-ui/react"
-import { IHamburgerButton } from "@src/@interfaces"
+import { Box, useMediaQuery, BoxProps } from "@chakra-ui/react"
 import { Text } from "@src/components"
 import { css, jsx } from "@emotion/react"
 import { motion } from "framer-motion"
 
-const HamburgerButton: React.FC<IHamburgerButton> = ({
+export interface HamburgerButtonProps extends BoxProps {
+  /**
+   *  Provides information to screen readers, if value is menu => (menu open | menu close) will be read
+   */
+  ariaLabel: string
+  /**
+   * Menu Label. Visible only on desktop
+   */
+  menuLabel: string
+}
+
+export const HamburgerButton: React.FC<HamburgerButtonProps> = ({
   ariaLabel,
   menuLabel,
 }) => {
