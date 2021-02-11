@@ -8,11 +8,25 @@
 
 import React from "react"
 import Img from "gatsby-image"
-import { ICard } from "@src/@interfaces"
-import { Box, useTheme, Flex, useMediaQuery } from "@chakra-ui/react"
-import { Article, Link, Text } from "@src/components"
 
-export const Card: React.FC<ICard> = ({
+import { Box, useTheme, Flex, useMediaQuery } from "@chakra-ui/react"
+import { Article, Link, Text, ChildImageSharpProps } from "@src/components"
+
+export interface CardProps {
+  id?: string
+  mediaType?: string
+  media?: ChildImageSharpProps
+  headline: string
+  body: string
+  link?: {
+    text: string
+    asButton?: boolean
+    href: string
+    isExternal?: boolean
+  }
+}
+
+export const Card: React.FC<CardProps> = ({
   media,
   headline,
   body,
