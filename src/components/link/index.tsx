@@ -23,6 +23,7 @@ export const Link: React.FC<ILink> = ({
   asButton,
   sizeButton,
   children,
+  bgColorWithHighSaturation,
   ...restProps
 }) => {
   // Get chakra ui theme object
@@ -31,7 +32,11 @@ export const Link: React.FC<ILink> = ({
   // displays link as button
   if (asButton) {
     return (
-      <GatsbyLinkAsButton href={href} sizeButton={sizeButton}>
+      <GatsbyLinkAsButton
+        bgColorWithHighSaturation={bgColorWithHighSaturation}
+        href={href}
+        sizeButton={sizeButton}
+      >
         {children}
       </GatsbyLinkAsButton>
     )
@@ -39,9 +44,13 @@ export const Link: React.FC<ILink> = ({
   // displays as link
   return (
     <ChakraLink
+      color={bgColorWithHighSaturation ? "#fff" : `${colors.gamma.neutralDark}`}
       display={isExternal || displayRightArrow ? "flex" : "block"}
       alignItems={isExternal || displayRightArrow ? "center" : ""}
-      activeStyle={{ color: colors.gamma.neutralDark, fontWeight: "bold" }}
+      activeStyle={{
+        color: bgColorWithHighSaturation ? "#fff" : colors.gamma.neutralDark,
+        fontWeight: "bold",
+      }}
       {...(isExternal ? { href } : { as: GatsbyLink, to: href })}
       {...restProps}
     >

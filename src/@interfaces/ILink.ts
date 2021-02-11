@@ -23,4 +23,5 @@ export interface ILink extends IGatsbyLinkAsButton, LinkProps {
    * an arrow icon will be display if true. Mostly used in card and feature patterns
    */
   displayRightArrow?: boolean
+  bgColorWithHighSaturation?: boolean
 }

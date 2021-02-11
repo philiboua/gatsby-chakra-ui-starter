@@ -6,4 +6,5 @@ export interface IListOfLinks extends ListProps {
    * Array of Link components
    */
   content?: ILink[]
+  bgColorWithHighSaturation?: boolean
 }

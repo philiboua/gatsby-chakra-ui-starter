@@ -11,14 +11,17 @@ interface NavigationProps extends IListOfLinks {
 export const ListOfLinks: React.FC<NavigationProps> = ({
   content,
   alignNavigation,
+  bgColorWithHighSaturation,
   ...props
 }) => {
   const intl = useIntl()
+
   const displayList = content
     ? content.map((link: ILink) => {
         return (
           <ListItem key={link.href}>
             <Link
+              bgColorWithHighSaturation={bgColorWithHighSaturation}
               fontSize="body.medium"
               isExternal={link.isExternal}
               asButton={link.asButton}
