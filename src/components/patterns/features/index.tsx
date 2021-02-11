@@ -3,16 +3,21 @@ import { Feature } from "@src/components"
 import { IFeature } from "@src/@interfaces"
 import { isEven } from "@src/utils"
 
-interface IProps {
+interface FeaturesProps {
   data: IFeature[]
+  bgColorWithHighSaturation?: boolean
 }
 
-export const Features: React.FC<IProps> = ({ data }) => {
+export const Features: React.FC<FeaturesProps> = ({
+  bgColorWithHighSaturation,
+  data,
+}) => {
   const displayFeatures =
     data !== undefined
       ? data.map((feature: IFeature, index: number) => {
           return (
             <Feature
+              bgColorWithHighSaturation={bgColorWithHighSaturation}
               key={feature?.id}
               caption={feature.caption}
               featureImage={feature.featureImage}
