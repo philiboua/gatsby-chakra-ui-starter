@@ -3,6 +3,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { useIntl } from "gatsby-plugin-intl"
 import { Box } from "@chakra-ui/react"
+import { bgWithHightSaturation } from "@src/contexts"
 
 import logoCompany from "@images/logo-1.svg"
 
@@ -59,18 +60,16 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
   return (
     <>
       <SEO />
-
       <Header
         bgColor="#000"
-        bgColorWithHighSaturation
+        highSaturatedBgColor
         logo={logoCompany}
         content={data.allNavigationJson.nodes}
       />
-
       <Box as="main" role="main">
         <Billboard
           bgColor="#000"
-          bgColorWithHighSaturation
+          highSaturatedBgColor
           caption={intl.formatMessage({ id: `${caption}` })}
           headline={intl.formatMessage({ id: `${headline}` })}
           content={intl.formatMessage({ id: `${content}` })}
@@ -78,22 +77,21 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
           image={image}
         />
       </Box>
-      <Box as="section" bgColor="#000" py={{ md: 16 }} px={{ md: 8 }}>
-        <Container>
-          <Features
-            bgColorWithHighSaturation
-            data={data.homepageJson.features}
-          />
-          <Feature
-            reverseGridItemsOrder
-            bgColorWithHighSaturation
-            featureImage={data.homepageJson.features[0].featureImage}
-            headline={data.homepageJson.features[0].headline}
-            content={data.homepageJson.features[0].content}
-            caption={data.homepageJson.features[0].caption}
-          />
-        </Container>
-      </Box>
+      <bgWithHightSaturation.Provider value>
+        <Box as="section" bgColor="#000" py={{ md: 16 }} px={{ md: 8 }}>
+          <Container>
+            <Features data={data.homepageJson.features} />
+            <Feature
+              reverseGridItemsOrder
+              featureImage={data.homepageJson.features[0].featureImage}
+              headline={data.homepageJson.features[0].headline}
+              content={data.homepageJson.features[0].content}
+              caption={data.homepageJson.features[0].caption}
+            />
+          </Container>
+        </Box>
+      </bgWithHightSaturation.Provider>
+
       <Box as="section" bgColor="#000" id="specifications" py={40}>
         <Container>
           <Row>
@@ -116,7 +114,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
       <Box as="footer" role="contentinfo">
         <Footer
           bgColor="#000"
-          bgColorWithHighSaturation
+          highSaturatedBgColor
           logo={logoCompany}
           content={data.footerJson}
         />
