@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import {
   Text as ChakraText,
   TextProps as ChakraTextProps,
   useTheme,
 } from "@chakra-ui/react"
 import { motion, HTMLMotionProps } from "framer-motion"
+import { bgWithHightSaturation } from "@src/contexts"
 
 type TextTypeOptions =
   | "headline.large"
@@ -42,7 +43,12 @@ export const Text: React.FC<TextProps> = ({
   ...props
 }) => {
   const { colors } = useTheme()
-  const getTextColor = color === undefined ? colors.gamma.neutralDark : color
+  const bgColorWithHighSaturation = useContext(bgWithHightSaturation)
+
+  const getDefaultColor = bgColorWithHighSaturation
+    ? "#fff"
+    : colors.gamma.neutralDark
+  const getTextColor = color === undefined ? getDefaultColor : color
 
   switch (type) {
     case "headline.large":

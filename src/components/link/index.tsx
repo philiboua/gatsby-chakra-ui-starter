@@ -8,7 +8,7 @@
     - when props asButton and sizeButton are added to component, we display link as Button 
 
 */
-import React from "react"
+import React, { useContext } from "react"
 import { Link as GatsbyLink } from "gatsby-plugin-intl"
 import {
   Link as ChakraLink,
@@ -16,7 +16,7 @@ import {
   useTheme,
 } from "@chakra-ui/react"
 import { ExternalLinkIcon, ChevronRightIcon } from "@chakra-ui/icons"
-
+import { bgWithHightSaturation } from "@src/contexts"
 import GatsbyLinkAsButton, {
   GatsbyLinkAsButtonProps,
 } from "./GatsbyLinkAsButton"
@@ -54,11 +54,13 @@ export const Link: React.FC<LinkProps> = ({
   asButton,
   sizeButton,
   children,
-  bgColorWithHighSaturation,
   ...restProps
 }) => {
   // Get chakra ui theme object
   const { colors } = useTheme()
+
+  // Get bg color type
+  const bgColorWithHighSaturation = useContext(bgWithHightSaturation)
 
   // displays link as button
   if (asButton) {

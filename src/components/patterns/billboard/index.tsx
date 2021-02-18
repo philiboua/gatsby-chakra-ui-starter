@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-
+import { bgWithHightSaturation } from "@src/contexts"
 import { Box, BoxProps, useTheme } from "@chakra-ui/react"
 import { Container, Row, LinkProps } from "@src/components"
 import { BillboardWithCopy, BillboardWithImage } from "./view"
@@ -28,12 +28,7 @@ export interface BillBoardProps extends BoxProps {
   content: string
   callToAction: LinkProps[]
   image?: ChildImageSharpProps
-  /**
-   * impact the text color inside the pattern
-   * if set to true, text color will be white
-   * otherwise the color will the one define in the text component
-   */
-  bgColorWithHighSaturation?: boolean
+  highSaturatedBgColor?: boolean
 }
 
 export const Billboard: React.FC<BillBoardProps> = ({
@@ -43,9 +38,44 @@ export const Billboard: React.FC<BillBoardProps> = ({
   callToAction,
   image,
   bgColor,
-  bgColorWithHighSaturation,
+  highSaturatedBgColor,
 }) => {
   const { colors } = useTheme()
+
+  /**
+   * when the prop @highSaturatedBgColor we wrap the component with a context provider
+   */
+  if (highSaturatedBgColor) {
+    return (
+      <bgWithHightSaturation.Provider value>
+        <Box
+          py={image === undefined ? 40 : 20}
+          bg={bgColor === undefined ? colors.gamma.neutralLight : bgColor}
+        >
+          <Container>
+            <Row wrap={{ sm: "wrap", md: "nowrap" }}>
+              {image === undefined ? (
+                <BillboardWithCopy
+                  caption={caption}
+                  headline={headline}
+                  content={content}
+                  callToAction={callToAction}
+                />
+              ) : (
+                <BillboardWithImage
+                  caption={caption}
+                  headline={headline}
+                  content={content}
+                  image={image}
+                  callToAction={callToAction}
+                />
+              )}
+            </Row>
+          </Container>
+        </Box>
+      </bgWithHightSaturation.Provider>
+    )
+  }
   return (
     <Box
       py={image === undefined ? 40 : 20}
@@ -58,7 +88,6 @@ export const Billboard: React.FC<BillBoardProps> = ({
               caption={caption}
               headline={headline}
               content={content}
-              bgColorWithHighSaturation={bgColorWithHighSaturation}
               callToAction={callToAction}
             />
           ) : (
@@ -67,7 +96,6 @@ export const Billboard: React.FC<BillBoardProps> = ({
               headline={headline}
               content={content}
               image={image}
-              bgColorWithHighSaturation={bgColorWithHighSaturation}
               callToAction={callToAction}
             />
           )}

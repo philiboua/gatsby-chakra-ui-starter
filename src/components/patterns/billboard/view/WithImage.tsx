@@ -11,10 +11,7 @@ export const BillboardWithImage: React.FC<BillBoardProps> = ({
   content,
   callToAction,
   image,
-  bgColorWithHighSaturation,
 }) => {
-  const textColor = bgColorWithHighSaturation ? "#fff" : undefined
-
   return (
     <>
       <Column col={["sm4", "md6", "lg5"]} display="flex">
@@ -24,21 +21,12 @@ export const BillboardWithImage: React.FC<BillBoardProps> = ({
           heigth="100%"
           maxWidth="30rem"
         >
-          {caption && (
-            <Text color={textColor} type="caption">
-              {caption}
-            </Text>
-          )}
-          <Text color={textColor} type="headline.large" mt={0}>
+          {caption && <Text type="caption">{caption}</Text>}
+          <Text type="headline.large" mt={0}>
             {headline}
           </Text>
-          <Text color={textColor} type="introduction">
-            {content}
-          </Text>
-          <ListOfLinks
-            bgColorWithHighSaturation={bgColorWithHighSaturation}
-            content={callToAction}
-          />
+          <Text type="introduction">{content}</Text>
+          <ListOfLinks content={callToAction} />
         </VStack>
       </Column>
 
