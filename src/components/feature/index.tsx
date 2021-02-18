@@ -24,7 +24,6 @@ export interface FeatureProps {
   caption?: TextProps
   link?: LinkProps
   reverseGridItemsOrder?: boolean
-  bgColorWithHighSaturation?: boolean
 }
 
 export const Feature: React.FC<FeatureProps> = ({
@@ -34,10 +33,7 @@ export const Feature: React.FC<FeatureProps> = ({
   caption,
   link,
   reverseGridItemsOrder,
-  bgColorWithHighSaturation,
 }) => {
-  const textColor = bgColorWithHighSaturation ? "#fff" : undefined
-
   return (
     <Grid
       templateColumns="repeat(auto-fit,minmax(320px,1fr))"
@@ -51,20 +47,15 @@ export const Feature: React.FC<FeatureProps> = ({
         pr={reverseGridItemsOrder ? "" : { md: 16 }}
         pl={reverseGridItemsOrder ? { md: 16 } : ""}
       >
-        {caption && (
-          <Text color={textColor} type="caption">
-            {caption}
-          </Text>
-        )}
-        <Text color={textColor} type="headline.small" mt={3}>
+        {caption && <Text type="caption">{caption}</Text>}
+        <Text type="headline.small" mt={3}>
           {headline}
         </Text>
-        <Text color={textColor} mt={3} type="body.medium">
+        <Text mt={3} type="body.medium">
           {content}
         </Text>
         {link && (
           <Link
-            bgColorWithHighSaturation={bgColorWithHighSaturation}
             mt={3}
             asButton={link.asButton}
             isExternal={link.isExternal}

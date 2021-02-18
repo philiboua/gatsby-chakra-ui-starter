@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
 import { Features, Container } from "@src/components"
+import { bgWithHightSaturation } from "@src/contexts"
 import { Box } from "@chakra-ui/react"
 import { data } from "./content/data.js"
 
@@ -22,9 +23,11 @@ import { data } from "./content/data.js"
 <Canvas>
   <Story name="Features with a high saturated background color">
     <Box bgColor="#000">
-      <Container>
-        <Features bgColorWithHighSaturation data={data} />
-      </Container>
+      <bgWithHightSaturation.Provider value>
+        <Container>
+          <Features bgColorWithHighSaturation data={data} />
+        </Container>
+      </bgWithHightSaturation.Provider>
     </Box>
   </Story>
 </Canvas>

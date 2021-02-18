@@ -1,4 +1,5 @@
 import React from "react"
+import { bgWithHightSaturation } from "@src/contexts"
 import { useIntl } from "gatsby-plugin-intl"
 import {
   Box,
@@ -34,20 +35,21 @@ export interface FooterProps extends BoxProps {
   /**
    * content of the footer
    */
-  bgColorWithHighSaturation?: boolean
+
   content?: {
     copyright: string
     footerLinks: LinkProps[]
     companyMission: string
     socialMedia: SocialMediaLinksProps[]
   }
+  highSaturatedBgColor?: boolean
 }
 
 export const Footer: React.FC<FooterProps> = ({
   logo,
   bgColor,
   content,
-  bgColorWithHighSaturation,
+  highSaturatedBgColor,
 }) => {
   const { colors } = useTheme()
   const intl = useIntl()
@@ -65,7 +67,75 @@ export const Footer: React.FC<FooterProps> = ({
     }
   }
 
-  const contentColor = bgColorWithHighSaturation ? "#fff" : undefined
+  if (highSaturatedBgColor) {
+    return (
+      <bgWithHightSaturation.Provider value>
+        <Box
+          bgColor={
+            bgColor === undefined ? `${colors.gamma.neutralLight}` : bgColor
+          }
+          py={9}
+        >
+          <Container>
+            <Row>
+              <Column>
+                <Flex justify="space-between">
+                  {logo && (
+                    <Box>
+                      <Link href="/">
+                        <img src={logo} alt="logo" />
+                      </Link>
+                    </Box>
+                  )}
+                  <Box>
+                    <Text type="subtitle.medium">
+                      {intl.formatMessage({
+                        id: `${content?.companyMission}`,
+                      })}
+                    </Text>
+                  </Box>
+                </Flex>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                <Box
+                  mt={9}
+                  pt={9}
+                  borderTop={`1px solid ${colors.gamma.passiveLight}`}
+                >
+                  <Flex justify="space-between">
+                    <HStack>
+                      <Navigation
+                        alignNavigation="left"
+                        content={content?.footerLinks}
+                      />
+                    </HStack>
+                    <HStack>
+                      {content?.socialMedia.map(
+                        (link: SocialMediaLinksProps) => {
+                          return (
+                            <ChakraLink
+                              color={highSaturatedBgColor ? "#fff" : ""}
+                              key={link.id}
+                              pr={4}
+                              href={link.href}
+                            >
+                              {displaySocialIcon(link.id)}
+                            </ChakraLink>
+                          )
+                        }
+                      )}
+                    </HStack>
+                  </Flex>
+                </Box>
+              </Column>
+            </Row>
+          </Container>
+        </Box>
+      </bgWithHightSaturation.Provider>
+    )
+  }
 
   return (
     <Box
@@ -84,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({
                 </Box>
               )}
               <Box>
-                <Text color={contentColor} type="subtitle.medium">
+                <Text type="subtitle.medium">
                   {intl.formatMessage({
                     id: `${content?.companyMission}`,
                   })}
@@ -103,7 +173,6 @@ export const Footer: React.FC<FooterProps> = ({
               <Flex justify="space-between">
                 <HStack>
                   <Navigation
-                    bgColorWithHighSaturation={bgColorWithHighSaturation}
                     alignNavigation="left"
                     content={content?.footerLinks}
                   />
@@ -111,12 +180,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <HStack>
                   {content?.socialMedia.map((link: SocialMediaLinksProps) => {
                     return (
-                      <ChakraLink
-                        color={contentColor}
-                        key={link.id}
-                        pr={4}
-                        href={link.href}
-                      >
+                      <ChakraLink key={link.id} pr={4} href={link.href}>
                         {displaySocialIcon(link.id)}
                       </ChakraLink>
                     )

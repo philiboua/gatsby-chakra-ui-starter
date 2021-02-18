@@ -7,16 +7,12 @@ interface FeaturesProps {
   bgColorWithHighSaturation?: boolean
 }
 
-export const Features: React.FC<FeaturesProps> = ({
-  bgColorWithHighSaturation,
-  data,
-}) => {
+export const Features: React.FC<FeaturesProps> = ({ data }) => {
   const displayFeatures =
     data !== undefined
       ? data.map((feature: FeatureProps, index: number) => {
           return (
             <Feature
-              bgColorWithHighSaturation={bgColorWithHighSaturation}
               key={feature?.id}
               caption={feature.caption}
               featureImage={feature.featureImage}
