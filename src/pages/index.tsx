@@ -1,9 +1,9 @@
 import React from "react"
 
 import { graphql } from "gatsby"
+
 import { useIntl } from "gatsby-plugin-intl"
 import { Box } from "@chakra-ui/react"
-import { bgWithHightSaturation } from "@src/contexts"
 
 import logoCompany from "@images/logo-1.svg"
 
@@ -12,8 +12,6 @@ import {
   Header,
   SEO,
   Billboard,
-  Features,
-  Feature,
   CardContainer,
   Row,
   Column,
@@ -21,17 +19,18 @@ import {
   Text,
   Footer,
   LinkProps,
-  FeatureProps,
   BillBoardProps,
   CardProps,
   SocialMediaLinksProps,
 } from "@src/components"
 
+import { FeatureModel, FeaturesSection } from "@components/sections/homepage"
+
 interface IPageQuery {
   data: {
     homepageJson: {
       billboard: BillBoardProps
-      features: FeatureProps[]
+      features: FeatureModel[]
       cards: CardProps[]
     }
     allNavigationJson: {
@@ -77,20 +76,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
           image={image}
         />
       </Box>
-      <bgWithHightSaturation.Provider value>
-        <Box as="section" bgColor="#000" py={{ md: 16 }} px={{ md: 8 }}>
-          <Container>
-            <Features data={data.homepageJson.features} />
-            <Feature
-              reverseGridItemsOrder
-              featureImage={data.homepageJson.features[0].featureImage}
-              headline={data.homepageJson.features[0].headline}
-              content={data.homepageJson.features[0].content}
-              caption={data.homepageJson.features[0].caption}
-            />
-          </Container>
-        </Box>
-      </bgWithHightSaturation.Provider>
+      <FeaturesSection data={data.homepageJson.features} />
 
       <Box as="section" bgColor="#000" id="specifications" py={40}>
         <Container>
