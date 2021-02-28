@@ -1,6 +1,6 @@
 import React from "react"
 import {
-  ContentWrapper,
+  SectionBox,
   TextProps,
   FeatureBaseProps,
   LinkProps,
@@ -24,7 +24,7 @@ export interface FeatureSectionProps {
 
 export const FeaturesSection: React.FC<FeatureSectionProps> = ({ data }) => {
   return (
-    <ContentWrapper
+    <SectionBox
       contentType="section"
       bgColor="#000"
       withContainer
@@ -53,6 +53,6 @@ export const FeaturesSection: React.FC<FeatureSectionProps> = ({ data }) => {
           </Feature>
         )
       })}
-    </ContentWrapper>
+    </SectionBox>
   )
 }
