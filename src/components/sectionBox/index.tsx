@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, BoxProps } from "@chakra-ui/react"
+import { Box, BoxProps, SimpleGrid } from "@chakra-ui/react"
 import { Row, Container, Column } from "@src/components"
 import { bgWithHightSaturation } from "@src/contexts"
 
@@ -25,7 +25,7 @@ interface ContentWrapperProps extends BoxProps {
   contentType: ContentType
 }
 
-export const ContentWrapper: React.FC<ContentWrapperProps> = ({
+export const SectionBox: React.FC<ContentWrapperProps> = ({
   withContainer,
   bgColor,
   highSaturatedBg,
@@ -55,15 +55,7 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({
     return (
       <bgWithHightSaturation.Provider value>
         <Box bgColor={bgColor} role={getRole[getContentType()]} {...props}>
-          {withContainer ? (
-            <Container>
-              <Row>
-                <Column>{children}</Column>
-              </Row>
-            </Container>
-          ) : (
-            <>{children}</>
-          )}
+          {withContainer ? <Container>{children}</Container> : <>{children}</>}
         </Box>
       </bgWithHightSaturation.Provider>
     )
@@ -76,17 +68,9 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({
       bgColor={bgColor}
       {...props}
     >
-      {withContainer ? (
-        <Container>
-          <Row>
-            <Column>{children}</Column>
-          </Row>
-        </Container>
-      ) : (
-        <>{children}</>
-      )}
+      {withContainer ? <Container>{children}</Container> : <>{children}</>}
     </Box>
   )
 }
 
-export default ContentWrapper
+export default SectionBox
