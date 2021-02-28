@@ -1,9 +1,9 @@
 import React from "react"
 
-type Slices = "body" | "media" | "header" | "footer" | "background"
+export type SlicesType = "body" | "media" | "header" | "footer" | "background"
 
 interface SliceProps {
-  __TYPE: Slices
+  __TYPE: SlicesType
 }
 
 export const Slice: React.FC<SliceProps> = ({ children }) => {
