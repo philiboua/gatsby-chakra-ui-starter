@@ -8,30 +8,28 @@ import { Box } from "@chakra-ui/react"
 import logoCompany from "@images/logo-1.svg"
 
 import {
-  Container,
   Header,
   SEO,
   Billboard,
-  CardContainer,
-  Row,
-  Column,
-  Article,
-  Text,
   Footer,
   LinkProps,
   BillBoardProps,
-  CardProps,
   SocialMediaLinksProps,
 } from "@src/components"
 
-import { FeatureModel, FeaturesSection } from "@components/sections/homepage"
+import {
+  FeatureModel,
+  FeaturesSection,
+  CardSection,
+  CardModel,
+} from "@src/pages-sections/homepage"
 
 interface IPageQuery {
   data: {
     homepageJson: {
       billboard: BillBoardProps
       features: FeatureModel[]
-      cards: CardProps[]
+      cards: CardModel[]
     }
     allNavigationJson: {
       nodes: LinkProps[]
@@ -77,26 +75,8 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
         />
       </Box>
       <FeaturesSection data={data.homepageJson.features} />
+      <CardSection data={data.homepageJson.cards} />
 
-      <Box as="section" bgColor="#000" id="specifications" py={40}>
-        <Container>
-          <Row>
-            <Column>
-              <Article centerContent py={28}>
-                <Text color="white" type="headline.medium" textAlign="center">
-                  A better way to send money
-                </Text>
-                <Text color="white" type="body.medium">
-                  This is to display a card container{" "}
-                </Text>
-              </Article>
-            </Column>
-          </Row>
-          <Row wrap="wrap">
-            <CardContainer content={data.homepageJson.cards} />
-          </Row>
-        </Container>
-      </Box>
       <Box as="footer" role="contentinfo">
         <Footer
           bgColor="#000"
