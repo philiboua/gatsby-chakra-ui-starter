@@ -1,8 +1,9 @@
 import React from "react"
+import { SlicesType } from "@src/components"
 
 type ChildElement = {
   props: {
-    __TYPE: string
+    __TYPE: SlicesType
     children: React.ReactNode
   }
 }
