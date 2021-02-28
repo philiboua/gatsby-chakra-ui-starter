@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React from "react"
 import { Text, TextProps } from "@components/index"
 import { Grid, GridItem, GridProps, GridItemProps } from "@chakra-ui/react"
 import { getChildByType } from "@src/utils"
@@ -19,12 +19,7 @@ export type FeatureBaseProps = {
   secondGridItemStyles?: GridItemProps
 }
 
-export type ChildrenPropAsObject = {
-  media: () => ReactNode
-  featureBody: () => ReactNode
-}
-
-type ChildType = "media" | "content"
+type ChildType = "media" | "body"
 
 export type FeatureChildrenProp = {
   children: {
