@@ -36,7 +36,6 @@ interface CardsProps {
 }
 
 export const CardSection: React.FC<CardsProps> = ({ data }) => {
-  const { colors } = useTheme()
   const [isSmallThanTablet] = useMediaQuery("(max-width: 767px)")
 
   const handleSizeCard = () => {
@@ -78,9 +77,8 @@ export const CardSection: React.FC<CardsProps> = ({ data }) => {
                   <Flex
                     mt={{ sm: 9, md: 3, lg: 0 }}
                     bgColor="#fff"
-                    border={`1px solid ${colors.gamma.soothingLight}`}
                     borderRadius="4px"
-                    maxWidth="330px"
+                    width="330px"
                     direction="column"
                     height="100%"
                   >
@@ -99,7 +97,7 @@ export const CardSection: React.FC<CardsProps> = ({ data }) => {
                       )}
                     </Box>
                     <Article
-                      p={9}
+                      p={4}
                       pr={12}
                       display="flex"
                       flexDirection="column"
