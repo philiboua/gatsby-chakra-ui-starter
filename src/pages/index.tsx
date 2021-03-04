@@ -2,7 +2,6 @@ import React from "react"
 
 import { graphql } from "gatsby"
 
-import { useIntl } from "gatsby-plugin-intl"
 import { Box } from "@chakra-ui/react"
 
 import logoCompany from "@images/logo-1.svg"
@@ -10,16 +9,17 @@ import logoCompany from "@images/logo-1.svg"
 import {
   Header,
   SEO,
-  Billboard,
   Footer,
   LinkProps,
-  BillBoardProps,
+  SectionBox,
   SocialMediaLinksProps,
 } from "@src/components"
 
 import {
   FeatureModel,
   FeaturesSection,
+  BillboardSection,
+  BillboardModelProps,
   CardSection,
   CardModel,
 } from "@src/pages-sections/homepage"
@@ -27,7 +27,7 @@ import {
 interface IPageQuery {
   data: {
     homepageJson: {
-      billboard: BillBoardProps
+      billboard: BillboardModelProps
       features: FeatureModel[]
       cards: CardModel[]
     }
@@ -44,16 +44,6 @@ interface IPageQuery {
 }
 
 const Home: React.FC<IPageQuery> = ({ data }) => {
-  const intl = useIntl()
-
-  const {
-    caption,
-    headline,
-    content,
-    callToAction,
-    image,
-  } = data.homepageJson.billboard
-
   return (
     <>
       <SEO />
@@ -63,19 +53,11 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
         logo={logoCompany}
         content={data.allNavigationJson.nodes}
       />
-      <Box as="main" role="main">
-        <Billboard
-          bgColor="#000"
-          highSaturatedBgColor
-          caption={intl.formatMessage({ id: `${caption}` })}
-          headline={intl.formatMessage({ id: `${headline}` })}
-          content={intl.formatMessage({ id: `${content}` })}
-          callToAction={callToAction}
-          image={image}
-        />
-      </Box>
-      <FeaturesSection data={data.homepageJson.features} />
-      <CardSection data={data.homepageJson.cards} />
+      <SectionBox contentType="main">
+        <BillboardSection data={data.homepageJson.billboard} />
+        <FeaturesSection data={data.homepageJson.features} />
+        <CardSection data={data.homepageJson.cards} />
+      </SectionBox>
 
       <Box as="footer" role="contentinfo">
         <Footer
