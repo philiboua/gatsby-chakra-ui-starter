@@ -1,6 +1,6 @@
 import React from "react"
-import { Box, BoxProps, SimpleGrid } from "@chakra-ui/react"
-import { Row, Container, Column } from "@src/components"
+import { Box, BoxProps } from "@chakra-ui/react"
+import { Container } from "@src/components"
 import { bgWithHightSaturation } from "@src/contexts"
 
 type ContentType = "header" | "footer" | "section" | "main"
