@@ -9,13 +9,14 @@ type ChildElement = {
 }
 
 export const getChildByType = (
-  children: ChildElement[],
+  children: ChildElement[] | ChildElement,
   type: string
 ): React.ReactNode => {
-  const component = React.Children.map(children, (child: ChildElement) => {
-    const isMatchingType = child.props.__TYPE === type ? child : ""
-    return isMatchingType
-  })
+  const component = React.Children.toArray(children).find(child =>
+    React.isValidElement<{ __TYPE: SlicesType }>(child)
+      ? child.props.__TYPE === type
+      : ""
+  )
 
   return component
 }
