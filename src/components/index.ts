@@ -9,8 +9,8 @@ export * from "@components/listOfLinks"
 export * from "@src/components/sectionBox"
 export * from "@components/slice"
 export * from "@components/contentBox"
+export * from "@components/billboard"
 
 // Patterns
 export * from "@components/patterns/header"
-export * from "@components/patterns/billboard"
 export * from "@components/patterns/footer"
