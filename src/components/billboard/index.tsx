@@ -7,7 +7,7 @@ import {
   VStack,
   GridItemProps,
 } from "@chakra-ui/react"
-import { SlicesType, Text } from "@src/components"
+import { Text } from "@src/components"
 import { getChildByType } from "@src/utils"
 
 export interface ChildImageSharpProps {
