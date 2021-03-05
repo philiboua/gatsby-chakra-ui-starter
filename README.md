@@ -1,20 +1,18 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
+<div style="width: 100%; display:grid; grid-template-columns: repeat(4,auto); align-items: center; grid-column-gap:10px ">
+  <a href="https://www.gatsbyjs.com" >
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
   <a href="https://chakra-ui.com/">
-   <span>
-    <svg viewBox="0 0 257 257" style="width:60px" xmlns="http://www.w3.org/2000/svg" class="css-fuaw0j"><rect width="257" height="257" rx="128.5" fill="url(#mark)"></rect><path d="M69.558 133.985l87.592-86.9891c1.636-1.6251 4.27.3525 3.165 2.377l-32.601 59.7521c-.728 1.332.237 2.958 1.755 2.958h56.34c1.815 0 2.691 2.223 1.364 3.462l-98.7278 92.142c-1.7702 1.652-4.4051-.676-2.9839-2.636l46.7357-64.473c.958-1.322.014-3.174-1.619-3.174H70.9673c-1.7851 0-2.6759-2.161-1.4093-3.419z" fill="#fff"></path><defs><linearGradient id="mark" x1="128.5" x2="128.5" y2="257" gradientUnits="userSpaceOnUse"><stop stop-color="#7BCBD4"></stop><stop offset="1" stop-color="#29C6B7"></stop></linearGradient></defs></svg>
-   </span>
+   <img width="200px" alt="Chakra UI" class="n3VNCb" src="https://res.cloudinary.com/practicaldev/image/fetch/s--CrLDj6Kp--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://github.com/chakra-ui/chakra-ui/raw/master/logo/logo-colored%402x.png%3Fraw%3Dtrue" data-noaft="1" jsname="HiaYvf" jsaction="load:XAeZkd;" >
   </a>
   <a href="https://www.typescriptlang.org/">
   <img width="60px" height="60px" alt="File:Typescript logo 2020.svg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png" decoding="async" width="512" height="512" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/768px-Typescript_logo_2020.svg.png 1.5x, https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png 2x" data-file-width="512" data-file-height="512">
   </a>
-  <a>
+  <a href="https://storybook.js.org">
     <img width="200px" alt="Actions Addon | Storybook" class="n3VNCb" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" data-noaft="1" jsname="HiaYvf" jsaction="load:XAeZkd;" >
   </a>
-</p>
+</div>
 <h1 align="center">
   Build Gatsby sites with Speed
 </h1>
@@ -47,7 +45,7 @@ This template built with Chakra UI and Storybook, will help you build Gatsby sit
 
 3.  **Open Storybook**
 
-    Storybook will let you visualize all the components _(For more information about storybook visit https://storybook.js.org )_. In another tab or window of your terminal, launch storybook with the followin command: </br></br>
+    Storybook will let you visualize all the components _(For more information about storybook visit https://storybook.js.org )_. In another tab or window of your terminal, launch storybook with the following command: </br></br>
 
     ```shell
       npm run storybook
