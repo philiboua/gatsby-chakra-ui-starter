@@ -1,13 +1,7 @@
 import React from "react"
-
 import { graphql } from "gatsby"
-
-import { Box } from "@chakra-ui/react"
-
 import logoCompany from "@images/logo-1.svg"
-
-import { Header, SEO, Footer, LinkProps, SectionBox } from "@src/components"
-
+import { SEO, SectionBox } from "@src/components"
 import {
   FeatureModel,
   FeaturesSection,
@@ -16,7 +10,12 @@ import {
   CardSection,
   CardModel,
 } from "@src/pages-sections/homepage"
-import { FooterSection, FooterModelBase } from "@src/pages-sections/shared"
+import {
+  FooterSection,
+  FooterModelBase,
+  HeaderSection,
+  HeaderModelProps,
+} from "@src/pages-sections/shared"
 
 interface IPageQuery {
   data: {
@@ -25,9 +24,7 @@ interface IPageQuery {
       features: FeatureModel[]
       cards: CardModel[]
     }
-    allNavigationJson: {
-      nodes: LinkProps[]
-    }
+    allNavigationJson: HeaderModelProps
     footerJson: FooterModelBase
   }
 }
@@ -36,11 +33,10 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
   return (
     <>
       <SEO />
-      <Header
-        bgColor="#000"
-        highSaturatedBgColor
+      <HeaderSection
+        nodes={data.allNavigationJson.nodes}
         logo={logoCompany}
-        content={data.allNavigationJson.nodes}
+        altLogo="Brand Logo"
       />
       <SectionBox contentType="main">
         <BillboardSection data={data.homepageJson.billboard} />

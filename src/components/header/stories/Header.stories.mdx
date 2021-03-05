@@ -1,0 +1,51 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import {
+  Header,
+  Slice,
+  ListOfLinks as Navigation,
+  HamburgerButton,
+} from "@src/components"
+import { GridItem, useMediaQuery } from "@chakra-ui/react"
+import logoCompany from "@images/logo-1.svg"
+import { navigation } from "./content/data.js"
+
+<Meta title="Components/Header" component={Header} />
+
+# Header
+
+`Header` component is used to display the navigation of the website and the logo of the company
+
+## ** Preview **
+
+### Header without navigation
+
+<Canvas>
+  <Story name="Header">
+    <Header logo={logoCompany} alt="Logo" />
+  </Story>
+</Canvas>
+
+### Header with a navigation
+
+<Canvas>
+  <Story name="Header with navigation">
+    {() => {
+      const [isDesktop] = useMediaQuery("(min-width: 992px")
+      return (
+        <Header altLogo="Logo" logo={logoCompany}>
+          <Slice __TYPE="navigation">
+            <GridItem display="grid" justifyItems="end">
+              {isDesktop ? (
+                <Navigation alignNavigation="right" content={navigation} />
+              ) : (
+                <HamburgerButton ariaLabel="Navigation menu" menuLabel="Menu" />
+              )}
+            </GridItem>
+          </Slice>
+        </Header>
+      )
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Header} />
