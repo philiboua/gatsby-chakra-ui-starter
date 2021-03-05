@@ -43,7 +43,7 @@ export const CardSection: React.FC<CardsProps> = ({ data }) => {
   }
 
   return (
-    <SectionBox contentType="section" bgColor="#000" withContainer>
+    <SectionBox contentType="section" bgColor="#000" withContainer pb={12}>
       <Grid
         gridTemplateColumns="1fr"
         gridTemplateRows="auto auto"
