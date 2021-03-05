@@ -1,5 +1,5 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<div style="width: 100%; display:grid; grid-template-columns: repeat(4,auto); align-items: center; grid-column-gap:10px; justify-items:center; text-align:center ">
+<p align="center">
   <a href="https://www.gatsbyjs.com" >
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
@@ -12,7 +12,7 @@
   <a href="https://storybook.js.org">
     <img width="200px" alt="Actions Addon | Storybook" class="n3VNCb" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" data-noaft="1" jsname="HiaYvf" jsaction="load:XAeZkd;" >
   </a>
-</div>
+</p>
 <h1 align="center">
   Build Gatsby sites with Speed
 </h1>
