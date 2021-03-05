@@ -1,5 +1,5 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<div style="width: 100%; display:grid; grid-template-columns: repeat(4,auto); align-items: center; grid-column-gap:10px; justify-items:center ">
+<div style="width: 100%; display:grid; grid-template-columns: repeat(4,auto); align-items: center; grid-column-gap:10px; justify-items:center; text-align:center ">
   <a href="https://www.gatsbyjs.com" >
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
