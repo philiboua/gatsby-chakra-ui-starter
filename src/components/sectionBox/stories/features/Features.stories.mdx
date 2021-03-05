@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import {
+  SectionBox,
+  TextProps,
+  FeatureBaseProps,
+  LinkProps,
+  ChildImageSharpProps,
+  Feature,
+  Slice,
+  Text,
+} from "@src/components"
+import { isEven } from "@src/utils"
+import Img from "gatsby-image"
+import { Box } from "@chakra-ui/react"
+import { data } from "./content/data.js"
+
+<Meta title="Marketing/Features" component={SectionBox} />
+
+# Features Container
+
+`Features` component is used to display multiple features on the interface.
+
+### Features
+
+<Canvas>
+  <Story name="Template Alpha">
+    <SectionBox
+      contentType="section"
+      bgColor="#000"
+      withContainer
+      highSaturatedBg
+      py={{ md: 16 }}
+      px={{ md: 8 }}
+    >
+      {data.map((feature, index) => {
+        return (
+          <Feature
+            reverseGridItemsOrder={!isEven(index)}
+            headline={feature.headline}
+            caption={feature.caption}
+          >
+            <Slice __TYPE="content">
+              <Text mt={3} type="body.medium">
+                {feature.content}
+              </Text>
+            </Slice>
+            <Slice __TYPE="media">
+              <Img
+                fluid={feature.featureImage.childImageSharp.fluid}
+                alt="image"
+              />
+            </Slice>
+          </Feature>
+        )
+      })}
+    </SectionBox>
+  </Story>
+</Canvas>

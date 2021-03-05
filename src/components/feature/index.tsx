@@ -1,16 +1,9 @@
 import React from "react"
-import {
-  Text,
-  TextProps,
-  Link,
-  LinkProps,
-  ChildImageSharpProps,
-} from "@components/index"
-import { Grid, GridItem } from "@chakra-ui/react"
+import { Text, TextProps } from "@components/index"
+import { Grid, GridItem, GridProps, GridItemProps } from "@chakra-ui/react"
+import { getChildByType } from "@src/utils"
 
-import Img from "gatsby-image"
-
-export interface FeatureProps {
+export type FeatureBaseProps = {
   /**
    * Used in the Features Component when we iterate through an array of features
    */
@@ -18,64 +11,68 @@ export interface FeatureProps {
   /**
    * Image or illustration
    */
-  featureImage: ChildImageSharpProps
   headline: TextProps
-  content: TextProps
   caption?: TextProps
-  link?: LinkProps
   reverseGridItemsOrder?: boolean
+  gridStyles?: GridProps
+  firstGridItemStyles?: GridItemProps
+  secondGridItemStyles?: GridItemProps
+}
+
+type ChildType = "media" | "body"
+
+export type FeatureChildrenProp = {
+  children: {
+    props: {
+      __TYPE: ChildType
+      children: React.ReactNode
+    }
+  }[]
+}
+
+export type FeatureProps = FeatureBaseProps & FeatureChildrenProp
+
+const defaultGridStyles = {
+  templateColumns: "repeat(auto-fit,minmax(320px,1fr))",
+  gap: 6,
+  alignItems: "center",
+  px: "15px",
+  py: 20,
+  mt: 16,
 }
 
 export const Feature: React.FC<FeatureProps> = ({
-  featureImage,
   headline,
-  content,
   caption,
-  link,
   reverseGridItemsOrder,
+  gridStyles,
+  firstGridItemStyles,
+  secondGridItemStyles,
+  children,
 }) => {
+  const featureMedia = getChildByType(children, "media")
+  const featureContent = getChildByType(children, "body")
+
   return (
-    <Grid
-      templateColumns="repeat(auto-fit,minmax(320px,1fr))"
-      gap={6}
-      alignItems="center"
-      px="15px"
-      py={20}
-      mt={16}
-    >
+    <Grid {...(gridStyles !== undefined ? gridStyles : defaultGridStyles)}>
       <GridItem
         pr={reverseGridItemsOrder ? "" : { md: 16 }}
         pl={reverseGridItemsOrder ? { md: 16 } : ""}
+        {...(firstGridItemStyles !== undefined ? firstGridItemStyles : "")}
       >
         {caption && <Text type="caption">{caption}</Text>}
         <Text type="headline.small" mt={3}>
           {headline}
         </Text>
-        <Text mt={3} type="body.medium">
-          {content}
-        </Text>
-        {link && (
-          <Link
-            mt={3}
-            asButton={link.asButton}
-            isExternal={link.isExternal}
-            href={link.href}
-          >
-            {link.text}
-          </Link>
-        )}
+        {featureContent}
       </GridItem>
       <GridItem
         pl={reverseGridItemsOrder ? "" : { md: 16 }}
         pr={reverseGridItemsOrder ? { md: 16 } : ""}
         order={reverseGridItemsOrder ? { md: -1 } : 0}
+        {...(secondGridItemStyles !== undefined ? secondGridItemStyles : "")}
       >
-        {featureImage && (
-          <Img
-            fluid={featureImage.childImageSharp.fluid}
-            alt="billboard Image"
-          />
-        )}
+        {featureMedia}
       </GridItem>
     </Grid>
   )

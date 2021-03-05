@@ -1,4 +1,4 @@
 export * from "./Container"
 export * from "./Row"
-export * from "./Column"
+export * from "./column"
 export * from "./Section"
