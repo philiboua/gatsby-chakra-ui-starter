@@ -7,6 +7,7 @@ export type SlicesType =
   | "footer"
   | "background"
   | "navigation"
+  | "sub-navigation"
 
 interface SliceProps {
   __TYPE: SlicesType
