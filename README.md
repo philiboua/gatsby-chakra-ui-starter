@@ -3,92 +3,55 @@
   <a href="https://www.gatsbyjs.com">
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
+  <a href="https://chakra-ui.com/">
+   <span>
+    <svg viewBox="0 0 257 257" style="width:60px" xmlns="http://www.w3.org/2000/svg" class="css-fuaw0j"><rect width="257" height="257" rx="128.5" fill="url(#mark)"></rect><path d="M69.558 133.985l87.592-86.9891c1.636-1.6251 4.27.3525 3.165 2.377l-32.601 59.7521c-.728 1.332.237 2.958 1.755 2.958h56.34c1.815 0 2.691 2.223 1.364 3.462l-98.7278 92.142c-1.7702 1.652-4.4051-.676-2.9839-2.636l46.7357-64.473c.958-1.322.014-3.174-1.619-3.174H70.9673c-1.7851 0-2.6759-2.161-1.4093-3.419z" fill="#fff"></path><defs><linearGradient id="mark" x1="128.5" x2="128.5" y2="257" gradientUnits="userSpaceOnUse"><stop stop-color="#7BCBD4"></stop><stop offset="1" stop-color="#29C6B7"></stop></linearGradient></defs></svg>
+   </span>
+  </a>
+  <a href="https://www.typescriptlang.org/">
+  <img width="60px" height="60px" alt="File:Typescript logo 2020.svg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png" decoding="async" width="512" height="512" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/768px-Typescript_logo_2020.svg.png 1.5x, https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png 2x" data-file-width="512" data-file-height="512">
+  </a>
+  <a>
+    <img width="200px" alt="Actions Addon | Storybook" class="n3VNCb" src="https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png" data-noaft="1" jsname="HiaYvf" jsaction="load:XAeZkd;" >
+  </a>
 </p>
 <h1 align="center">
-  Gatsby's hello-world starter
+  Build Gatsby sites with Speed
 </h1>
 
-Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
-
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+This template built with Chakra UI and Storybook, will help you build Gatsby sites with speed. It includes a design system and few major components to get started.
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+1.  **Installation.**
 
-    Use the Gatsby CLI to create a new site, specifying the hello-world starter.
+    Run the command below to install template dependencies: </br></br>
 
     ```shell
-    # create a new Gatsby site using the hello-world starter
-    gatsby new my-hello-world-starter https://github.com/gatsbyjs/gatsby-starter-hello-world
+
+    npm install
     ```
 
-1.  **Start developing.**
+2.  **Start developing.**
 
-    Navigate into your new site’s directory and start it up.
+    Start the development server with the command below </br></br>
 
     ```shell
-    cd my-hello-world-starter/
+
     gatsby develop
     ```
 
-1.  **Open the source code and start editing!**
-
     Your site is now running at `http://localhost:8000`!
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
+    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`\_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql).<br /><br />
 
-    Open the `my-hello-world-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+3.  **Open Storybook**
 
-## 🧐 What's inside?
+    Storybook will let you visualize all the components _(For more information about storybook visit https://storybook.js.org )_. In another tab or window of your terminal, launch storybook with the followin command: </br></br>
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
-
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
-
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
-
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
-
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
-
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
-
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
-
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) for more detail).
-
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+    ```shell
+      npm run storybook
+    ```
 
 ## 💫 Deploy
 
