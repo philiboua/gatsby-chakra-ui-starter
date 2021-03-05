@@ -6,14 +6,7 @@ import { Box } from "@chakra-ui/react"
 
 import logoCompany from "@images/logo-1.svg"
 
-import {
-  Header,
-  SEO,
-  Footer,
-  LinkProps,
-  SectionBox,
-  SocialMediaLinksProps,
-} from "@src/components"
+import { Header, SEO, Footer, LinkProps, SectionBox } from "@src/components"
 
 import {
   FeatureModel,
@@ -23,6 +16,7 @@ import {
   CardSection,
   CardModel,
 } from "@src/pages-sections/homepage"
+import { FooterSection, FooterModelBase } from "@src/pages-sections/shared"
 
 interface IPageQuery {
   data: {
@@ -34,12 +28,7 @@ interface IPageQuery {
     allNavigationJson: {
       nodes: LinkProps[]
     }
-    footerJson: {
-      companyMission: string
-      copyright: string
-      footerLinks: LinkProps[]
-      socialMedia: SocialMediaLinksProps[]
-    }
+    footerJson: FooterModelBase
   }
 }
 
@@ -58,15 +47,13 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
         <FeaturesSection data={data.homepageJson.features} />
         <CardSection data={data.homepageJson.cards} />
       </SectionBox>
-
-      <Box as="footer" role="contentinfo">
-        <Footer
-          bgColor="#000"
-          highSaturatedBgColor
-          logo={logoCompany}
-          content={data.footerJson}
-        />
-      </Box>
+      <FooterSection
+        socialMedia={data.footerJson.socialMedia}
+        copyright={data.footerJson.copyright}
+        logo={logoCompany}
+        footerLinks={data.footerJson.footerLinks}
+        companyMission={data.footerJson.companyMission}
+      />
     </>
   )
 }

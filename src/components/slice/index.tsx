@@ -1,6 +1,12 @@
 import React from "react"
 
-export type SlicesType = "body" | "media" | "header" | "footer" | "background"
+export type SlicesType =
+  | "body"
+  | "media"
+  | "header"
+  | "footer"
+  | "background"
+  | "navigation"
 
 interface SliceProps {
   __TYPE: SlicesType
