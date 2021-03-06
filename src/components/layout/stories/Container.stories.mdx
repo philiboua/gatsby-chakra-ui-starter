@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Container } from "@src/components"
+
+<Meta
+  title="Foundation/layout/Container"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  component={Container}
+/>
+
+# Container
+
+Containers are used to constrain the width of the content according to the size of the viewport.
+The component is built upon the Box component provided by Chakra-ui.
+
+## How to use it
+
+```react
+<Container>I am inside the container!</Container>
+```
+
+## How to customize the component
+
+You can customize the component at the following location in the code :
+`src/components/layout/Container.tsx`
+
+<ArgsTable of={Container} />

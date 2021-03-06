@@ -1,0 +1,34 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Column, Container, Row } from "@src/components"
+
+<Meta
+  title="Foundation/layout/Column"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  component={Column}
+/>
+
+# Column
+
+Columns are used to position content on the viewport. Used in conjunction with the Row and/or Container components they allow you to take advantage of CSS flexbox.
+
+## How to use it
+
+```javascript
+<Container>
+  <Row>
+    <Column>I am inside the container!</Column>
+  </Row>
+</Container>
+```
+
+In case the prop `col` is undefined, the Column will take the full width of its container. You can provide an array of 3 values to customize the width of the column :
+
+- The first value in the array is the column size on mobile
+- The second value in the array is the column size on tablet
+- The third value in the array is the column size on desktop
+
+## How to customize the component
+
+You can customize the component by modifying the files here after : `src/components/layout/column/index.tsx` and `src/components/layout/column/colSizes.ts`
+
+<ArgsTable of={Column} />

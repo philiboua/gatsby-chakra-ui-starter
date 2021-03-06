@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Row, Container } from "@src/components"
+
+<Meta
+  title="Foundation/layout/Row"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  component={Row}
+/>
+
+# Row
+
+Row are used as wrapper for `Column` component.
+
+## How to use it
+
+```javascript
+<Container>
+  <Row>You can add column component right here</Row>
+</Container>
+```
+
+## How to customize the component
+
+You can customize the component by modifying the files here after : `src/components/layout/Row.tsx`
+
+<ArgsTable of={Row} />

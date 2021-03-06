@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Slice } from "@src/components"
+
+<Meta
+  title="Foundation/layout/Slice"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  component={Slice}
+/>
+
+# Slice
+
+Slices are used to define area inside components. We can use this component to build flexible templates.
+
+## How to use it
+
+Currently we can use the `Slice` component inside Header, Billboard, Footer and Feature components.
+
+## How to customize the component
+
+You can customize the component at the following location in the code :
+`src/components/slice/index.tsx`
+
+<ArgsTable of={Slice} />
