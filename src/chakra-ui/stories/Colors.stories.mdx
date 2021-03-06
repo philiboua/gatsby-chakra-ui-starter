@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks"
+
+<Meta
+  title="Foundation/Colors styles"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Colors
+
+Colors are defined by the Greek alphabet.
+
+#### alpha
+
+Alpha defines the main color on the website. It determines the overall look of a site
+
+#### beta
+
+Beta defines an ascent color on the website. It can be use to define less important actions and/or information for the end user.
+
+#### gamma
+
+Gamma defines neutral color on the website. It determines the color of text, background, panels, form controls
+
+## Color palette
+
+For each color (alpha, beta, gamma), we define a color palette. The color palette includes 10 colors that are determined according to the tone we want to convey.
+
+You can find an example below : the file can be customized at the following location : `src/chakra-ui/theme/foundations/colors.js`
+
+```javascript
+export const colors = {
+  alpha: {
+    alertLight: "#0044FF",
+    alertDark: "#4D70D1",
+    soothingLight: "#C3CCE3",
+    soothingDark: "#C1CFF5",
+    activeLight: "#214CC2",
+    activeDark: "#27428F",
+    passiveLight: "#7E91C4",
+    passiveDark: "#36405C",
+    neutralLight: "#FAFBFC",
+    neutralDark: "#A1A5B2",
+  },
+  gamma: {
+    alertLight: "#474747",
+    alertDark: "#0F0F0F",
+    soothingLight: "#F2F4F5",
+    soothingDark: "#DEE1E3",
+    activeLight: "#C0C1C2",
+    activeDark: "#8D8E8F",
+    passiveLight: "#C0C3C4",
+    passiveDark: "#5B5B5C",
+    neutralLight: "#F8FAFB",
+    neutralDark: "#1E2224",
+  },
+}
+```
+
+As you can see above we have defined 5 categories of colors. Each category has 2 colors, light and dark tone.
+The unit use to define the color is HSB. (Hue, Saturation, Brightness). Let's go through each category
+
+#### Alert
+
+The saturation is between `63 - 100` and the brightness is between `82 - 100`
+
+#### Active
+
+The saturation is between `73 - 83` and the brightness is between `56 - 76`
+
+#### Passive
+
+The saturation is between `36 - 41` and the brightness is between `36 - 77`
+
+#### Soothing
+
+The saturation is between `14 - 27` and the brightness is between `89 - 96`
+
+#### Neutral
+
+The saturation is between `1 - 10` and the brightness is between `70 - 99`

@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks"
+
+<Meta
+  title="Foundation/Typography"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Typography
+
+## Typeface
+
+The typeface use in this template is `GT Walsheim Pro`. You can replace the typeface by following the steps below:
+
+1. Update the GlobalCSS component. The typeface is loaded through the CSS `@import` rule. Update the path to your typeface location.
+2. Update the Chakra UI typography style. Inside the file `src/chakra-ui/theme/foundations/typography.js` update the object `fonts`
+
+```javascript
+export const fonts = {
+  heading: '"GT Walsheim Pro", sans-serif',
+  body: '"GT Walsheim Pro", sans-serif',
+  mono: "Menlo, monospace",
+}
+```
+
+## Font size
+
+The size of the typography is determined according to the type of text we want to display. In this way we reduce the number of possibilities and guarantee a consistent user experience throughout the website.
+
+Text styles are located at the following location : `src/chakra-ui/theme/foundations/typography.js`
+
+Below you can have a better understanding of the text styles
+
+```javascript
+export const fontSizes = {
+  headline: {
+    large: {
+      desktop: "3rem",
+      mobile: "2.25rem",
+    },
+    medium: "1.875rem",
+    small: "1.5rem",
+  },
+  introduction: "1.25rem",
+  subtitle: {
+    medium: "1.125rem",
+    small: "1rem",
+  },
+  body: {
+    medium: "1.125rem",
+    small: "1rem",
+  },
+  caption: "0.875rem",
+  legal: "0.75rem",
+}
+
+export const lineHeights = {
+  small: "0.9",
+  normal: "normal",
+  none: "1",
+  heading: "1.25",
+  subtitle: "1.5",
+  body: "1.5",
+  caption: "1.3",
+  introduction: "1.4",
+}
+```
+
+## ** Text styles with usage **
+
+| Element         | prop `type`     |                            usage                            | HTML Tag |
+| :-------------- | --------------- | :---------------------------------------------------------: | -------: |
+| Headline Large  | headline.large  |  Page headline, describes the main information of the page  |       h1 |
+| Headline Medium | headline.medium |                      Section headline                       |       h2 |
+| Headline Small  | headline.small  | Headline inside a section, card headline product hightlight |       h3 |
+| Subtitle Medium | subtitle.medium |                  Title for small body text                  |       h3 |
+| Subtitle Small  | subtitle.small  |                     Title for captions                      |       h4 |
+| Introduction    | introduction    |      Paragraph that supports headline large or medium       |        p |
+| Body medium     | body.medium     |                      Long format text                       |        p |
+| Body small      | body.small      |     Font size we can use inside UI patterns like cards      |        p |
+| Caption         | caption         |      Small text copy we can use for badges or tooltips      |        p |
+| Legal           | legal           |    Used at the bottom of the page as for legal purposes     |        p |

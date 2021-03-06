@@ -1,0 +1,25 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { SectionBox } from "@src/components"
+
+<Meta
+  title="Foundation/layout/SectionBox"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  component={SectionBox}
+/>
+
+# SectionBox
+
+SectionBox components are used to surround content within sections on the web page. SectionBox are useful to define main areas of the web page which will increase accessibility.
+
+## How to use it
+
+<Canvas>
+  <SectionBox contentType="header">SectionBox is awesome!</SectionBox>
+</Canvas>
+
+## How to customize the component
+
+You can customize the component at the following location in the code :
+`src/components/sectionBox/index.tsx`
+
+<ArgsTable of={SectionBox} />

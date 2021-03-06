@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { ContentBox } from "@src/components"
+
+<Meta
+  title="Foundation/layout/ContentBox"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+  component={ContentBox}
+/>
+
+# ContentBox
+
+The contentBox is used to contain different types of content that enable the understanding of a concept, idea or task.
+
+## How to use it
+
+The component is quite flexible in the sense that the only information the developer has to provide is the prop `hightSaturatedBg`. All the children provided inside the component will be render.
+
+```javascript
+<ContentBox> I am inside the contentBox ;)</ContentBox>
+```
+
+## How to customize the component
+
+The component can be customize at the following location : `src/components/contentBox/index.tsx`
+
+<ArgsTable of={ContentBox} />

@@ -30,6 +30,26 @@ export const parameters = {
   viewport: {
     viewports: MINIMAL_VIEWPORTS,
   },
+  options: {
+    storySort: {
+      order: [
+        "Foundation",
+        ["Typography", "Colors styles", "layout"],
+        "Components",
+        [
+          "Text",
+          "Link",
+          "List of Links",
+          "button",
+          "Article",
+          "Feature",
+          "Header",
+          "Billboard",
+        ],
+        "Marketing",
+      ],
+    },
+  },
 }
 
 // Decorator for Gatsby intl
