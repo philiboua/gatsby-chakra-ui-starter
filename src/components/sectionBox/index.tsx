@@ -55,7 +55,13 @@ export const SectionBox: React.FC<ContentWrapperProps> = ({
     return (
       <bgWithHightSaturation.Provider value>
         <Box bgColor={bgColor} role={getRole[getContentType()]} {...props}>
-          {withContainer ? <Container>{children}</Container> : <>{children}</>}
+          {withContainer ? (
+            <Container px={{ sm: "20px", md: "20px", lg: 0 }}>
+              {children}
+            </Container>
+          ) : (
+            <>{children}</>
+          )}
         </Box>
       </bgWithHightSaturation.Provider>
     )
@@ -68,7 +74,11 @@ export const SectionBox: React.FC<ContentWrapperProps> = ({
       bgColor={bgColor}
       {...props}
     >
-      {withContainer ? <Container>{children}</Container> : <>{children}</>}
+      {withContainer ? (
+        <Container px={{ sm: "20px", md: "20px", lg: 0 }}>{children}</Container>
+      ) : (
+        <>{children}</>
+      )}
     </Box>
   )
 }
