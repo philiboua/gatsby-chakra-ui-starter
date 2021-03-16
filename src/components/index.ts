@@ -12,4 +12,4 @@ export * from "@components/contentBox"
 export * from "@components/billboard"
 export * from "@components/footer"
 export * from "@components/header"
-// Patterns
+export * from "@src/components/videoBox"
