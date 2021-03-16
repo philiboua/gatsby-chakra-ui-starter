@@ -1,0 +1,192 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { VideoBox } from "@src/components"
+import { videoContext } from "@src/contexts"
+import { Box, Button, Grid, GridItem } from "@chakra-ui/react"
+import { IoPlay, IoPause, IoVolumeMedium, IoVolumeMute } from "react-icons/io5"
+import * as Video from "@components/videoBox/videoActionCreators"
+import video from "./content/sample-beach.mp4"
+
+<Meta title="Components/videoBox" component={VideoBox} />
+
+# VideoBox
+
+`VideoBox` is used to display a video. The default behaviour of the `VideoBox` can be customize by utilizing the component props but also the `Box` props from Chakra UI.
+The props from the `Box` component will be applied to the container of the video.
+
+## Video Base
+
+We display a video without any controls.
+
+<Canvas>
+  <Story name="Video Base">
+    <VideoBox
+      autoPlay
+      loop
+      videoSrcURL={video}
+      videoTitle="hello there"
+      height="500px"
+      width="300px"
+      borderRadius="sm"
+    />
+  </Story>
+</Canvas>
+
+## Video with customization
+
+We want to give as much flexibility as possible to developers to build the `VideoBox` UI. In order to achieve this, we are leveraging the React context API and the `useReducer` hook. Thus we will have access to the videoBox current state, and will be able to update it. Below you will find the steps to have full control of the component:
+
+1. import the VideoBox context and its action creator(s
+
+   )
+
+```javascript
+import { videoContext } from "@src/contexts"
+import * as Video from "@components/videoBox/videoActionCreators"
+```
+
+2. consume the context inside the videoBox to have access to the dispatcher funciton and the state coming from useReducer
+
+```javascript
+<VideoBox
+  autoPlay
+  loop
+  videoSrcURL={video}
+  videoTitle="hellow there"
+  height="500px"
+  width="300px"
+  videoBorderRadius="20px"
+>
+  <videoContext.Consumer>
+    {context => {
+      return "context API"
+    }}
+  </videoContext.Consumer>
+</VideoBox>
+```
+
+3. build the UI inside the Context consumer component
+
+Inside the Context you can dispatch actions with all the action creators you have imported earlier _(the object imported from `"@components/videoBox/videoActionCreators"` )_. In our example we have named this object `Video` but you can always change it later. The object will have the following functions :
+
+```javascript
+Video.play()
+Video.pause()
+Video.mute()
+Video.unmute()
+Video.reinitializeState() // the Video will go back to the default state
+Video.mouseEnter() // we trigger this action on mouseEnter event
+Video.mouseLeave() // we trigger this action on mouseLeave event
+```
+
+Below you can see a full example concerning the customization of the component. For each template created we focus on the content displayed on top of the video. The width and height of the video can always be updated by the developer.
+
+## Video Template Alpha
+
+<Canvas>
+  <Story name="Video Template Alpha">
+    <VideoBox
+      autoPlay
+      loop
+      videoSrcURL={video}
+      videoTitle="hellow there"
+      height="500px"
+      width="300px"
+      videoBorderRadius="20px 20px 0px 0px"
+    >
+      <videoContext.Consumer>
+        {context => {
+          const getVideoScreenReadersInfo = context => {
+            switch (context.state.video) {
+              case "pause":
+                return {
+                  ariaLabel:
+                    "the video is currently on pause, click to resume the video",
+                  title: "play the video",
+                }
+              case "play":
+                return {
+                  ariaLabel:
+                    "the video is currently playing, click to pause the video",
+                  title: "pause the video",
+                }
+              default:
+                return {
+                  ariaLabel:
+                    "the video is currently playing, click to pause the video",
+                  title: "pause the video",
+                }
+            }
+          }
+          const dispatchVideoAction = context => {
+            switch (context.state.video) {
+              case "pause":
+                return context?.dispatch(Video.play())
+              case "play":
+                return context?.dispatch(Video.pause())
+              default:
+                return context?.dispatch(Video.play())
+            }
+          }
+          return (
+            <Box
+              position="absolute"
+              bg="#000"
+              opacity="0.3"
+              width="100%"
+              bottom="0"
+            >
+              <Grid gridTemplateColumns="repeat(2, 1fr)">
+                <GridItem>
+                  <Button
+                    aria-label={getVideoScreenReadersInfo(context)["ariaLabel"]}
+                    title={getVideoScreenReadersInfo(context)["title"]}
+                    variant="transparent"
+                    onClick={() => dispatchVideoAction(context)}
+                  >
+                    {context?.state.video === null && (
+                      <IoPlay size="1.5rem" color="#fff" />
+                    )}
+                    {context?.state.video === "play" && (
+                      <IoPause size="1.5rem" color="#fff" />
+                    )}
+                    {context?.state.video === "pause" && (
+                      <IoPlay size="1.5rem" color="#fff" />
+                    )}
+                  </Button>
+                </GridItem>
+                <GridItem display="grid" justifyItems="flex-end">
+                  <Button
+                    variant="transparent"
+                    aria-label={
+                      context?.state.muted === true
+                        ? "video is currently mute, click to unmute"
+                        : "the video is currently mute, click to mute"
+                    }
+                    title={
+                      context?.state.muted === true
+                        ? "unmute the video"
+                        : "mute the video"
+                    }
+                    onClick={() =>
+                      context?.state.muted === true
+                        ? context?.dispatch(Video.unmute())
+                        : context?.dispatch(Video.mute())
+                    }
+                  >
+                    {context?.state.muted === true ? (
+                      <IoVolumeMute size="1.5rem" color="#fff" />
+                    ) : (
+                      <IoVolumeMedium size="1.5rem" color="#fff" />
+                    )}
+                  </Button>
+                </GridItem>
+              </Grid>
+            </Box>
+          )
+        }}
+      </videoContext.Consumer>
+    </VideoBox>
+  </Story>
+</Canvas>
+
+<ArgsTable of={VideoBox} />
