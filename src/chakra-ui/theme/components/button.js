@@ -11,6 +11,14 @@ export const Button = {
     },
   },
   variants: {
+    tranparent: () => ({
+      bg: "transparent",
+      color: "white",
+      _hover: {
+        bg: "transparent",
+        color: "white",
+      },
+    }),
     solid: () => ({
       bg: "alpha.alertLight",
       color: "white",
