@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks"
+import { HoverBox } from "@src/components"
+import { hoverContext } from "@src/contexts"
+
+<Meta title="Components/hoverBox" component={HoverBox} />
+
+# HoverBox
+
+`HoverBox` component is used when we want to control children components based on the hover state. We are leveraging the Context API to provide the state of the container.
+
+## How to use it
+
+Below you you can see how to use the component :
+
+<Canvas>
+  <Story name="hoverBox">
+    <HoverBox
+      width="200px"
+      py={2}
+      px={3}
+      bg="#000"
+      color="white"
+      height="100px"
+    >
+      <hoverContext.Consumer>
+        {value => <div>hello, hover state: {value.toString()}</div>}
+      </hoverContext.Consumer>
+    </HoverBox>
+  </Story>
+</Canvas>
