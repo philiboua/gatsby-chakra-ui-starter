@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import React, { useRef, useReducer, useEffect } from "react"
+import React, { useRef, useReducer, useEffect, useMemo } from "react"
 import { css, jsx } from "@emotion/react"
 import { Box as VideoContainer, BoxProps } from "@chakra-ui/react"
 import { videoContext } from "@src/contexts"
 import styled from "@emotion/styled"
-import { videoReducer, VideoState } from "./reducer"
+import { videoReducer } from "./reducer"
+import { VideoState } from "./videoState"
 import * as Video from "./videoActionCreators"
 
 const VideoPlayer = styled.video`
@@ -18,26 +19,25 @@ const VideoPlayer = styled.video`
 `
 interface VideoBaseProps extends BoxProps {
   /**
-   * url of the video
+   * url of the MP4 video
    */
-  videoSrcURL: string
+  videoMp4SrcURL: string
   /**
-   * width of the video container
+   * url of the WebM video
+   */
+  videoWebpmSrcURL?: string
+  /**
+   * display a message in case the format MP4 or webM are not supported by the browser
+   */
+  fallbackMessage?: string
+  /**
+   * define the width of the video container
    */
   width: string
   /**
-   * height of the video container
+   * define the height of the video container
    */
   height: string
-
-  /**
-   * title of the video
-   */
-  videoTitle?: string
-  /**
-   * control audio state
-   */
-  muted?: boolean
   /**
    * loop through the video
    */
@@ -54,15 +54,20 @@ interface VideoBaseProps extends BoxProps {
    * control border radius of video
    */
   videoBorderRadius?: string
+  /**
+   * React Element ( video context or another component)
+   */
+  children?: React.ReactElement
 }
 
 export const VideoBox: React.FC<VideoBaseProps> = ({
-  videoSrcURL,
-  videoTitle,
-  autoPlay,
+  videoMp4SrcURL,
+  videoWebpmSrcURL,
+  fallbackMessage,
   loop,
-  videoBorderRadius,
+  autoPlay = true,
   playsInline,
+  videoBorderRadius,
   children,
   ...props
 }) => {
@@ -87,8 +92,12 @@ export const VideoBox: React.FC<VideoBaseProps> = ({
     }
   }, [state])
 
+  const contextValues = useMemo(() => {
+    return { state, dispatch }
+  }, [state])
+
   return (
-    <videoContext.Provider value={{ state, dispatch }}>
+    <videoContext.Provider value={contextValues}>
       <VideoContainer
         position="relative"
         onMouseEnter={() => {
@@ -101,7 +110,9 @@ export const VideoBox: React.FC<VideoBaseProps> = ({
       >
         <VideoPlayer
           css={css`
-            border-radius: ${videoBorderRadius && videoBorderRadius};
+            border-radius: ${videoBorderRadius !== undefined
+              ? videoBorderRadius
+              : "0px"};
           `}
           ref={videoRef}
           muted={state.muted}
@@ -110,7 +121,9 @@ export const VideoBox: React.FC<VideoBaseProps> = ({
             dispatch(loop ? Video.play() : Video.reinitializeState())
           }
         >
-          <source src={videoSrcURL} type="video/mp4" />
+          {videoMp4SrcURL && <source src={videoMp4SrcURL} type="video/webm" />}
+          {videoMp4SrcURL && <source src={videoMp4SrcURL} type="video/mp4" />}
+          {fallbackMessage && <span>{fallbackMessage}</span>}
         </VideoPlayer>
         {children}
       </VideoContainer>
