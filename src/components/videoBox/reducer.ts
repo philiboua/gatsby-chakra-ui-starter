@@ -1,10 +1,5 @@
 import { VideoActionTypes } from "./videoActionTypes"
-
-export interface VideoState {
-  video: "pause" | "play" | "ended" | null
-  muted: boolean
-  videoHovered: boolean
-}
+import { VideoState } from "./videoState"
 
 export interface VideoAction {
   type:
