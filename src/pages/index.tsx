@@ -52,8 +52,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
             <VideoBox
               autoPlay
               loop
-              videoSrcURL={video}
-              videoTitle="hellow there"
+              videoMp4SrcURL={video}
               height="500px"
               width="100%"
               borderRadius="sm"

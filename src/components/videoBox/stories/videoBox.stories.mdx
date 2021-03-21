@@ -22,8 +22,7 @@ We display a video without any controls.
     <VideoBox
       autoPlay
       loop
-      videoSrcURL={video}
-      videoTitle="hello there"
+      videoMp4SrcURL={video}
       height="500px"
       width="300px"
       borderRadius="sm"
@@ -74,8 +73,6 @@ Video.pause()
 Video.mute()
 Video.unmute()
 Video.reinitializeState() // the Video will go back to the default state
-Video.mouseEnter() // we trigger this action on mouseEnter event
-Video.mouseLeave() // we trigger this action on mouseLeave event
 ```
 
 Below you can see a full example concerning the customization of the component. For each template created we focus on the content displayed on top of the video. The width and height of the video can always be updated by the developer.
@@ -84,15 +81,7 @@ Below you can see a full example concerning the customization of the component. 
 
 <Canvas>
   <Story name="Video Template Alpha">
-    <VideoBox
-      autoPlay
-      loop
-      videoSrcURL={video}
-      videoTitle="hellow there"
-      height="500px"
-      width="300px"
-      videoBorderRadius="20px 20px 0px 0px"
-    >
+    <VideoBox autoPlay loop videoMp4SrcURL={video} height="500px" width="300px">
       <videoContext.Consumer>
         {context => {
           const getVideoScreenReadersInfo = context => {
