@@ -1,0 +1,173 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Link, Box, Button, VisuallyHidden } from "@chakra-ui/react"
+import {
+  Navigation,
+  NavDropdownButton,
+  NavigationList,
+  NavigationItem,
+  NavDropdown,
+  NavDropdownContent,
+  NavDropdownList,
+  NavDropdownListItem,
+  Container,
+} from "@src/components"
+import { toggleContext } from "@src/contexts"
+
+<Meta title="Components/navigation/NavDropdown" component={NavDropdownButton} />
+
+# NavDropdownButton
+
+We can use a drop-down menu to organize multiple hyperlinks sharing the same theme. _For example, we can group all the products offered by the company under the drop-down menu "Products"._
+
+```javascript
+
+<Navigation>
+  <NavigationList>
+     <NavigationItem pr={6}>
+        <Link isExternal href="https://www.scotiabank.com/ca/en/personal.html">
+          Get started
+        </Link>
+      </NavigationItem>
+       <NavDropdown py={6} position="relative" px={6}>
+            <toggleContext.Consumer>
+              {value => {
+                const variants = {
+                  mouseEnter: {
+                    opacity: 1,
+                    x: "-50%",
+                    y: 0,
+                    display: "block",
+                  },
+                  mouseLeave: {
+                    opacity: 0,
+                    x: "-50%",
+                    y: "10px",
+                    display: "none",
+                  },
+                }
+                return (
+                  <>
+                    <NavDropdownButton expanded={value} variant="transparent">link</NavDropdownButton>
+                    <NavDropdownContent
+                      width="300px"
+                      height="200px"
+                      position="absolute"
+                      display="none"
+                      opacity={0}
+                      top="90%"
+                      left="50%"
+                      zIndex={value ? 1 : -1}
+                      bg="#F0F0F0"
+                      color="#000"
+                      initial={false}
+                      animate={value ? "mouseEnter" : "mouseLeave"}
+                      variants={variants}
+                    >
+                      <NavDropdownList gridTemplateColumns="1fr 1fr">
+                        <NavDropdownListItem>
+                          <Link
+                            className="subNavigationLink"
+                            isExternal
+                            href="https://www.scotiabank.com/ca/en/personal.html"
+                          >
+                            Get
+                          </Link>
+                        </NavDropdownListItem>
+                        <NavDropdownListItem>
+                          <Link
+                            className="subNavigationLink"
+                            isExternal
+                            href="https://www.scotiabank.com/ca/en/personal.html"
+                          >
+                            Get started
+                          </Link>
+                        </NavDropdownListItem>
+                      </NavDropdownList>
+                    </NavDropdownContent>
+                  </>
+                )
+              }}
+            </toggleContext.Consumer>
+          </NavDropdown>
+  <NavigationList>
+</Navigation>
+
+
+```
+
+<Canvas>
+  <Story name="navigation">
+    <Container>
+      <Navigation>
+        <NavigationList justifyContent="center" alignItems="center">
+          <NavDropdown py={6} position="relative" px={6}>
+            <toggleContext.Consumer>
+              {value => {
+                const variants = {
+                  mouseEnter: {
+                    opacity: 1,
+                    x: "-50%",
+                    y: 0,
+                    display: "block",
+                  },
+                  mouseLeave: {
+                    opacity: 0,
+                    x: "-50%",
+                    y: "10px",
+                    display: "none",
+                  },
+                }
+                return (
+                  <>
+                    <NavDropdownButton expanded={value}>
+                      {" "}
+                      NavDropdown{" "}
+                    </NavDropdownButton>
+                    <NavDropdownContent
+                      width="300px"
+                      height="200px"
+                      position="absolute"
+                      display="none"
+                      opacity={0}
+                      top="90%"
+                      left="50%"
+                      zIndex={value ? 1 : -1}
+                      bg="#F0F0F0"
+                      color="#000"
+                      initial={false}
+                      animate={value ? "mouseEnter" : "mouseLeave"}
+                      variants={variants}
+                    >
+                      <NavDropdownList gridTemplateColumns="1fr 1fr">
+                        <NavDropdownListItem>
+                          <Link
+                            className="subNavigationLink"
+                            isExternal
+                            href="https://www.scotiabank.com/ca/en/personal.html"
+                          >
+                            NavDropdown Item
+                          </Link>
+                        </NavDropdownListItem>
+                        <NavDropdownListItem>
+                          <Link
+                            className="subNavigationLink"
+                            isExternal
+                            href="https://www.scotiabank.com/ca/en/personal.html"
+                          >
+                            NavDropdown Item
+                          </Link>
+                        </NavDropdownListItem>
+                      </NavDropdownList>
+                    </NavDropdownContent>
+                  </>
+                )
+              }}
+            </toggleContext.Consumer>
+          </NavDropdown>
+        </NavigationList>
+      </Navigation>
+    </Container>
+  </Story>
+</Canvas>
+
+<ArgsTable of={NavDropdownButton} />
