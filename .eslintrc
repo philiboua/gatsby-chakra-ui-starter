@@ -34,7 +34,8 @@
     "unicorn/filename-case": "off",
     "unicorn/import-index": ["error", { "ignoreImports": true }],
     "unicorn/no-null": "off",
-    "unicorn/prevent-abbreviations": "off"
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/prefer-spread": "off"
   },
   "overrides": [
     {
