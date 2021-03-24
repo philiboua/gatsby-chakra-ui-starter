@@ -1,0 +1,56 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { VideoBox, LayoutVideoAlpha } from "@src/components"
+import video from "@assets/videos/sample-beach.mp4"
+
+<Meta
+  title="Components/videoBox/layout/LayoutVideoAlpha"
+  component={LayoutVideoAlpha}
+/>
+
+# VideoBox - VideoLayoutAlpha
+
+`VideoLayoutAlpha` allow any user to pause, play, mute and unmute the video. The video controls are located at the bottom of the video.
+
+## How to use it
+
+1. Import the `VideoBox` and `VideoLayoutAlpha` Components
+
+```javascript
+import { VideoBox, LayoutVideoAlpha } from "@src/components"
+```
+
+2. Set up the component with the desired props
+
+```javascript
+<VideoBox
+  loop
+  videoMp4SrcURL={video}
+  height="500px"
+  width="100%"
+  borderRadius="sm"
+>
+  <LayoutVideoAlpha />
+</VideoBox>
+```
+
+## Preview
+
+<Canvas>
+  <Story name="VideoLayoutAlpha">
+    <VideoBox
+      loop
+      videoMp4SrcURL={video}
+      height="400px"
+      width="200px"
+      borderRadius="sm"
+    >
+      <LayoutVideoAlpha
+        sizeIcon="1rem"
+        sizeButton="xs"
+        px={{ sm: 10, md: 3, lg: 3 }}
+      />
+    </VideoBox>
+  </Story>
+</Canvas>
+
+<ArgsTable of={LayoutVideoAlpha} />
