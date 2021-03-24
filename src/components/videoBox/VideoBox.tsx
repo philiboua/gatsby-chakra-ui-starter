@@ -4,9 +4,8 @@ import { css, jsx } from "@emotion/react"
 import { Box as VideoContainer, BoxProps } from "@chakra-ui/react"
 import { videoContext } from "@src/contexts"
 import styled from "@emotion/styled"
-import { videoReducer } from "./reducer"
-import { VideoState } from "./videoState"
-import * as Video from "./videoActionCreators"
+import { videoReducer, VideoState } from "./reducer"
+import * as Video from "./reducer/videoActionCreators"
 
 const VideoPlayer = styled.video`
   position: absolute;
