@@ -1,10 +1,19 @@
 import React from "react"
 import { screen } from "@testing-library/react"
 import { Text, Heading } from "@chakra-ui/react"
-import { render } from "@src/tests"
-import { Article } from "../Article"
+import { render, testA11y } from "@src/tests"
+import { Article } from "@src/components"
 
 describe("Article", () => {
+  it("passes a11y test", () => {
+    testA11y(
+      <Article>
+        <Heading>Heading Article</Heading>
+        <Text>This is a paragraph</Text>
+      </Article>
+    )
+  })
+
   it("renders an Article, with an Heading and Text", () => {
     render(
       <Article>
