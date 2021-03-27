@@ -7,7 +7,7 @@ import {
 import { motion, HTMLMotionProps } from "framer-motion"
 import { bgWithHightSaturation } from "@src/contexts"
 
-type TextTypeOptions =
+export type TextTypeOptions =
   | "headline.large"
   | "headline.medium"
   | "headline.small"
