@@ -1,7 +1,6 @@
 import React from "react"
-import { screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { render, testA11y } from "@src/tests"
+import { render, testA11y, screen } from "@src/tests"
 import { HamburgerButton } from "@src/components"
 
 const content = {
@@ -10,8 +9,8 @@ const content = {
 }
 
 describe("Hamburger Button", () => {
-  it("passes a11y test", () => {
-    testA11y(
+  it("passes a11y test", async () => {
+    await testA11y(
       <HamburgerButton
         ariaLabel={content.ariaLabel}
         menuLabel={content.menuLabel}

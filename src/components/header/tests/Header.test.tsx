@@ -1,12 +1,11 @@
 import React from "react"
-import { screen } from "@testing-library/react"
-import { render, testA11y } from "@src/tests"
+import { render, testA11y, screen } from "@src/tests"
 import { Header } from "@src/components"
 import logo from "@src/assets/images/logo-1.svg"
 
 describe("Header", () => {
-  it("passes a11y test", () => {
-    testA11y(<Header logo={logo} altLogo="company logo" />)
+  it("passes a11y test", async () => {
+    await testA11y(<Header logo={logo} altLogo="company logo" />)
   })
 
   test("should render an image with source", () => {

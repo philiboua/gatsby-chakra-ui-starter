@@ -1,7 +1,6 @@
 import React from "react"
-import { screen } from "@testing-library/react"
 import { build, fake } from "@jackfranklin/test-data-bot"
-import { render, testA11y } from "@src/tests"
+import { render, testA11y, screen } from "@src/tests"
 import { Billboard, Slice } from "@src/components"
 import { Text, GridItem } from "@chakra-ui/react"
 

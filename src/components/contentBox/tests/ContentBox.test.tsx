@@ -5,8 +5,8 @@ import { render, testA11y } from "@src/tests"
 import { ContentBox } from "@src/components"
 
 describe("ContentBox", () => {
-  it("passes a11y test", () => {
-    testA11y(
+  it("passes a11y test", async () => {
+    await testA11y(
       <ContentBox>
         <Text>Chakra UI is great</Text>
       </ContentBox>
@@ -23,8 +23,8 @@ describe("ContentBox", () => {
     expect(screen.getByText("Lorem ipsum lorem")).toBeInTheDocument()
   })
 
-  it("passes a11y test when background color is saturated", () => {
-    testA11y(
+  it("passes a11y test when background color is saturated", async () => {
+    await testA11y(
       <Box bg="#000">
         <ContentBox>
           <Text>Chakra UI is great</Text>

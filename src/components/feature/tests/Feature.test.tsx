@@ -1,6 +1,5 @@
 import React from "react"
-import { screen } from "@testing-library/react"
-import { testA11y, render } from "@src/tests"
+import { testA11y, render, screen } from "@src/tests"
 import { Text } from "@chakra-ui/react"
 import { Feature, Slice } from "@src/components"
 
@@ -11,8 +10,8 @@ describe("Feature", () => {
     sliceMedia: "I am inside the sliceMedia",
   }
 
-  it("passes a11y test", () => {
-    testA11y(<Feature headline={feature.headline} />)
+  it("passes a11y test", async () => {
+    await testA11y(<Feature headline={feature.headline} />)
   })
 
   test("Feature should render headline, a sliceBody and sliceMedia", () => {
