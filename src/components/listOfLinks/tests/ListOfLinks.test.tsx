@@ -14,6 +14,7 @@ jest.mock("../ListOfLinks", () => {
           return ReactModule.createElement(
             "a",
             {
+              key: link.text,
               href: link.href,
               target: link.isExternal ? "_blank" : "",
             },
