@@ -11,16 +11,25 @@ type GatsbyAnchorProps = {
 /** mock current link implementation  */
 jest.mock("../Link", () => {
   const ReactModule = require("react")
+  const { Link: GLink } = require("gatsby")
   return {
     Link: jest
       .fn()
       .mockImplementation(
-        ({ isExternal = false, href, ...rest }: GatsbyAnchorProps) =>
-          ReactModule.createElement("a", {
+        ({ isExternal = false, href, ...rest }: GatsbyAnchorProps) => {
+          if (isExternal) {
+            return ReactModule.createElement("a", {
+              ...rest,
+              href,
+              target: isExternal ? "_blank" : "",
+            })
+          }
+
+          return ReactModule.createElement(GLink, {
             ...rest,
-            href,
-            target: isExternal ? "_blank" : "",
+            to: href,
           })
+        }
       ),
   }
 })
