@@ -1,11 +1,14 @@
-import React, { useContext } from "react"
-import * as Video from "@src/components/videoBox/reducer/videoActionCreators"
-import { videoContext, VideoContextType } from "@src/contexts"
+import React from "react"
 import { Box, Grid, GridItem, Button } from "@chakra-ui/react"
 import { IoPlay, IoPause, IoVolumeMedium, IoVolumeMute } from "react-icons/io5"
+import { useVideoBox } from "@src/hooks"
 
-const getVideoScreenReadersInfo = (currentContext: VideoContextType) => {
-  switch (currentContext?.state.video) {
+type MediaStateType = "pause" | "play" | "ended" | null | undefined
+
+const getVideoScreenReadersInfo = (
+  mediaState: "pause" | "play" | "ended" | null | undefined
+) => {
+  switch (mediaState) {
     case "pause":
       return {
         ariaLabel: "the video is currently on pause, click to resume the video",
@@ -23,19 +26,6 @@ const getVideoScreenReadersInfo = (currentContext: VideoContextType) => {
         ariaLabel: "the video is currently playing, click to pause the video",
         title: "pause the video",
       }
-  }
-}
-
-const dispatchVideoAction = (currentContext: VideoContextType) => {
-  switch (currentContext?.state.video) {
-    case "pause":
-      return currentContext?.dispatch(Video.play())
-
-    case "play":
-      return currentContext?.dispatch(Video.pause())
-
-    default:
-      return currentContext?.dispatch(Video.play())
   }
 }
 
@@ -68,63 +58,67 @@ export const LayoutVideoAlpha: React.FC<LayoutVideoAlphaProps> = ({
   px = 3,
   sizeButton = "md",
 }) => {
-  const context = useContext(videoContext)
-  if (context !== null) {
-    return (
-      <Box position="absolute" width="100%" bottom="15px">
-        <Grid gridTemplateColumns="repeat(2, 1fr)" px={px}>
-          <GridItem>
-            <Button
-              size={sizeButton}
-              aria-live="assertive"
-              aria-label={getVideoScreenReadersInfo(context).ariaLabel}
-              title={getVideoScreenReadersInfo(context).title}
-              variant="transparent"
-              onClick={() => dispatchVideoAction(context)}
-            >
-              {context?.state.video === null && (
-                <IoPlay size={sizeIcon} color={colorIcon} />
-              )}
-              {context?.state.video === "play" && (
-                <IoPause size={sizeIcon} color={colorIcon} />
-              )}
-              {context?.state.video === "pause" && (
-                <IoPlay size={sizeIcon} color={colorIcon} />
-              )}
-            </Button>
-          </GridItem>
-          <GridItem display="grid" justifyItems="flex-end">
-            <Button
-              aria-live="assertive"
-              variant="transparent"
-              size={sizeButton}
-              aria-label={
-                context?.state.muted === true
-                  ? "video is currently mute, click to unmute"
-                  : "the video is currently unmute, click to mute"
-              }
-              title={
-                context?.state.muted === true
-                  ? "unmute the video"
-                  : "mute the video"
-              }
-              onClick={() =>
-                context?.state.muted === true
-                  ? context?.dispatch(Video.unmute())
-                  : context?.dispatch(Video.mute())
-              }
-            >
-              {context?.state.muted === true ? (
-                <IoVolumeMute size={sizeIcon} color={colorIcon} />
-              ) : (
-                <IoVolumeMedium size={sizeIcon} color={colorIcon} />
-              )}
-            </Button>
-          </GridItem>
-        </Grid>
-      </Box>
-    )
+  const { isMediaMuted, mediaState, play, pause, mute, unmute } = useVideoBox()
+
+  const dispatchVideoAction = (mediaCurrentState: MediaStateType) => {
+    switch (mediaCurrentState) {
+      case "pause":
+        return play()
+
+      case "play":
+        return pause()
+
+      default:
+        return play()
+    }
   }
 
-  return null
+  return (
+    <Box position="absolute" width="100%" bottom="15px">
+      <Grid gridTemplateColumns="repeat(2, 1fr)" px={px}>
+        <GridItem>
+          <Button
+            size={sizeButton}
+            aria-live="assertive"
+            aria-label={getVideoScreenReadersInfo(mediaState).ariaLabel}
+            title={getVideoScreenReadersInfo(mediaState).title}
+            variant="transparent"
+            onClick={() => dispatchVideoAction(mediaState)}
+          >
+            {mediaState === null && (
+              <IoPlay size={sizeIcon} color={colorIcon} />
+            )}
+            {mediaState === "play" && (
+              <IoPause size={sizeIcon} color={colorIcon} />
+            )}
+            {mediaState === "pause" && (
+              <IoPlay size={sizeIcon} color={colorIcon} />
+            )}
+          </Button>
+        </GridItem>
+        <GridItem display="grid" justifyItems="flex-end">
+          <Button
+            aria-live="assertive"
+            variant="transparent"
+            size={sizeButton}
+            aria-label={
+              isMediaMuted === true
+                ? "video is currently mute, click to unmute"
+                : "the video is currently unmute, click to mute"
+            }
+            title={
+              isMediaMuted === true ? "unmute the video" : "mute the video"
+            }
+            onClick={() => (isMediaMuted === true ? unmute() : mute())}
+          >
+            {isMediaMuted === true ? (
+              <IoVolumeMute size={sizeIcon} color={colorIcon} />
+            ) : (
+              <IoVolumeMedium size={sizeIcon} color={colorIcon} />
+            )}
+          </Button>
+        </GridItem>
+      </Grid>
+    </Box>
+  )
 }

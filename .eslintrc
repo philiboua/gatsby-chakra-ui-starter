@@ -35,7 +35,11 @@
     "unicorn/import-index": ["error", { "ignoreImports": true }],
     "unicorn/no-null": "off",
     "unicorn/prevent-abbreviations": "off",
-    "unicorn/prefer-spread": "off"
+    "unicorn/prefer-spread": "off",
+    "jest/expect-expect": [
+      "error",
+      { "assertFunctionNames": ["expect", "testA11y"] }
+    ]
   },
   "overrides": [
     {

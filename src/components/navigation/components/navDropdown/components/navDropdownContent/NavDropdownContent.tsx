@@ -1,6 +1,6 @@
 import React from "react"
 import { Box, BoxProps, forwardRef } from "@chakra-ui/react"
-import { motion, isValidMotionProp } from "framer-motion"
+import { motion, isValidMotionProp, MotionProps } from "framer-motion"
 
 const MotionBox = motion.custom(
   forwardRef((props, ref) => {
@@ -11,7 +11,7 @@ const MotionBox = motion.custom(
   })
 )
 
-export const NavDropdownContent: React.FC<BoxProps> = ({
+export const NavDropdownContent: React.FC<BoxProps & MotionProps> = ({
   children,
   ...props
 }) => {

@@ -34,6 +34,38 @@ We display a video without any controls. When the component mounts, the video wi
 
 We want to give as much flexibility as possible to developers to build the `VideoBox` UI. In order to achieve this, we are leveraging the React context API and the `useReducer` hook. Thus we will have access to the videoBox current state, and will be able to update it. Below you will find the steps to have full control of the component:
 
+#### use custom hook useVideoBox()
+
+1. import the custom hook useVideoBox in the component that will be a direct child of `VideoBox`
+
+
+`useVideoBox()` is an abstraction of the VideoContext.
+
+```javascript
+import { useVideoBox } from "@src/hooks"
+```
+
+2. destructure the media state and actions from useVideoBox
+
+```javascript
+const { isMediaMuted, mediaState, play, pause, mute, unmute } = useVideoBox()
+```
+
+3. use the state and actions in your component
+
+Below you can see the types of each element above
+
+```typescript
+const isMediaMuted: boolean
+const mediaState: "pause" | "play" | "ended" | null
+const play: () => void
+const pause: () => void
+const mute: () => void
+const unmute: () => void
+```
+
+#### use the VideoContext
+
 1. import the VideoBox context and its action creator
 
 
@@ -42,7 +74,7 @@ import { videoContext } from "@src/contexts"
 import * as Video from "@components/videoBox/videoActionCreators"
 ```
 
-1. consume the context inside the videoBox to have access to the dispatcher funciton and the state coming from useReducer
+2. use the hook to get the state of the media and actions you can dispatch
 
 ```javascript
 <VideoBox

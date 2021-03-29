@@ -120,7 +120,9 @@ export const VideoBox: React.FC<VideoBaseProps> = ({
             dispatch(loop ? Video.play() : Video.reinitializeState())
           }
         >
-          {videoMp4SrcURL && <source src={videoMp4SrcURL} type="video/webm" />}
+          {videoWebpmSrcURL && (
+            <source src={videoWebpmSrcURL} type="video/webm" />
+          )}
           {videoMp4SrcURL && <source src={videoMp4SrcURL} type="video/mp4" />}
           {fallbackMessage && <span>{fallbackMessage}</span>}
         </VideoPlayer>
