@@ -1,6 +1,6 @@
 import React from "react"
 import { FormControl, Input, SubmitButton } from "@src/components"
-import { Box } from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/react"
 import { Formik } from "formik"
 import * as Yup from "yup"
 
@@ -33,15 +33,14 @@ export const InputWithFloatingLabelForm: React.FC<{
       onSubmit={handleOnSubmit}
     >
       {({ handleSubmit }) => (
-        <Box
+        <chakra.form
           borderWidth="1px"
           rounded="lg"
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
           maxWidth={800}
           p={6}
           m="10px auto"
-          as="form"
-          onSubmit={handleSubmit as any}
+          onSubmit={handleSubmit}
         >
           <FormControl name="firstName">
             <Input
@@ -55,7 +54,7 @@ export const InputWithFloatingLabelForm: React.FC<{
             />
           </FormControl>
           <SubmitButton>Submit</SubmitButton>
-        </Box>
+        </chakra.form>
       )}
     </Formik>
   )

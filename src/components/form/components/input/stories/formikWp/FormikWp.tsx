@@ -2,7 +2,7 @@ import React from "react"
 import { Formik } from "formik"
 import { Box } from "@chakra-ui/react"
 import * as Yup from "yup"
-import { FormControl, SubmitButton } from "@src/components"
+import { FormControl } from "@src/components"
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
