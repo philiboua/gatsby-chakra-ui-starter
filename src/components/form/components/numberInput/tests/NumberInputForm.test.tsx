@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event"
 import { NumberForm } from "./mock/NumberForm"
 
 /**
- * We are testing the Input component
+ * We are testing the NumberInput component
  * Below you can find details of the component  :
  *
  *  <NumberInput name="age" label="Enter your age" />
