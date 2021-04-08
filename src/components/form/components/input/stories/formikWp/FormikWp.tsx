@@ -1,6 +1,6 @@
 import React from "react"
 import { Formik } from "formik"
-import { Box } from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/react"
 import * as Yup from "yup"
 import { FormControl } from "@src/components"
 
@@ -34,7 +34,7 @@ export const FormikWp: React.FC<{
       onSubmit={handleOnSubmit}
     >
       {({ handleSubmit }) => (
-        <Box
+        <chakra.form
           borderWidth="1px"
           rounded="lg"
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
@@ -42,10 +42,10 @@ export const FormikWp: React.FC<{
           p={6}
           m="10px auto"
           as="form"
-          onSubmit={handleSubmit as any}
+          onSubmit={handleSubmit}
         >
           <FormControl name="firstName">{children}</FormControl>
-        </Box>
+        </chakra.form>
       )}
     </Formik>
   )
