@@ -140,6 +140,7 @@ export const Input: React.FC<InputProps> = ({
             pt={inputState === "activated" ? "1rem" : "0.625rem"}
             pb={inputState === "activated" ? "0.25rem" : "0.625rem"}
             variant="unstyled"
+            fontSize="1rem"
             aria-label={inputState === "activated" ? "" : label}
             onFocus={() => toggleIsFocus()}
             onChange={handleOnChange}
