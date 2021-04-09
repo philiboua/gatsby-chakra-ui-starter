@@ -25,6 +25,12 @@ describe("PinInput field : <PinInput/>", () => {
    * Upgrade of the Chakra UI package will be done by May 2021.
    */
 
+  /* eslint jest/no-disabled-tests: "off" */
+  it.skip("passes a11y test", async () => {
+    const handleSubmit = jest.fn()
+    await testA11y(<PinInputForm submitHandler={handleSubmit} />)
+  })
+
   describe("initial state", () => {
     it("renders a pinInput with 5 pinInputFields", () => {
       const handleSubmit = jest.fn()
