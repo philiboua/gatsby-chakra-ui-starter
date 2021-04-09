@@ -8,9 +8,8 @@ import {
   StackProps,
   FormHelperText,
   FormLabel,
-  Box,
 } from "@chakra-ui/react"
-import { InputProps, FormControl } from "@src/components"
+import { InputProps } from "@src/components"
 import { useField } from "formik"
 
 type PinInputProps = Omit<InputProps, "withFloatingLabel"> &
