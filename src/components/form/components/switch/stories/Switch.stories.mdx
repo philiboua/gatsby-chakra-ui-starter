@@ -1,0 +1,86 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import logoCompany from "@images/logo-1.svg"
+import { FormikWp } from "./formikWp/FormikWp"
+import { Switch } from "@src/components"
+
+<Meta title="components/form/switch" component={Switch} />
+
+# Switch Input
+
+The `Switch` component is similar to the Input component, but it is optimized for entering sequences of digits - (Chakra UI). In case the pin input field is not valid, when the user will submit the form, an error will be displayed.
+
+## Import
+
+```javascript
+import { Switch } from "@src/components"
+```
+
+## Usage
+
+<Canvas>
+  <Story name="Switch Input">
+    <FormikWp>
+      <Switch label="Dark Mode" name="darkMode" size="lg" />
+    </FormikWp>
+  </Story>
+</Canvas>
+
+## Usage with Formik
+
+```javascript
+import React from "react"
+import { FormControl, Switch, SubmitButton } from "@src/components"
+import { chakra } from "@chakra-ui/react"
+import { Formik } from "formik"
+import * as Yup from "yup"
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+interface IntialValues {
+  darkMode: boolean;
+}
+
+const initialValues: IntialValues = {
+  darkMode: false,
+}
+
+const validationSchema = Yup.object({
+  darkMode: Yup.boolean(),
+})
+
+export const SwitchForm: React.FC<{
+  submitHandler: (v: unknown) => void,
+}> = ({ submitHandler }) => {
+  const handleOnSubmit = async (values: unknown) => {
+    await sleep(500)
+    submitHandler(values)
+  }
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleOnSubmit}
+    >
+      {({ handleSubmit }) => (
+        <chakra.form
+          borderWidth="1px"
+          rounded="lg"
+          shadow="1px 1px 3px rgba(0,0,0,0.3)"
+          maxWidth={800}
+          p={6}
+          m="10px auto"
+          onSubmit={handleSubmit}
+        >
+          <FormControl name="darkMode">
+            <Switch label="Dark Mode" name="darkMode" size="lg" />
+          </FormControl>
+          <SubmitButton>Submit</SubmitButton>
+        </chakra.form>
+      )}
+    </Formik>
+  )
+}
+```
+
+<ArgsTable of={Switch} />
