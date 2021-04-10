@@ -1,7 +1,8 @@
 import React from "react"
 import { screen, render, testA11y, waitFor } from "@src/tests"
 import userEvent from "@testing-library/user-event"
-import { InputWithFloatingLabelForm } from "./mock/InputWithFloatingLabelForm"
+import { Input } from "@src/components"
+import { FormWp } from "./mock/FormWp"
 
 /**
  * We are testing the Input component
@@ -20,13 +21,37 @@ import { InputWithFloatingLabelForm } from "./mock/InputWithFloatingLabelForm"
 describe("Input field : <Input/>", () => {
   it("passes a11y test", async () => {
     const handleSubmit = jest.fn()
-    await testA11y(<InputWithFloatingLabelForm submitHandler={handleSubmit} />)
+    await testA11y(
+      <FormWp submitHandler={handleSubmit}>
+        <Input
+          size="lg"
+          placeholder="Enter your first name"
+          withFloatingLabel
+          floatingLabelVariant="flushed"
+          name="firstName"
+          label="First Name"
+          helperText="You can get started"
+        />
+      </FormWp>
+    )
   })
 
   describe("initial state", () => {
     it("renders an input field", () => {
       const handleSubmit = jest.fn()
-      render(<InputWithFloatingLabelForm submitHandler={handleSubmit} />)
+      render(
+        <FormWp submitHandler={handleSubmit}>
+          <Input
+            size="lg"
+            placeholder="Enter your first name"
+            withFloatingLabel
+            floatingLabelVariant="flushed"
+            name="firstName"
+            label="First Name"
+            helperText="You can get started"
+          />
+        </FormWp>
+      )
 
       expect(screen.getByText("You can get started")).toBeInTheDocument()
       expect(screen.getByLabelText("First Name")).toBeInTheDocument()
@@ -35,7 +60,19 @@ describe("Input field : <Input/>", () => {
 
     it("renders no error message", () => {
       const handleSubmit = jest.fn()
-      render(<InputWithFloatingLabelForm submitHandler={handleSubmit} />)
+      render(
+        <FormWp submitHandler={handleSubmit}>
+          <Input
+            size="lg"
+            placeholder="Enter your first name"
+            withFloatingLabel
+            floatingLabelVariant="flushed"
+            name="firstName"
+            label="First Name"
+            helperText="You can get started"
+          />
+        </FormWp>
+      )
 
       expect(screen.queryByText("This field is required")).toBe(null)
     })
@@ -45,7 +82,19 @@ describe("Input field : <Input/>", () => {
     describe("user submits the form with valid data", () => {
       it("renders no error message", async () => {
         const submitFn = jest.fn()
-        render(<InputWithFloatingLabelForm submitHandler={submitFn} />)
+        render(
+          <FormWp submitHandler={submitFn}>
+            <Input
+              size="lg"
+              placeholder="Enter your first name"
+              withFloatingLabel
+              floatingLabelVariant="flushed"
+              name="firstName"
+              label="First Name"
+              helperText="You can get started"
+            />
+          </FormWp>
+        )
 
         const input = screen.getByLabelText("First Name")
         userEvent.type(input, "Philippe")
@@ -63,7 +112,19 @@ describe("Input field : <Input/>", () => {
     describe("user submits the form with invalid data", () => {
       it("renders an error message", async () => {
         const submitFn = jest.fn()
-        render(<InputWithFloatingLabelForm submitHandler={submitFn} />)
+        render(
+          <FormWp submitHandler={submitFn}>
+            <Input
+              size="lg"
+              placeholder="Enter your first name"
+              withFloatingLabel
+              floatingLabelVariant="flushed"
+              name="firstName"
+              label="First Name"
+              helperText="You can get started"
+            />
+          </FormWp>
+        )
 
         const input = screen.getByLabelText("First Name")
         userEvent.type(input, "")
@@ -81,7 +142,19 @@ describe("Input field : <Input/>", () => {
     describe("user fills the input field with valid data and go to another element by tabing", () => {
       it("renders an error message", async () => {
         const submitFn = jest.fn()
-        render(<InputWithFloatingLabelForm submitHandler={submitFn} />)
+        render(
+          <FormWp submitHandler={submitFn}>
+            <Input
+              size="lg"
+              placeholder="Enter your first name"
+              withFloatingLabel
+              floatingLabelVariant="flushed"
+              name="firstName"
+              label="First Name"
+              helperText="You can get started"
+            />
+          </FormWp>
+        )
 
         const input = screen.getByLabelText("First Name")
         userEvent.type(input, "Philippe")
@@ -96,7 +169,19 @@ describe("Input field : <Input/>", () => {
     describe("user fills the input field with invalid data and go to another element by tabing", () => {
       it("renders an error message", async () => {
         const submitFn = jest.fn()
-        render(<InputWithFloatingLabelForm submitHandler={submitFn} />)
+        render(
+          <FormWp submitHandler={submitFn}>
+            <Input
+              size="lg"
+              placeholder="Enter your first name"
+              withFloatingLabel
+              floatingLabelVariant="flushed"
+              name="firstName"
+              label="First Name"
+              helperText="You can get started"
+            />
+          </FormWp>
+        )
 
         const input = screen.getByLabelText("First Name")
         userEvent.type(input, "")

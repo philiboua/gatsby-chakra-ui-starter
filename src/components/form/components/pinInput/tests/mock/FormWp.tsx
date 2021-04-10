@@ -1,5 +1,5 @@
 import React from "react"
-import { FormControl, Switch, SubmitButton } from "@src/components"
+import { FormControl, SubmitButton } from "@src/components"
 import { chakra } from "@chakra-ui/react"
 import { Formik } from "formik"
 import * as Yup from "yup"
@@ -7,20 +7,20 @@ import * as Yup from "yup"
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 interface IntialValues {
-  darkMode: boolean
+  code: string
 }
 
 const initialValues: IntialValues = {
-  darkMode: false,
+  code: "",
 }
 
 const validationSchema = Yup.object({
-  darkMode: Yup.boolean(),
+  code: Yup.string().length(5).required(),
 })
 
-export const SwitchForm: React.FC<{
+export const FormWp: React.FC<{
   submitHandler: (v: unknown) => void
-}> = ({ submitHandler }) => {
+}> = ({ submitHandler, children }) => {
   const handleOnSubmit = async (values: unknown) => {
     await sleep(500)
     submitHandler(values)
@@ -42,9 +42,7 @@ export const SwitchForm: React.FC<{
           m="10px auto"
           onSubmit={handleSubmit}
         >
-          <FormControl name="darkMode">
-            <Switch label="Dark Mode" name="darkMode" size="lg" />
-          </FormControl>
+          <FormControl name="code">{children}</FormControl>
           <SubmitButton>Submit</SubmitButton>
         </chakra.form>
       )}

@@ -1,26 +1,27 @@
 import React from "react"
 import { press, screen, render, testA11y, waitFor } from "@src/tests"
 import userEvent from "@testing-library/user-event"
-import { SliderForm } from "./mock/SliderForm"
-
-/**
- * We are testing the Slider component
- * Below you can find details of the component  :
- *
- *    <Slider name="foo" label="choose the value" max={40} />
- *
- */
+import { Slider } from "@src/components"
+import { FormWp } from "./mock/FormWp"
 
 describe("Slider  : <Slider/>", () => {
   it("passes a11y test", async () => {
     const handleSubmit = jest.fn()
-    await testA11y(<SliderForm submitHandler={handleSubmit} />)
+    await testA11y(
+      <FormWp submitHandler={handleSubmit}>
+        <Slider name="foo" label="choose the value" max={40} />
+      </FormWp>
+    )
   })
 
   describe("initial state", () => {
     it("renders a Slider input", () => {
       const handleSubmit = jest.fn()
-      render(<SliderForm submitHandler={handleSubmit} />)
+      render(
+        <FormWp submitHandler={handleSubmit}>
+          <Slider name="foo" label="choose the value" max={40} />
+        </FormWp>
+      )
 
       expect(screen.getByRole("slider")).toBeInTheDocument()
     })
@@ -29,7 +30,11 @@ describe("Slider  : <Slider/>", () => {
   describe("user interactions", () => {
     it("should update the value of the slider when the user slides the button", () => {
       const submitFn = jest.fn()
-      render(<SliderForm submitHandler={submitFn} />)
+      render(
+        <FormWp submitHandler={submitFn}>
+          <Slider name="foo" label="choose the value" max={40} />
+        </FormWp>
+      )
       const thumb = screen.getByRole("slider")
 
       press.ArrowRight(thumb)
@@ -41,7 +46,11 @@ describe("Slider  : <Slider/>", () => {
 
     it("should submit the form with value from the slider", async () => {
       const submitFn = jest.fn()
-      render(<SliderForm submitHandler={submitFn} />)
+      render(
+        <FormWp submitHandler={submitFn}>
+          <Slider name="foo" label="choose the value" max={40} />
+        </FormWp>
+      )
       const thumb = screen.getByRole("slider")
 
       press.ArrowRight(thumb)

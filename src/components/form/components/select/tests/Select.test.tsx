@@ -1,31 +1,47 @@
 import React from "react"
 import { screen, render, testA11y, waitFor } from "@src/tests"
 import userEvent from "@testing-library/user-event"
-import { SelectForm } from "./mock/SelectForm"
-
-/**
- * We are testing the Select Input component
- * Below you can find details of the component  :
- *
- *    <FormControl name="city">
- *      <Select name="city" label="Choose your city">
- *          <option value="toronto">Toronto</option>
- *          <option value="montreal">Montreal</option>
- *          <option value="ottawa">Ottawa</option>
- *      </Select>
- *    </FormControl>
- */
+import { Select } from "@src/components"
+import { FormWp } from "./mock/FormWp"
 
 describe("Select : <Select/>", () => {
   it("passes a11y test", async () => {
     const handleSubmit = jest.fn()
-    await testA11y(<SelectForm submitHandler={handleSubmit} />)
+    await testA11y(
+      <FormWp submitHandler={handleSubmit}>
+        <Select data-testid="select" name="city" label="Choose your city">
+          <option data-testid="val1" value="toronto">
+            Toronto
+          </option>
+          <option data-testid="val2" value="montreal">
+            Montreal
+          </option>
+          <option data-testid="val3" value="ottawa">
+            Ottawa
+          </option>
+        </Select>
+      </FormWp>
+    )
   })
 
   describe("initial state", () => {
     it("renders a Select input", () => {
       const handleSubmit = jest.fn()
-      render(<SelectForm submitHandler={handleSubmit} />)
+      render(
+        <FormWp submitHandler={handleSubmit}>
+          <Select data-testid="select" name="city" label="Choose your city">
+            <option data-testid="val1" value="toronto">
+              Toronto
+            </option>
+            <option data-testid="val2" value="montreal">
+              Montreal
+            </option>
+            <option data-testid="val3" value="ottawa">
+              Ottawa
+            </option>
+          </Select>
+        </FormWp>
+      )
 
       expect(screen.getByLabelText("Choose your city")).toBeInTheDocument()
     })
@@ -34,7 +50,21 @@ describe("Select : <Select/>", () => {
   describe("user interactions", () => {
     it("should display the value selected by the user", () => {
       const submitFn = jest.fn()
-      render(<SelectForm submitHandler={submitFn} />)
+      render(
+        <FormWp submitHandler={submitFn}>
+          <Select data-testid="select" name="city" label="Choose your city">
+            <option data-testid="val1" value="toronto">
+              Toronto
+            </option>
+            <option data-testid="val2" value="montreal">
+              Montreal
+            </option>
+            <option data-testid="val3" value="ottawa">
+              Ottawa
+            </option>
+          </Select>
+        </FormWp>
+      )
 
       userEvent.selectOptions(screen.getByTestId("select"), "ottawa")
 
@@ -51,7 +81,21 @@ describe("Select : <Select/>", () => {
 
     it("should submit the form with the value selected", async () => {
       const submitFn = jest.fn()
-      render(<SelectForm submitHandler={submitFn} />)
+      render(
+        <FormWp submitHandler={submitFn}>
+          <Select data-testid="select" name="city" label="Choose your city">
+            <option data-testid="val1" value="toronto">
+              Toronto
+            </option>
+            <option data-testid="val2" value="montreal">
+              Montreal
+            </option>
+            <option data-testid="val3" value="ottawa">
+              Ottawa
+            </option>
+          </Select>
+        </FormWp>
+      )
 
       userEvent.selectOptions(screen.getByTestId("select"), "montreal")
 

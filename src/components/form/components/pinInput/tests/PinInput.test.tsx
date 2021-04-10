@@ -1,19 +1,8 @@
 import React from "react"
 import { screen, render, testA11y, waitFor } from "@src/tests"
 import userEvent from "@testing-library/user-event"
-import { PinInputForm } from "./mock/PinInputForm"
-
-/**
- * We are testing the Pint Input component
- * Below you can find details of the component  :
- *
- *  <PinInput
- *      label="Enter verification code"
- *      name="pinCode"
- *      pinAmount={5}
- *  />
- *
- */
+import { PinInput } from "@src/components"
+import { FormWp } from "./mock/FormWp"
 
 describe("PinInput field : <PinInput/>", () => {
   /**
@@ -28,13 +17,21 @@ describe("PinInput field : <PinInput/>", () => {
   /* eslint jest/no-disabled-tests: "off" */
   it.skip("passes a11y test", async () => {
     const handleSubmit = jest.fn()
-    await testA11y(<PinInputForm submitHandler={handleSubmit} />)
+    await testA11y(
+      <FormWp submitHandler={handleSubmit}>
+        <PinInput label="Enter verification code" name="code" pinAmount={5} />
+      </FormWp>
+    )
   })
 
   describe("initial state", () => {
     it("renders a pinInput with 5 pinInputFields", () => {
       const handleSubmit = jest.fn()
-      render(<PinInputForm submitHandler={handleSubmit} />)
+      render(
+        <FormWp submitHandler={handleSubmit}>
+          <PinInput label="Enter verification code" name="code" pinAmount={5} />
+        </FormWp>
+      )
 
       const inputs = screen.getAllByPlaceholderText("○")
       expect(inputs.length).toBe(5)
@@ -42,7 +39,11 @@ describe("PinInput field : <PinInput/>", () => {
 
     it("renders no error message", () => {
       const handleSubmit = jest.fn()
-      render(<PinInputForm submitHandler={handleSubmit} />)
+      render(
+        <FormWp submitHandler={handleSubmit}>
+          <PinInput label="Enter verification code" name="code" pinAmount={5} />
+        </FormWp>
+      )
       expect(screen.queryByText("code is a required field")).toBe(null)
     })
   })
@@ -51,7 +52,15 @@ describe("PinInput field : <PinInput/>", () => {
     describe("user submits the form with valid data", () => {
       it("renders no error message", async () => {
         const submitFn = jest.fn()
-        render(<PinInputForm submitHandler={submitFn} />)
+        render(
+          <FormWp submitHandler={submitFn}>
+            <PinInput
+              label="Enter verification code"
+              name="code"
+              pinAmount={5}
+            />
+          </FormWp>
+        )
         const inputs = screen.getAllByPlaceholderText("○")
         inputs.forEach(input => {
           userEvent.type(input, "1")
@@ -70,7 +79,15 @@ describe("PinInput field : <PinInput/>", () => {
     describe("user submits the form with invalid data", () => {
       it("renders an error message", async () => {
         const submitFn = jest.fn()
-        render(<PinInputForm submitHandler={submitFn} />)
+        render(
+          <FormWp submitHandler={submitFn}>
+            <PinInput
+              label="Enter verification code"
+              name="code"
+              pinAmount={5}
+            />
+          </FormWp>
+        )
 
         const submitBtn = screen.getByRole("button", { name: /submit/i })
         userEvent.click(submitBtn)

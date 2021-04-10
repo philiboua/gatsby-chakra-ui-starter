@@ -1,5 +1,5 @@
 import React from "react"
-import { FormControl, Textarea, SubmitButton } from "@src/components"
+import { FormControl, SubmitButton } from "@src/components"
 import { chakra } from "@chakra-ui/react"
 import { Formik } from "formik"
 import * as Yup from "yup"
@@ -7,20 +7,20 @@ import * as Yup from "yup"
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 interface IntialValues {
-  notes: string
+  foo: number
 }
 
 const initialValues: IntialValues = {
-  notes: "",
+  foo: 20,
 }
 
 const validationSchema = Yup.object({
-  notes: Yup.string().required(),
+  foo: Yup.number(),
 })
 
-export const TextareaForm: React.FC<{
+export const FormWp: React.FC<{
   submitHandler: (v: unknown) => void
-}> = ({ submitHandler }) => {
+}> = ({ submitHandler, children }) => {
   const handleOnSubmit = async (values: unknown) => {
     await sleep(500)
     submitHandler(values)
@@ -42,9 +42,7 @@ export const TextareaForm: React.FC<{
           m="10px auto"
           onSubmit={handleSubmit}
         >
-          <FormControl name="notes">
-            <Textarea label="Notes" name="notes" />
-          </FormControl>
+          <FormControl name="city">{children}</FormControl>
           <SubmitButton>Submit</SubmitButton>
         </chakra.form>
       )}
