@@ -1,6 +1,6 @@
 import React from "react"
 import { FormControl, Select, SubmitButton } from "@src/components"
-import { chakra, Box } from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/react"
 import { Formik } from "formik"
 import * as Yup from "yup"
 

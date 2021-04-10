@@ -23,7 +23,7 @@ describe("Select : <Select/>", () => {
   })
 
   describe("initial state", () => {
-    it("renders a Switch input", () => {
+    it("renders a Select input", () => {
       const handleSubmit = jest.fn()
       render(<SelectForm submitHandler={handleSubmit} />)
 
