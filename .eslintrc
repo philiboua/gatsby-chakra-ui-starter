@@ -36,6 +36,8 @@
     "unicorn/no-null": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/prefer-spread": "off",
+    "jest/no-disabled-tests": "off",
+    "jest/no-focused-tests": "off",
     "jest/expect-expect": [
       "error",
       { "assertFunctionNames": ["expect", "testA11y"] }

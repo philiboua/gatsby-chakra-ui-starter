@@ -1,0 +1,185 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import logoCompany from "@images/logo-1.svg"
+import { FormikWp } from "./formikWp/FormikWp"
+import { Input } from "@src/components"
+
+<Meta title="components/form/input" component={Input} />
+
+# Input
+
+The `Input` component is used to get user input in a text field. This component makes it easier to validate the information that each user will provide. We use the Formik library to validate the input data. Built on top of Chakra UI `Input` component, you can use all the props from the Chakra `Input` component.
+
+## Import
+
+```javascript
+import { Input } from "@src/components"
+```
+
+## Usage
+
+1. Input field
+
+<Canvas>
+  <Story name="Input field - outline">
+    <FormikWp>
+      <Input
+        size="md"
+        placeholder="Enter your first name"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+  <Story name="Input field - filled">
+    <FormikWp>
+      <Input
+        size="md"
+        variant="filled"
+        placeholder="Enter your first name"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+  <Story name="Input field - flushed">
+    <FormikWp>
+      <Input
+        size="md"
+        variant="flushed"
+        placeholder="Enter your first name"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+  <Story name="Input field - unstyled">
+    <FormikWp>
+      <Input
+        size="md"
+        variant="unstyled"
+        placeholder="Enter your first name"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+</Canvas>
+
+2. Input field with floating label
+
+<Canvas>
+  <Story name="Input field with floating label - outline">
+    <FormikWp>
+      <Input
+        size="lg"
+        placeholder="Enter your first name"
+        withFloatingLabel
+        floatingLabelVariant="outline"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+  <Story name="Input field with floating label- filled">
+    <FormikWp>
+      <Input
+        size="lg"
+        placeholder="Enter your first name"
+        withFloatingLabel
+        floatingLabelVariant="filled"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+  <Story name="Input field with floating label- flushed">
+    <FormikWp>
+      <Input
+        size="md"
+        placeholder="Enter your first name"
+        withFloatingLabel
+        floatingLabelVariant="flushed"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+  <Story name="Input field with floating label- unstyled">
+    <FormikWp>
+      <Input
+        size="md"
+        placeholder="Enter your first name"
+        withFloatingLabel
+        floatingLabelVariant="unstyled"
+        name="firstName"
+        label="First Name"
+      />
+    </FormikWp>
+  </Story>
+</Canvas>
+
+## Usage with Formik
+
+```javascript
+import React from "react"
+import { FormControl, Input, SubmitButton } from "@src/components"
+import { chakra } from "@chakra-ui/react"
+import { Formik } from "formik"
+import * as Yup from "yup"
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+interface IntialValues {
+  firstName: string;
+}
+
+const initialValues: IntialValues = {
+  firstName: "",
+}
+
+const validationSchema = Yup.object({
+  firstName: Yup.string().required("This field is required"),
+})
+
+export const InputForm: React.FC<{
+  submitHandler: (v: unknown) => void,
+}> = ({ submitHandler }) => {
+  const handleOnSubmit = async (values: unknown) => {
+    await sleep(500)
+    submitHandler(values)
+  }
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleOnSubmit}
+    >
+      {({ handleSubmit }) => (
+        <chakra.form
+          borderWidth="1px"
+          rounded="lg"
+          shadow="1px 1px 3px rgba(0,0,0,0.3)"
+          maxWidth={800}
+          p={6}
+          m="10px auto"
+          onSubmit={handleSubmit}
+        >
+          <FormControl name="firstName">
+            <Input
+              size="lg"
+              placeholder="Enter your first name"
+              name="firstName"
+              label="First Name"
+              helperText="You can get started"
+            />
+          </FormControl>
+          <SubmitButton>Submit</SubmitButton>
+        </chakra.form>
+      )}
+    </Formik>
+  )
+}
+```
+
+<ArgsTable of={Input} />

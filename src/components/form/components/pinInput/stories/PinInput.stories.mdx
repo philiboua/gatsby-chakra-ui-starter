@@ -1,0 +1,90 @@
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import logoCompany from "@images/logo-1.svg"
+import { FormikWp } from "./formikWp/FormikWp"
+import { PinInput } from "@src/components"
+
+<Meta title="components/form/pinInput" component={PinInput} />
+
+# Pin Input
+
+The `PinInput` component is similar to the Input component, but it is optimized for entering sequences of digits - (Chakra UI). In case the pin input field is not valid, when the user will submit the form, an error will be displayed.
+
+## Import
+
+```javascript
+import { PinInput } from "@src/components"
+```
+
+## Usage
+
+<Canvas>
+  <Story name="Pin Input">
+    <FormikWp>
+      <PinInput label="Enter verification code" name="code" pinAmount={5} />
+    </FormikWp>
+  </Story>
+</Canvas>
+
+## Usage with Formik
+
+```javascript
+import React from "react"
+import { FormControl, PinInput, SubmitButton } from "@src/components"
+import { chakra } from "@chakra-ui/react"
+import { Formik } from "formik"
+import * as Yup from "yup"
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+interface IntialValues {
+  code: string;
+}
+
+const initialValues: IntialValues = {
+  code: "",
+}
+
+const validationSchema = Yup.object({
+  code: Yup.string().length(5).required(),
+})
+
+export const PinInputForm: React.FC<{
+  submitHandler: (v: unknown) => void,
+}> = ({ submitHandler }) => {
+  const handleOnSubmit = async (values: unknown) => {
+    await sleep(500)
+    submitHandler(values)
+  }
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleOnSubmit}
+    >
+      {({ handleSubmit }) => (
+        <chakra.form
+          borderWidth="1px"
+          rounded="lg"
+          shadow="1px 1px 3px rgba(0,0,0,0.3)"
+          maxWidth={800}
+          p={6}
+          m="10px auto"
+          onSubmit={handleSubmit}
+        >
+          <FormControl name="code">
+            <PinInput
+              label="Enter verification code"
+              name="code"
+              pinAmount={5}
+            />
+          </FormControl>
+          <SubmitButton>Submit</SubmitButton>
+        </chakra.form>
+      )}
+    </Formik>
+  )
+}
+```
+
+<ArgsTable of={PinInput} />

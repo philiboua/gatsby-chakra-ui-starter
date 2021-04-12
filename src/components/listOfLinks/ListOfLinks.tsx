@@ -18,6 +18,7 @@ export const ListOfLinks: React.FC<ListOfLinksProps> = ({
   bgColorWithHighSaturation,
   ...props
 }) => {
+  const intl = useIntl()
   const displayList = content
     ? content.map((link: LinkProps) => {
         return (
@@ -31,7 +32,7 @@ export const ListOfLinks: React.FC<ListOfLinksProps> = ({
               ml={alignNavigation === "left" ? 0 : 8}
               mr={alignNavigation === "right" ? 0 : 8}
             >
-              {link.text}
+              {intl.formatMessage({ id: `${link.text}` })}
             </Link>
           </ListItem>
         )
