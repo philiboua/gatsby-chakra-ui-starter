@@ -49,7 +49,6 @@ export interface FooterModelBase extends BoxProps {
 type FooterModelProps = Logo & FooterModelBase
 
 export const FooterSection: React.FC<FooterModelProps> = ({
-  copyright,
   companyMission,
   socialMedia,
   footerLinks,
