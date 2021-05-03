@@ -27,7 +27,7 @@ type Styles = {
   [key in FloatingLabelVariant]: SerializedStyles | null
 }
 
-const FormLabelWithMotion = motion.custom(FormLabel)
+const FormLabelWithMotion = motion(FormLabel)
 
 export const Input: React.FC<InputProps> = ({
   name,
