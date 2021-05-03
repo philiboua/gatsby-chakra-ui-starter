@@ -34,7 +34,7 @@ type CustomTextProps = {
 
 export type TextProps = CustomTextProps & ChakraTextProps & FramerMotionProps
 
-const ChakraTextWithMotion = motion.custom(ChakraText)
+const ChakraTextWithMotion = motion(ChakraText)
 
 export const Text: React.FC<TextProps> = ({
   children,

@@ -5,17 +5,7 @@ import { PinInput } from "@src/components"
 import { FormWp } from "./mock/FormWp"
 
 describe("PinInput field : <PinInput/>", () => {
-  /**
-   * a11y test fails
-   * the pin input field has an incorrect autoComplete value = "not-allowed"
-   * the attribute has been fixed in Chakra 1.0.8
-   * @link  https://github.com/chakra-ui/chakra-ui/commit/46e24c5820ef2726a4fb16a190efda39fb0b075a#diff-f6b3c3b196e473a8e5ada39bf0d86577bf5ffae8b09f466ad2a437246c33799d
-   *
-   * Upgrade of the Chakra UI package will be done by May 2021.
-   */
-
-  /* eslint jest/no-disabled-tests: "off" */
-  it.skip("passes a11y test", async () => {
+  it("passes a11y test", async () => {
     const handleSubmit = jest.fn()
     await testA11y(
       <FormWp submitHandler={handleSubmit}>
