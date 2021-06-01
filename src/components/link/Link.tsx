@@ -9,7 +9,7 @@
 
 */
 import React, { useContext } from "react"
-import { Link as GatsbyLink } from "gatsby-plugin-intl"
+import { Link as GatsbyLink } from "gatsby-plugin-react-intl"
 import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
