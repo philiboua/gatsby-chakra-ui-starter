@@ -37,12 +37,13 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-intl`,
+      resolve: `gatsby-plugin-react-intl`,
       options: {
         // language JSON resource path
         path: `${__dirname}/locales`,
         // supported language
         languages: [`en`, `fr`],
+        ignoredPaths: ["/app/**"],
         // language file path
         defaultLanguage: `en`,
         // option to redirect to `/ko` when connecting `/`

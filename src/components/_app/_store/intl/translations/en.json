@@ -1,0 +1,9 @@
+{
+  "EMAIL": "Enter your email",
+  "FORM": {
+    "SIGNIN": {
+      "EMAIL": "Enter your email",
+      "PASSWORD": "Enter your password"
+    }
+  }
+}

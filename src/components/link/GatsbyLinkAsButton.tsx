@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react"
 
-import { Link as GatsbyLink } from "gatsby-plugin-intl"
+import { Link as GatsbyLink } from "gatsby-plugin-react-intl"
 import { useTheme } from "@chakra-ui/react"
 
 import { css, jsx } from "@emotion/react"

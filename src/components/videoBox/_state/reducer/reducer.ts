@@ -1,23 +1,10 @@
-import { VideoActionTypes } from "./videoActionTypes"
-import { VideoState } from "./videoState"
-
-export interface VideoAction {
-  type:
-    | VideoActionTypes.MUTE_VIDEO
-    | VideoActionTypes.PAUSE_VIDEO
-    | VideoActionTypes.PLAY_VIDEO
-    | VideoActionTypes.UNMUTE_VIDEO
-    | VideoActionTypes.VIDEO_MOUSEENTER
-    | VideoActionTypes.VIDEO_MOUSELEAVE
-    | VideoActionTypes.VIDEO_INITIAL_STATE
-}
-
-export type DispatchVideoType = (action: VideoAction) => void
+import { IVideoAction, VideoActionTypes } from "../actions"
+import { IVideoState, IMediaState } from "../initialState"
 
 export const videoReducer = (
-  state: VideoState,
-  action: VideoAction
-): VideoState => {
+  state: IVideoState,
+  action: IVideoAction
+): IVideoState => {
   switch (action.type) {
     case VideoActionTypes.PLAY_VIDEO:
       return { ...state, video: "play" }
@@ -32,7 +19,9 @@ export const videoReducer = (
     case VideoActionTypes.VIDEO_MOUSELEAVE:
       return { ...state, videoHovered: false }
     case VideoActionTypes.VIDEO_INITIAL_STATE:
-      return { ...state, video: null }
+      return { ...state, video: "pause" }
+    case VideoActionTypes.VIDEO_ENDED:
+      return { ...state, video: "stop" }
     default:
       return { ...state }
   }

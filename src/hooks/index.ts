@@ -1,2 +1,2 @@
-export * from "./useVideoBox"
 export * from "./useToggle"
+export * from "./useIntl"
