@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks"
 import { HoverBox } from "@src/components"
-import { hoverContext } from "@src/contexts"
+import { Text } from "@chakra-ui/react"
+import { TextWithHover } from "./TextWithHover"
 
 <Meta title="Components/hoverBox" component={HoverBox} />
 
@@ -22,9 +23,7 @@ Below you you can see how to use the component :
       color="white"
       height="100px"
     >
-      <hoverContext.Consumer>
-        {value => <div>hello, hover state: {value.toString()}</div>}
-      </hoverContext.Consumer>
+      <TextWithHover />
     </HoverBox>
   </Story>
 </Canvas>
