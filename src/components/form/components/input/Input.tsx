@@ -81,11 +81,11 @@ export const Input: React.FC<InputProps> = ({
   const variants = {
     InputOn: {
       opacity: 1,
-      y: 0,
+      y: "3px",
     },
     InputOff: {
       opacity: 0,
-      y: "3px",
+      y: "6px",
     },
   }
 
@@ -121,17 +121,17 @@ export const Input: React.FC<InputProps> = ({
           display="relative"
           className="inputWp"
           borderRadius={floatingLabelVariant === "flushed" ? "0px" : "md"}
-          py={1}
-          px="16px"
+          height="3.375rem"
           css={styles[floatingLabelVariant]}
         >
           <FormLabelWithMotion
             position="absolute"
+            px="16px"
             display={inputState === "activated" ? "block" : "none"}
             fontSize={inputState === "activated" ? "0.8125rem" : ""}
-            mb="0px"
             animate={inputState === "activated" ? "InputOn" : "InputOff"}
             variants={variants}
+            transition={{ delay: 0.1 }}
             htmlFor={name}
           >
             {label}
@@ -139,7 +139,10 @@ export const Input: React.FC<InputProps> = ({
           <ChakraInput
             pt={inputState === "activated" ? "1rem" : "0.625rem"}
             pb={inputState === "activated" ? "0.25rem" : "0.625rem"}
+            px="16px"
             variant="unstyled"
+            height="100%"
+            width="100%"
             fontSize="1rem"
             aria-label={inputState === "activated" ? "" : label}
             onFocus={() => toggleIsFocus()}
