@@ -5,6 +5,7 @@ import { Box, Button, Grid, GridItem } from "@chakra-ui/react"
 import { IoPlay, IoPause, IoVolumeMedium, IoVolumeMute } from "react-icons/io5"
 import * as Video from "@components/videoBox/reducer/videoActionCreators"
 import video from "@assets/videos/sample-beach.mp4"
+import { LayoutVideoAlpha } from "@src/components/videoBox/layout"
 
 <Meta title="Components/videoBox" component={VideoBox} />
 
@@ -36,8 +37,9 @@ We want to give as much flexibility as possible to developers to build the `Vide
 
 #### use custom hook useVideoBox()
 
-1. import the custom hook useVideoBox in the component that will be a direct child of `VideoBox`
+1. import the custom hook useVideoBox in the component that will be a direct child of `VideoBox
 
+   `
 
 `useVideoBox()` is an abstraction of the VideoContext.
 
@@ -66,8 +68,9 @@ const unmute: () => void
 
 #### use the VideoContext
 
-1. import the VideoBox context and its action creator
+1. import the VideoBox context and its action creato
 
+   r
 
 ```javascript
 import { videoContext } from "@src/contexts"
@@ -109,7 +112,7 @@ Video.reinitializeState() // the Video will go back to the default state
 Below you can see a full example regarding the customization of the component. For each template created we can focus on the content displayed on top of the video. The width and height of the video can always be updated by the developer.
 
 ```javascript
-<VideoBox loop videoMp4SrcURL={video} height="500px" width="300px">
+<VideoBox loop autoPlay videoMp4SrcURL={video} height="500px" width="300px">
   <videoContext.Consumer>
     {context => {
       const getVideoScreenReadersInfo = context => {

@@ -28,12 +28,12 @@ describe("VideoBox", () => {
     expect(sourceTags).toBe(1)
   })
 
-  test("Should autoplay the video by default", () => {
+  test("Should not autoplay the video by default", () => {
     const playFn = jest.fn()
     window.HTMLMediaElement.prototype.play = playFn
 
     render(<VideoBox videoMp4SrcURL={video} width="300px" height="200px" />)
 
-    expect(playFn).toHaveBeenCalled()
+    expect(playFn).not.toHaveBeenCalled()
   })
 })

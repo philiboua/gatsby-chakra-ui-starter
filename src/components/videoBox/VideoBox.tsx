@@ -1,21 +1,8 @@
-/** @jsx jsx */
-import React, { useRef, useReducer, useEffect, useMemo } from "react"
-import { css, jsx } from "@emotion/react"
-import { Box as VideoContainer, BoxProps } from "@chakra-ui/react"
-import { videoContext } from "@src/contexts"
-import styled from "@emotion/styled"
-import { videoReducer, VideoState } from "./reducer"
-import * as Video from "./reducer/videoActionCreators"
+import React from "react"
+import { BoxProps } from "@chakra-ui/react"
+import { VideoPlayer, VideoContainer } from "./components"
+import { ProvideVideoBox } from "./_context/components"
 
-const VideoPlayer = styled.video`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`
 interface VideoBaseProps extends BoxProps {
   /**
    * url of the MP4 video
@@ -64,72 +51,25 @@ export const VideoBox: React.FC<VideoBaseProps> = ({
   videoWebpmSrcURL,
   fallbackMessage,
   loop,
-  autoPlay = true,
+  autoPlay = false,
   playsInline,
   videoBorderRadius,
   children,
   ...props
 }) => {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const initialState: VideoState = {
-    muted: true,
-    video: autoPlay ? "play" : null,
-    videoHovered: false,
-  }
-
-  const [state, dispatch] = useReducer(videoReducer, initialState)
-
-  useEffect(() => {
-    if (videoRef.current) {
-      if (state.video === "play") {
-        videoRef.current.play()
-      }
-      if (state.video === "pause") {
-        videoRef.current.pause()
-      }
-    }
-  }, [state])
-
-  const contextValues = useMemo(() => {
-    return { state, dispatch }
-  }, [state])
-
   return (
-    <videoContext.Provider value={contextValues}>
-      <VideoContainer
-        position="relative"
-        onMouseEnter={() => {
-          dispatch(Video.mouseEnter())
-        }}
-        onMouseLeave={() => {
-          dispatch(Video.mouseLeave())
-        }}
-        {...props}
-      >
+    <ProvideVideoBox>
+      <VideoContainer {...props}>
         <VideoPlayer
-          css={css`
-            border-radius: ${videoBorderRadius !== undefined
-              ? videoBorderRadius
-              : "0px"};
-          `}
-          ref={videoRef}
-          muted={state.muted}
+          videoMp4SrcURL={videoMp4SrcURL}
+          fallbackMessage={fallbackMessage}
+          videoBorderRadius={videoBorderRadius}
+          autoPlay={autoPlay}
           playsInline={playsInline}
-          onEnded={() =>
-            dispatch(loop ? Video.play() : Video.reinitializeState())
-          }
-        >
-          {videoWebpmSrcURL && (
-            <source src={videoWebpmSrcURL} type="video/webm" />
-          )}
-          {videoMp4SrcURL && <source src={videoMp4SrcURL} type="video/mp4" />}
-          {fallbackMessage && <span>{fallbackMessage}</span>}
-        </VideoPlayer>
+          loop={loop}
+        />
         {children}
       </VideoContainer>
-    </videoContext.Provider>
+    </ProvideVideoBox>
   )
 }
-
-export default VideoBox
