@@ -1,0 +1,9 @@
+{
+  "EMAIL": "Ajouter votre adresse courrielle",
+  "FORM": {
+    "SIGNIN": {
+      "EMAIL": "Ajouter votre adresse courrielle",
+      "PASSWORD": "Ajouter votre mot de passe"
+    }
+  }
+}
