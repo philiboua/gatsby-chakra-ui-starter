@@ -4,7 +4,15 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from "@mdx-js/react"
 import { ChakraMDXProvider } from "@src/chakra-ui/mdxProvider"
 
-const BlogPostPage = ({ data }) => {
+
+const BlogPostPage:React.FC<{ data:{
+  mdx:{
+    frontmatter:{
+      title: string
+    }
+    body: string
+  }
+} }> = ({ data }) => {
   const post = data.mdx
   return (
     <>
