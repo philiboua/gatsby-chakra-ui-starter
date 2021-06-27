@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Grid, GridItem, Button } from "@chakra-ui/react"
 import { IoPlay, IoPause, IoVolumeMedium, IoVolumeMute } from "react-icons/io5"
 import { useVideoBox } from "@src/components/videoBox/_context/hooks"
-import { IMediaState } from "../../../_state/initialState"
+import { IMediaState } from "../../_state/initialState"
 
 const getVideoScreenReadersInfo = (mediaState: IMediaState) => {
   switch (mediaState) {
@@ -26,7 +26,7 @@ const getVideoScreenReadersInfo = (mediaState: IMediaState) => {
   }
 }
 
-interface LayoutVideoAlphaProps {
+interface VideoBoxAlphaProps {
   /**
    * define the size of icons
    */
@@ -49,7 +49,7 @@ interface LayoutVideoAlphaProps {
   sizeButton?: "xs" | "sm" | "md" | "lg"
 }
 
-export const LayoutVideoAlpha: React.FC<LayoutVideoAlphaProps> = ({
+export const VideoBoxAlpha: React.FC<VideoBoxAlphaProps> = ({
   sizeIcon = "1.5rem",
   colorIcon = "#fff",
   px = 3,

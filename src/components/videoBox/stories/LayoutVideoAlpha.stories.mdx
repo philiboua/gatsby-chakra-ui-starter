@@ -1,22 +1,23 @@
 import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
-import { VideoBox, LayoutVideoAlpha } from "@src/components"
+import { VideoBox, ViewFactory, videoBoxViews } from "@src/components"
+import { VideoBoxAlpha } from "@src/components/videoBox/views/videoBoxAlpha"
 import video from "@assets/videos/sample-beach.mp4"
 
 <Meta
-  title="Components/videoBox/layout/LayoutVideoAlpha"
-  component={LayoutVideoAlpha}
+  title="Components/videoBox/views/VideoBoxAlpha"
+  component={VideoBoxAlpha}
 />
 
-# VideoBox - VideoLayoutAlpha
+# VideoBox - VideoBoxAlpha
 
-`VideoLayoutAlpha` allow any user to pause, play, mute and unmute the video. The video controls are located at the bottom of the video.
+`VideoBoxAlpha` allow any user to pause, play, mute and unmute the video. The video controls are located at the bottom of the video.
 
 ## How to use it
 
-1. Import the `VideoBox` and `VideoLayoutAlpha` Components
+1. Import the `VideoBox`, `VideoBoxViews` and `ViewFactory` Components
 
 ```javascript
-import { VideoBox, LayoutVideoAlpha } from "@src/components"
+import { VideoBox, ViewFactory, videoBoxViews } from "@src/components"
 ```
 
 2. Set up the component with the desired props
@@ -29,14 +30,14 @@ import { VideoBox, LayoutVideoAlpha } from "@src/components"
   width="100%"
   borderRadius="sm"
 >
-  <LayoutVideoAlpha />
+  <ViewFactory type="alpha" views={videoBoxViews} />
 </VideoBox>
 ```
 
 ## Preview
 
 <Canvas>
-  <Story name="VideoLayoutAlpha">
+  <Story name="VideoBoxAlpha">
     <VideoBox
       loop
       autoPlay
@@ -45,13 +46,9 @@ import { VideoBox, LayoutVideoAlpha } from "@src/components"
       width="200px"
       borderRadius="sm"
     >
-      <LayoutVideoAlpha
-        sizeIcon="1rem"
-        sizeButton="xs"
-        px={{ sm: 10, md: 3, lg: 3 }}
-      />
+      <ViewFactory type="alpha" views={videoBoxViews} />
     </VideoBox>
   </Story>
 </Canvas>
 
-<ArgsTable of={LayoutVideoAlpha} />
+<ArgsTable of={VideoBoxAlpha} />
