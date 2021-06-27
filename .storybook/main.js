@@ -1,7 +1,9 @@
 const path = require("path")
 
 module.exports = {
-  // You will want to change this to wherever your Stories will live.
+  typescript: {
+    reactDocgen: "none",
+  },
   stories: ["../src/**/*.stories.@(tsx|mdx)"],
   addons: [
     "@storybook/addon-essentials",
