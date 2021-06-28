@@ -5,14 +5,12 @@ import {
   LinkProps,
   ChildImageSharpProps,
   Billboard,
-  Slice,
-  Text,
-  ListOfLinks,
   SectionBox,
+  ViewFactory,
+  billboardViews,
+  Text,
+  Slice,
 } from "@src/components"
-import Img from "gatsby-image"
-
-import { GridItem } from "@chakra-ui/react"
 
 export interface BillboardModelProps extends BillBoardBaseProps {
   content: string
@@ -33,22 +31,11 @@ export const BillboardSection: React.FC<BillBoardSection> = ({ data }) => {
         headline={intl.formatMessage({ id: `${data.headline}` })}
         caption={intl.formatMessage({ id: `${data.caption}` })}
       >
-        <Slice __TYPE="body">
-          <Text type="introduction">
-            {intl.formatMessage({ id: `${data.content}` })}
-          </Text>
-          <ListOfLinks content={data.callToAction} />
-        </Slice>
-        <Slice __TYPE="media">
-          <GridItem width="100%">
-            {data.image && (
-              <Img
-                fluid={data.image.childImageSharp.fluid}
-                alt="billboard Image"
-              />
-            )}
-          </GridItem>
-        </Slice>
+        <ViewFactory type="alpha" views={billboardViews}>
+          <Slice __TYPE="body">
+            <Text type="headline.small">hello world</Text>
+          </Slice>
+        </ViewFactory>
       </Billboard>
     </SectionBox>
   )
