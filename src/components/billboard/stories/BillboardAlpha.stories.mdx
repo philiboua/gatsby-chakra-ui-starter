@@ -1,0 +1,24 @@
+import { Meda, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
+import { Billboard, ViewFactory, billboardViews } from "@src/components"
+import { BillboardAlpha } from "@src/components/billboard/views/billboardAlpha"
+
+<Meta
+  title="Components/Billboard/views/BillboardAlpha"
+  component={BillboardAlpha}
+/>
+
+# Billboard
+
+`Billboard` component is used at the top of the page to provide main information about the page.
+
+## ** Preview **
+
+### Billboard
+
+<Canvas>
+  <Story name="Billboard Alpha">
+    <Billboard headline="Get started with Chakra UI" caption="CHAKRA UI">
+      <ViewFactory type="alpha" views={billboardViews} />
+    </Billboard>
+  </Story>
+</Canvas>
