@@ -5,10 +5,18 @@ interface ViewFactoryProps {
   views: { [key: string]: React.ReactElement }
 }
 
-export const ViewFactory: React.FC<ViewFactoryProps> = ({ type, views }) => {
-  const UI = views[type]
+export const ViewFactory: React.FC<ViewFactoryProps> = ({
+  children,
+  type,
+  views,
+}) => {
+  const UI: React.ReactElement = views[type]
+
   if (UI !== undefined) {
-    return UI
+    const newComponent = React.cloneElement(UI, {
+      slices: React.Children.toArray(children),
+    })
+    return newComponent
   }
 
   return null
