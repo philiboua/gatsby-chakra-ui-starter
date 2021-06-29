@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, GridItem, VStack } from "@chakra-ui/layout"
+import { Grid, GridItem, VStack, Box } from "@chakra-ui/react"
 import { Text, Slice } from "@src/components"
 import { useBillboardContext } from "../../_context"
 
@@ -55,6 +55,9 @@ export const BillboardAlpha: React.FC<{
           </VStack>
         </GridItem>
       </Grid>
+      <Box width="100%">
+        {slices?.find((slice: any) => slice.props.__TYPE === "footer")}
+      </Box>
     </>
   )
 }

@@ -1,6 +1,12 @@
 import { Meda, Story, Canvas, ArgsTable } from "@storybook/addon-docs/blocks"
-import { Billboard, Slice, Text } from "@src/components"
-import { GridItem } from "@chakra-ui/react"
+import {
+  Billboard,
+  ViewFactory,
+  billboardViews,
+  Slice,
+  Text,
+} from "@src/components"
+import { BillboardAlpha } from "@src/components/billboard/views/billboardAlpha"
 
 <Meta title="Components/Billboard" component={Billboard} />
 
@@ -12,33 +18,12 @@ import { GridItem } from "@chakra-ui/react"
 
 ### Billboard
 
-<Canvas>
-  <Story name="Billboard">
-    <Billboard headline="Get started with Chakra UI" caption="CHAKRA UI" />
-  </Story>
-</Canvas>
-
-The billboard component is flexible and can multiple slices. You can add the following slices : `body`, `media`, `footer`. Each slices will be added at specific location inside the component.
+The billboard component is flexible and can use multiple slices. You can add the following slices : `body`, `media`, `footer`. Each slices will be added at specific location inside the component. We are leveraging the `viewFactor` component in order to have different layout with multiple slices.
 
 <Canvas>
-  <Story name="Billboard with custom slices">
+  <Story name="Billboard example">
     <Billboard headline="Get started with Chakra UI" caption="CHAKRA UI">
-      <Slice __TYPE="body">
-        <Text type="subtitle.medium"> This is the body slice</Text>
-      </Slice>
-      <Slice __TYPE="media">
-        <GridItem>
-          <Text type="subtitle.medium">
-            This is the media slice, it's a great place to add images, or videos
-          </Text>
-        </GridItem>
-      </Slice>
-      <Slice __TYPE="footer">
-        <Text type="subtitle.medium">
-          This is the footer slice, we can add a gallery of logos for example,
-          the world is yours :)
-        </Text>
-      </Slice>
+      <ViewFactory type="alpha" views={billboardViews} />
     </Billboard>
   </Story>
 </Canvas>
