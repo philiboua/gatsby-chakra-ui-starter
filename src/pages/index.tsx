@@ -2,7 +2,13 @@ import React from "react"
 import { graphql } from "gatsby"
 import logoCompany from "@images/logo-1.svg"
 import video from "@static/videos/sample-beach.mp4"
-import { SEO, SectionBox, VideoBox, LayoutVideoAlpha } from "@src/components"
+import {
+  SEO,
+  SectionBox,
+  VideoBox,
+  ViewFactory,
+  videoBoxViews,
+} from "@src/components"
 import { Box } from "@chakra-ui/react"
 import {
   FeatureModel,
@@ -53,7 +59,7 @@ const Home: React.FC<IPageQuery> = ({ data }) => {
               width="100%"
               borderRadius="sm"
             >
-              <LayoutVideoAlpha />
+              <ViewFactory type="alpha" views={videoBoxViews} />
             </VideoBox>
           </Box>
         </SectionBox>

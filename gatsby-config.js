@@ -37,13 +37,34 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown`,
+        path: `${__dirname}/src/posts/`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-plugin-react-intl`,
       options: {
         // language JSON resource path
         path: `${__dirname}/locales`,
         // supported language
         languages: [`en`, `fr`],
-        ignoredPaths: ["/app/**"],
+        ignoredPaths: ["/app/**", "/blog/**"],
         // language file path
         defaultLanguage: `en`,
         // option to redirect to `/ko` when connecting `/`

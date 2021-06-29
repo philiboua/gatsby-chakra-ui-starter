@@ -5,7 +5,7 @@ import GlobalCSS from "../src/components/GlobalCSS"
 import theme from "../src/chakra-ui/theme"
 import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport"
 import { setIntlConfig, withIntl } from "storybook-addon-intl"
-import { IntlContextProvider } from "gatsby-plugin-react-intl/intl-context"
+import { IntlContextProvider } from "gatsby-plugin-react-intl"
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
