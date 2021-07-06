@@ -74,6 +74,7 @@ const intlConfig = {
   language: "en",
   languages: locales,
   messages: "",
+  ignoredPaths: ["/app/**", "/blog/**"],
   originalPath: "/",
   redirect: true,
   routed: true,
