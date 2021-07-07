@@ -1,5 +1,4 @@
 import React from "react"
-import { useIntl } from "gatsby-plugin-react-intl"
 import { List, ListItem } from "@chakra-ui/react"
 import { Link, LinkProps } from "@src/components"
 
@@ -18,7 +17,6 @@ export const ListOfLinks: React.FC<ListOfLinksProps> = ({
   bgColorWithHighSaturation,
   ...props
 }) => {
-  const intl = useIntl()
   const displayList = content
     ? content.map((link: LinkProps) => {
         return (
@@ -32,7 +30,7 @@ export const ListOfLinks: React.FC<ListOfLinksProps> = ({
               ml={alignNavigation === "left" ? 0 : 8}
               mr={alignNavigation === "right" ? 0 : 8}
             >
-              {intl.formatMessage({ id: `${link.text}` })}
+              {link.text}
             </Link>
           </ListItem>
         )
